@@ -1,0 +1,1 @@
+This is a collection of scripts and configurations for many linux programs.
