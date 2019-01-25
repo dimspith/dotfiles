@@ -8,7 +8,10 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 ZSH_THEME="agnoster"
 
 # The list of plugins to load.
-plugins=(git)
+plugins=(
+git
+zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
