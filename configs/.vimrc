@@ -17,3 +17,25 @@ set cindent         " stricter rules for C programs
 set backupdir=/tmp//
 set directory=/tmp//
 set undodir=/tmp//
+
+" Always show current position
+set ruler
+
+" Ignore case when searching and be smart
+set ignorecase
+set smartcase
+
+" Highlight search results
+set hlsearch
+
+" Modern search
+set incsearch
+
+
+" Show matching brackets when text indicator is over them
+set showmatch
+
+" Enable syntax highlighting
+syntax enable
+
+" 
