@@ -5,7 +5,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
   export ZSH="/home/dimitris/.oh-my-zsh"
 
 # The theme that zsh is using.
-ZSH_THEME="agnoster"
+ZSH_THEME="suvash"
 
 # The list of plugins to load.
 plugins=(
