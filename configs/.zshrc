@@ -5,7 +5,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
   export ZSH="/home/dimitris/.oh-my-zsh"
 
 # The theme that zsh is using.
-ZSH_THEME="suvash"
+ZSH_THEME="robbyrussell"
 
 # The list of plugins to load.
 plugins=(
@@ -26,10 +26,9 @@ alias tma="tmux a"
 alias la="ls -gGAh"
 
 alias rlconf="source ~/.bashrc"
-PATH=$PATH:/home/dimitris/bin/
-
-
-
+export PATH=$PATH:/home/dimitris/bin/
+export PATH=$PATH:/home/dimitris/CustomApps/farbfeld
+export PATH=$PATH:/home/dimitris/CustomApps/sent
 # User configuration
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load

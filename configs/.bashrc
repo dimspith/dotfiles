@@ -10,4 +10,5 @@ alias tma="tmux a"
 alias la="ls -gGAh"
 
 alias rlconf="source ~/.bashrc"
-PATH=$PATH:/home/dimitris/bin/
+# PATH=$PATH:/home/dimitris/bin/
+# PATH=$PATH:/home/dimitris/CustomApps/
