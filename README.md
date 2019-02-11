@@ -1,4 +1,4 @@
-#Configurations and scripts
+### Configurations and scripts
 This is a collection of scripts and configuration files for:
 * bash
 * zsh
