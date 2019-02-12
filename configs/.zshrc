@@ -1,8 +1,18 @@
+#===================
+
+# THIS CONFIG IS USED WITH OH-MY-ZSH,
+# INSTALL IT BEFORE USING IT
+
+#===================
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-  export ZSH="/home/dimitris/.oh-my-zsh"
+# Path to oh-my-zsh installation.
+export ZSH="/home/dimitris/.oh-my-zsh"
+
+# Home directory script path. 
+export PATH=$PATH:/home/dimitris/bin/
 
 # The theme that zsh is using.
 ZSH_THEME="robbyrussell"
@@ -12,20 +22,17 @@ plugins=(
 git
 )
 
+# Source file.
 source $ZSH/oh-my-zsh.sh
 
-alias vrc="vim /home/dimitris/.bashrc"
-alias atlauncher="java -jar /home/dimitris/ATLauncher/ATLauncher.jar &"
-
-alias yt="youtube-viewer"
-
-alias tm="tmux"
-alias tma="tmux a" 
-
+# Aliases.
+alias vzc="vim /home/dimitris/.zshrc"
 alias la="ls -gGAh"
-
 alias rlconf="source ~/.zshrc"
-export PATH=$PATH:/home/dimitris/bin/
+alias vrc="vim /home/dimitris/.vimrc"
+alias vi3="vim /home/dimitris/.config/i3/config"
+alias vrf="vim $HOME/.config/rofi/config"
+
 # User configuration
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -56,7 +63,7 @@ export PATH=$PATH:/home/dimitris/bin/
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+ COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -71,11 +78,3 @@ export PATH=$PATH:/home/dimitris/bin/
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
