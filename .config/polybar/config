@@ -1,0 +1,204 @@
+ ;▄▄▄▄▄    ▀                               
+ ;█   ▀█ ▄▄▄     ▄▄▄    ▄▄▄    ▄ ▄▄   ▄▄▄▄ 
+ ;█▄▄▄▄▀   █    █   ▀  █▀ ▀█   █▀  ▀ █▀ ▀█ 
+ ;█   ▀▄   █     ▀▀▀▄  █   █   █     █   █ 
+ ;█    ▀ ▄▄█▄▄  ▀▄▄▄▀  ▀█▄█▀   █     ▀█▄▀█ 
+ ;                                    ▄  █ 
+ ;                                     ▀▀  
+ 
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[settings]
+throttle-output = 5
+throttle-output-for = 10
+throttle-input-for = 30
+screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+format-foreground = #282C34
+format-background = #61AFEF
+format-underline =
+format-overline =
+format-spacing =
+format-padding =
+format-margin =
+format-offset =
+
+;                 "           #                   
+; mmmmm   mmm   mmm    m mm   #mmm    mmm    m mm 
+; # # #  "   #    #    #"  #  #" "#  "   #   #"  "
+; # # #  m"""#    #    #   #  #   #  m"""#   #    
+; # # #  "mm"#  mm#mm  #   #  ##m#"  "mm"#   #   
+
+[bar/mainbar]
+;=== MONITOR AND WM ===================================
+monitor = DVI-I-1
+monitor-fallback =
+monitor-strict = false
+override-redirect = false
+wm-restack = i3
+
+;=== BAR ATTRIBUTES ==================================
+bottom = false
+fixed-center = true
+width = 100%
+height = 26
+offset-x = 0
+offset-y = 0
+background = #17172B
+foreground = #000
+radius = 13
+line-size = 2
+line-color = #f00
+border-size =
+border-top-size=
+border-bottom-size=
+border-right-size=
+border-left-size=
+border-color =
+padding-left = 1
+padding-right = 1
+font-0 = Fira Sans:style=SemiBold:size=10;2
+;dim-value = 1.0
+
+;=== MODULES ============================================
+module-margin-left = 0
+module-margin-right = 4
+module-padding = 4
+modules-left = i3
+modules-center =  title
+modules-right = cpu memory keyboard date
+separator = 
+locale = 
+
+;=== SYSTEM TRAY CONFIGURATION ================================
+tray-position = right
+tray-detached = false
+tray-maxsize = 17
+tray-background = ${root.background}
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 1
+tray-scale = 1.0
+enable-ipc = false
+click-left = 
+click-middle = 
+click-right =
+scroll-up = i3wm-wsprev
+scroll-down = i3wm -wsnext
+double-click-left =
+double-click-middle =
+double-click-right =
+cursor-click = 
+cursor-scroll = 
+
+;                   #         ""#
+; mmmmm   mmm    mmm#  m   m    #     mmm    mmm
+; # # #  #" "#  #" "#  #   #    #    #"  #  #   "
+; # # #  #   #  #   #  #   #    #    #""""   """m
+; # # #  "#m#"  "#m##  "mm"#    "mm  "#mm"  "mmm"
+;=======================================================
+[module/date]
+type = internal/date
+interval = 1.0
+date = %d-%m-%Y%
+time = %H:%M
+date-alt = %A, %d %B %Y
+time-alt = %H:%M:%S
+format = <label>
+format-background = #55ff3399
+format-foreground = #fff
+label = %date% %time%
+label-font = 1
+label-foreground = #FFC5ED
+
+;=======================================================
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = true
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #e60053
+
+label-focused = %name%
+label-focused-foreground = #ffffff
+label-focused-background = #3f3f3f
+label-focused-underline = #fba922
+label-focused-padding = 4
+
+label-unfocused = %name% 
+label-unfocused-foreground = #ffffff
+label-unfocused-background = #292929
+label-unfocused-padding = 4
+
+label-visible = %index%
+label-visible-underline = #555555
+label-visible-padding = 4
+
+label-urgent = %index%: %name%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 4
+
+label-separator =
+label-separator-padding = 2
+label-separator-foreground = #ffb52a
+
+;=======================================================
+[module/memory]
+type = internal/memory
+interval = 1
+format = <label>
+format-background = #BE1630
+format-foreground = #fff
+label = RAM(%percentage_used%%) %gb_used%/%gb_free%
+
+;======================================================
+[module/cpu]
+type = internal/cpu
+interval = 1
+format = <label>
+format-background = #2B74DD
+format-foreground = #fff
+label = CPU %percentage%%
+
+;======================================================
+[module/keyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+format = <label-layout> <label-indicator>
+format-spacing = 0
+label-layout = %name%
+label-layout-padding = 2
+label-layout-background = #bc99ed
+label-layout-foreground = #000
+label-indicator = %name%
+label-indicator-padding = 2
+label-indicator-background = #8139e8
+
+;======================================================
+[module/title]
+type = internal/xwindow
+format = <label>
+format-background = #17172B
+format-foreground = #fff
+format-padding = 4
+label = %title%
+label-maxlen = 50
+label-empty = Empty
+label-empty-foreground = #707880
