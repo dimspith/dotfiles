@@ -1,3 +1,4 @@
+#
 #===================
 
 # THIS CONFIG IS USED WITH OH-MY-ZSH,
@@ -12,10 +13,13 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
 
 # Home directory script path. 
-export PATH=$PATH:$ΗΟΜΕ/bin/
+export PATH=$PATH:$HOME/bin/
 
 # The theme that zsh is using.
 ZSH_THEME="nebirhos"
+
+# Change shell variables
+export EDITOR=/usr/bin/nvim
 
 # The list of plugins to load.
 plugins=(git)
@@ -24,16 +28,23 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Aliases.
-alias vzc="vim $HOME/.zshrc"
+alias v="vim"
+alias nv="nvim"
 alias la="ls -gGAh"
-alias rlconf="source ~/.zshrc"
-alias vrc="vim $HOME/.vimrc"
-alias vi3="vim $HOME/.config/i3/config"
-alias vrf="vim $HOME/.config/rofi/config"
-alias youtube="toilet -f mono9 --rainbow Youtube;youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(clipit -c)"
-alias vpol="vim $HOME/.config/polybar/config"
 alias rm="rm -I"
+alias aliases="alias|less"
+alias pupg="sudo pacman -Syu"
 
+alias rlconf="source ~/.zshrc"
+alias vzc="nvim $HOME/.zshrc"
+alias vrc="nvim $HOME/.vimrc"
+alias nvrc="nvim $HOME/.config/nvim/init.vim"
+alias vpol="nvim $HOME/.config/polybar/config"
+alias vi3="nvim $HOME/.config/i3/config"
+alias vrf="nvim $HOME/.config/rofi/config"
+alias youtube="toilet -f mono9 --rainbow Youtube;youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(xclip -o)"
+alias diskspace="df -h | grep /dev/sdc | awk {'print \$4'}"
+alias open="xdg-open"
 
 # How ofter to update zsh.
 export UPDATE_ZSH_DAYS=13
