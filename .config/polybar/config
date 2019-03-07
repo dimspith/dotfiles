@@ -1,11 +1,11 @@
- ;▄▄▄▄▄    ▀                               
- ;█   ▀█ ▄▄▄     ▄▄▄    ▄▄▄    ▄ ▄▄   ▄▄▄▄ 
- ;█▄▄▄▄▀   █    █   ▀  █▀ ▀█   █▀  ▀ █▀ ▀█ 
- ;█   ▀▄   █     ▀▀▀▄  █   █   █     █   █ 
- ;█    ▀ ▄▄█▄▄  ▀▄▄▄▀  ▀█▄█▀   █     ▀█▄▀█ 
- ;                                    ▄  █ 
- ;                                     ▀▀  
- 
+ ;▄▄▄▄▄    ▀
+ ;█   ▀█ ▄▄▄     ▄▄▄    ▄▄▄    ▄ ▄▄   ▄▄▄▄
+ ;█▄▄▄▄▀   █    █   ▀  █▀ ▀█   █▀  ▀ █▀ ▀█
+ ;█   ▀▄   █     ▀▀▀▄  █   █   █     █   █
+ ;█    ▀ ▄▄█▄▄  ▀▄▄▄▀  ▀█▄█▀   █     ▀█▄▀█
+ ;                                    ▄  █
+ ;                                     ▀▀
+
 [global/wm]
 margin-top = 0
 margin-bottom = 0
@@ -30,15 +30,15 @@ format-padding =
 format-margin =
 format-offset =
 
-;                 "           #                   
-; mmmmm   mmm   mmm    m mm   #mmm    mmm    m mm 
+;                 "           #
+; mmmmm   mmm   mmm    m mm   #mmm    mmm    m mm
 ; # # #  "   #    #    #"  #  #" "#  "   #   #"  "
-; # # #  m"""#    #    #   #  #   #  m"""#   #    
-; # # #  "mm"#  mm#mm  #   #  ##m#"  "mm"#   #   
+; # # #  m"""#    #    #   #  #   #  m"""#   #
+; # # #  "mm"#  mm#mm  #   #  ##m#"  "mm"#   #
 
 [bar/mainbar]
 ;=== MONITOR AND WM ===================================
-monitor = DVI-I-1
+monitor =
 monitor-fallback =
 monitor-strict = false
 override-redirect = false
@@ -53,7 +53,7 @@ offset-x = 0
 offset-y = 0
 background = #17172B
 foreground = #000
-radius = 13
+radius = 14
 line-size = 2
 line-color = #f00
 border-size =
@@ -65,17 +65,16 @@ border-color =
 padding-left = 1
 padding-right = 1
 font-0 = Fira Sans:style=SemiBold:size=10;2
-;dim-value = 1.0
 
 ;=== MODULES ============================================
 module-margin-left = 0
-module-margin-right = 4
-module-padding = 4
+module-margin-right = 3
+module-padding = 2
 modules-left = i3
 modules-center =  title
-modules-right = cpu memory keyboard date
-separator = 
-locale = 
+modules-right = cpu memory keyboard battery date
+separator =
+locale =
 
 ;=== SYSTEM TRAY CONFIGURATION ================================
 tray-position = right
@@ -87,16 +86,16 @@ tray-offset-y = 0
 tray-padding = 1
 tray-scale = 1.0
 enable-ipc = false
-click-left = 
-click-middle = 
+click-left =
+click-middle =
 click-right =
 scroll-up = i3wm-wsprev
 scroll-down = i3wm -wsnext
 double-click-left =
 double-click-middle =
 double-click-right =
-cursor-click = 
-cursor-scroll = 
+cursor-click =
+cursor-scroll =
 
 ;                   #         ""#
 ; mmmmm   mmm    mmm#  m   m    #     mmm    mmm
@@ -112,7 +111,7 @@ time = %H:%M
 date-alt = %A, %d %B %Y
 time-alt = %H:%M:%S
 format = <label>
-format-background = #55ff3399
+format-background =#17172B
 format-foreground = #fff
 label = %date% %time%
 label-font = 1
@@ -140,7 +139,7 @@ label-focused-background = #3f3f3f
 label-focused-underline = #fba922
 label-focused-padding = 4
 
-label-unfocused = %name% 
+label-unfocused = %name%
 label-unfocused-foreground = #ffffff
 label-unfocused-background = #292929
 label-unfocused-padding = 4
@@ -165,7 +164,7 @@ interval = 1
 format = <label>
 format-background = #BE1630
 format-foreground = #fff
-label = RAM(%percentage_used%%) %gb_used%/%gb_free%
+label = RAM(%percentage_used%%) %gb_used%/%gb_total%
 
 ;======================================================
 [module/cpu]
@@ -202,3 +201,18 @@ label = %title%
 label-maxlen = 50
 label-empty = Empty
 label-empty-foreground = #707880
+
+;======================================================
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT1
+adapter = ACAD
+poll-interval = 5
+time-format = %H:%M
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+label-charging = <C> %percentage%%
+label-discharging = <DC> %percentage%%
+label-full = Fully charged
+animation-discharging-framerate = 500
