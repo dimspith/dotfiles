@@ -1,9 +1,22 @@
+"==== PLUG ====
+call plug#begin('~/.config/nvim/plugged')
+Plug 'w0rp/ale' " Code linting
+Plug 'itchyny/lightline.vim' " Alternative status bar
+Plug 'drewtempelmeyer/palenight.vim' " Material dark colorscheme
+call plug#end()
+
+
+" ==== PLUGIN SETTINGS ====
+let g:lightline = {'colorscheme': 'palenight'} " Set lightline theme
+
+
+
 "===== EDITOR =====
 let mapleader=","
 set nu " Enable line numbers
 set relativenumber " Enable relative line numbers
 set background=dark " Set the background theme to dark
-colorscheme desert " Set the colorscheme to desert
+colorscheme palenight " Set the colorscheme to desert
 set autoindent " Set code autoindentation
 set cursorline " Highlight current line
 set tabstop=4 " One TAB appears to be 4 spaces
@@ -27,18 +40,53 @@ set incsearch " Modern search
 set showmatch " Show matching brackets when text indicator is over them
 syntax enable " Enable syntax highlighting
 
+" Set true colors
+if (has("nvim"))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 "Wildmode
 set wildmenu
 set wildmode=list:longest,full
 
+" H and L navigate to start or end of line
+nnoremap H ^
+nnoremap L $
+
+" J and K navigate to start or end of screen
+nnoremap K H
+nnoremap J L
+
+nnoremap <C-J> J
+nnoremap <F1> K
+
+" Alt+Direction moves 5 spaces.
+nnoremap <A-h> 4h
+nnoremap <A-j> 4j
+nnoremap <A-k> 4k
+nnoremap <A-l> 4l
+
 "===== KEY REMAPS =====
+
 " General Maps
 map <C-h> <C-w>h " Shortcutting split navigation, saving a keypress:
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-autocmd BufWritePre * %s/\s\+$//e " Strip trailing whitespace on file save
+" autocmd BufWritePre * %s/\s\+$//e  Strip trailing whitespace on file save
+map <F2> :%s/\s\+$//e " Strip trailing whitespace with F2
 map <C-s> :w<CR> " Save with Ctrl-S
+
+
+
+" Go Specific
+autocmd FileType go nnoremap <F5> :w<CR> :!go build %<CR>
+autocmd FileType go nnoremap <F6> :!./%:r<CR>
+autocmd FileType go nnoremap <F7> :w<CR> :!go run %<CR>
+autocmd FileType go inoremap ,pr fmt.Println()<Left>
 
 " C Specific
 autocmd FileType c nnoremap <F5> :w<CR> :!gcc -ansi -pedantic -Wall % -o %:r<CR>
