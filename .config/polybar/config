@@ -1,10 +1,23 @@
- ;▄▄▄▄▄    ▀
- ;█   ▀█ ▄▄▄     ▄▄▄    ▄▄▄    ▄ ▄▄   ▄▄▄▄
- ;█▄▄▄▄▀   █    █   ▀  █▀ ▀█   █▀  ▀ █▀ ▀█
- ;█   ▀▄   █     ▀▀▀▄  █   █   █     █   █
- ;█    ▀ ▄▄█▄▄  ▀▄▄▄▀  ▀█▄█▀   █     ▀█▄▀█
- ;                                    ▄  █
- ;                                     ▀▀
+; =======================
+; | Polybar config file |
+; | Author: Risorg      |
+; =======================
+
+[colors]
+
+; Google Dark Theme
+black =   #1d1f21
+red =     #cc342b
+green =   #198844
+yellow =  #fba922
+blue =    #3971ed
+magenta = #a36ac7
+cyan =    #3971ed
+white =   #c5c8c6
+
+background = ${colors.black}
+foreground = #ffffff
+
 
 [global/wm]
 margin-top = 0
@@ -21,15 +34,6 @@ compositing-overline = over
 compositing-underline = over
 compositing-border = over
 
-format-foreground = #282C34
-format-background = #61AFEF
-format-underline =
-format-overline =
-format-spacing =
-format-padding =
-format-margin =
-format-offset =
-
 ;                 "           #
 ; mmmmm   mmm   mmm    m mm   #mmm    mmm    m mm
 ; # # #  "   #    #    #"  #  #" "#  "   #   #"  "
@@ -38,7 +42,7 @@ format-offset =
 
 [bar/mainbar]
 ;=== MONITOR AND WM ===================================
-monitor =
+monitor = eDP1
 monitor-fallback =
 monitor-strict = false
 override-redirect = false
@@ -51,26 +55,25 @@ width = 100%
 height = 26
 offset-x = 0
 offset-y = 0
-background = #17172B
-foreground = #000
-radius = 14
+background = ${colors.background}
+foreground = ${colors.foreground}
+radius = 4
 line-size = 2
 line-color = #f00
-border-size =
-border-top-size=
-border-bottom-size=
-border-right-size=
-border-left-size=
-border-color =
 padding-left = 1
 padding-right = 1
-font-0 = Fira Sans:style=SemiBold:size=10;2
+
+font-0 = Fantasque Sans Mono:style=Regular:pixelsize=12;2
+font-1 = Ubuntu Nerd Font:style=Bold:pixelsize=11;1
 
 ;=== MODULES ============================================
-module-margin-left = 0
-module-margin-right = 3
-module-padding = 2
-modules-left = i3
+module-margin-left = 1
+module-margin-right = 1
+module-padding = 5
+;modules-left = cpu memory 
+;modules-center = i3
+;modules-right = keyboard battery date
+modules-left = i3 
 modules-center =  title
 modules-right = cpu memory keyboard battery date
 separator =
@@ -79,23 +82,13 @@ locale =
 ;=== SYSTEM TRAY CONFIGURATION ================================
 tray-position = right
 tray-detached = false
-tray-maxsize = 17
-tray-background = ${root.background}
+tray-maxsize = 20
+tray-background = ${colors.background}
 tray-offset-x = 0
 tray-offset-y = 0
 tray-padding = 1
 tray-scale = 1.0
 enable-ipc = false
-click-left =
-click-middle =
-click-right =
-scroll-up = i3wm-wsprev
-scroll-down = i3wm -wsnext
-double-click-left =
-double-click-middle =
-double-click-right =
-cursor-click =
-cursor-scroll =
 
 ;                   #         ""#
 ; mmmmm   mmm    mmm#  m   m    #     mmm    mmm
@@ -111,16 +104,15 @@ time = %H:%M
 date-alt = %A, %d %B %Y
 time-alt = %H:%M:%S
 format = <label>
-format-background =#17172B
-format-foreground = #fff
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
 label = %date% %time%
 label-font = 1
-label-foreground = #FFC5ED
 
 ;=======================================================
 [module/i3]
 type = internal/i3
-pin-workspaces = true
+pin-workspaces = false
 strip-wsnumbers = true
 index-sort = true
 enable-click = true
@@ -129,51 +121,59 @@ wrapping-scroll = false
 reverse-scroll = false
 fuzzy-match = true
 
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-default = 
+
 label-mode = %mode%
 label-mode-padding = 2
 label-mode-background = #e60053
 
-label-focused = %name%
-label-focused-foreground = #ffffff
-label-focused-background = #3f3f3f
-label-focused-underline = #fba922
-label-focused-padding = 4
+label-focused = %icon%
+label-focused-foreground = ${colors.yellow}
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.yellow}
+label-focused-padding = 3
 
-label-unfocused = %name%
-label-unfocused-foreground = #ffffff
-label-unfocused-background = #292929
-label-unfocused-padding = 4
+label-unfocused = %icon%
+label-unfocused-foreground = ${colors.white}
+label-unfocused-background = ${colors.black}
+label-unfocused-padding = 3
 
-label-visible = %index%
+label-visible = %icon%
 label-visible-underline = #555555
-label-visible-padding = 4
+label-visible-padding = 3
 
-label-urgent = %index%: %name%
-label-urgent-foreground = #000000
-label-urgent-background = #bd2c40
-label-urgent-padding = 4
-
-label-separator =
-label-separator-padding = 2
-label-separator-foreground = #ffb52a
+label-urgent = %icon%
+label-urgent-foreground = ${colors.red}
+label-urgent-background = ${colors.black}
+label-urgent-padding = 3
 
 ;=======================================================
 [module/memory]
 type = internal/memory
 interval = 1
-format = <label>
-format-background = #BE1630
-format-foreground = #fff
-label = RAM(%percentage_used%%) %gb_used%/%gb_total%
+format =  <label>
+format-background = ${colors.background}
+format-foreground = ${colors.red}
+label = %percentage_used%% / %gb_used%
+label-foreground = ${colors.foreground}
 
 ;======================================================
 [module/cpu]
 type = internal/cpu
 interval = 1
-format = <label>
-format-background = #2B74DD
-format-foreground = #fff
-label = CPU %percentage%%
+format =  <label>
+format-background = ${colors.background}
+format-foreground = ${colors.green}
+label = %percentage%%
+label-foreground = ${colors.foreground}
 
 ;======================================================
 [module/keyboard]
@@ -183,24 +183,12 @@ blacklist-1 = scroll lock
 format = <label-layout> <label-indicator>
 format-spacing = 0
 label-layout = %name%
-label-layout-padding = 2
-label-layout-background = #bc99ed
-label-layout-foreground = #000
+label-layout-background = ${colors.background}
+label-layout-foreground = ${colors.cyan}
 label-indicator = %name%
 label-indicator-padding = 2
-label-indicator-background = #8139e8
-
-;======================================================
-[module/title]
-type = internal/xwindow
-format = <label>
-format-background = #17172B
-format-foreground = #fff
-format-padding = 4
-label = %title%
-label-maxlen = 50
-label-empty = Empty
-label-empty-foreground = #707880
+label-indicator-background = ${colors.background}
+label-indicator-foreground = ${colors.magenta}
 
 ;======================================================
 [module/battery]
@@ -208,11 +196,34 @@ type = internal/battery
 full-at = 99
 battery = BAT1
 adapter = ACAD
+
+label-charging = %percentage%%
+label-charging-background = ${colors.background}
+label-charging-foreground = ${colors.green}
+
+label-discharging = %percentage%%
+label-discharging-background = ${colors.background}
+label-discharging-foreground = ${colors.yellow}
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+
 poll-interval = 5
 time-format = %H:%M
-format-charging = <label-charging>
-format-discharging = <label-discharging>
-label-charging = <C> %percentage%%
-label-discharging = <DC> %percentage%%
 label-full = Fully charged
-animation-discharging-framerate = 500
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+
+;======================================================
