@@ -6,25 +6,24 @@ Plug 'tpope/vim-surround' " Surround text in vim
 Plug 'tpope/vim-repeat' " Adds repeat (.) functionality to many things
 Plug 'scrooloose/nerdtree' " File browser
 Plug 'junegunn/goyo.vim' " Distraction free text centering
+Plug 'lifepillar/vim-mucomplete' " Simple vim Autocomplete
 " Appearance
 Plug 'itchyny/lightline.vim' " Alternative status bar
 Plug 'drewtempelmeyer/palenight.vim' " Material dark colorscheme
-Plug 'sickill/vim-monokai' " Monokai Colorscheme
-Plug 'ayu-theme/ayu-vim' " Ayu Colorscheme
+Plug 'morhetz/gruvbox' " Gruvbox Colorscheme
 call plug#end()
 
 " ==== PLUGIN SETTINGS ====
-let g:lightline = {'colorscheme': 'molokai'} " Set lightline theme
-map <C-n> :NERDTreeToggle<CR> " Nerdtree Keybinding
-let ayucolor="light" " Set Ayu colorscheme to light theme
-
+let g:lightline = {'colorscheme': 'deus'} " Set lightline theme
+map <C-n> :NERDTreeToggle<CR> "  Keybinding
 
 "===== EDITOR =====
 let mapleader="," " Set the map leader to ,
 set nu " Enable line numbers
 set relativenumber " Enable relative line numbers
 set background=dark " Set the background theme to dark
-colorscheme monokai " Set the colorscheme
+syntax enable " Enable syntax highlighting
+colorscheme gruvbox " Set the colorscheme
 set autoindent " Set code autoindentation
 set cursorline " Highlight current line
 set tabstop=5 " One TAB appears to be 4 spaces
@@ -35,6 +34,7 @@ set smartindent " does the right thing (mostly) in programs
 set cindent " stricter rules for C programs
 set splitbelow splitright " Splits open at the bottom and right
 set noshowmode " Don't show the indicator in insert mode.
+set completeopt=longest,menuone,noselect " Improve completion menu
 
 " Set the backup/undo/swap files to be in /tmp
 set backupdir=/tmp//
@@ -47,11 +47,10 @@ set smartcase " Smart Casing
 set hlsearch " Highlight search results
 set incsearch " Modern search
 set showmatch " Show matching brackets when text indicator is over them
-syntax enable " Enable syntax highlighting
 
 " Set true colors
 if (has("nvim"))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=2
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 if (has("termguicolors"))
   set termguicolors
@@ -81,12 +80,11 @@ nnoremap <A-l> 5l
 "===== KEY REMAPS =====
 
 " General Maps
-map <C-h> <C-w>h " Shortcutting split navigation, saving a keypress:
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-" autocmd BufWritePre * %s/\s\+$//e  Strip trailing whitespace on file save
-map <F3> :%s/\s\+$//e " Strip trailing whitespace with F2
+noremap <C-h> <C-w>h " Shortcutting split navigation, saving a keypress:
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+autocmd BufWritePre * %s/\s\+$//e  " Strip trailing whitespace on file save
 map <C-s> :w<CR> " Save with Ctrl-S
 
 
@@ -102,9 +100,9 @@ autocmd FileType c nnoremap <F5> :w<CR> :!gcc -ansi -pedantic -Wall -g % -o %:r<
 autocmd FileType c nnoremap <F6> :!./%:r<CR>
 autocmd FileType c inoremap ,pr printf("");<Esc>F"i
 autocmd FileType c inoremap ,if if()<CR>{<CR><CR>}<Esc>4kf)i
-autocmd FileType c inoremap ,fr for(int i = 1;;i++)<CR>{<CR><CR>}<Esc>3kf;a
-autocmd FileType c inoremap ,wl while()<CR>{<CR><CR>}<Esc>4kf)i
-" autocmd FileType c inoremap ,instr char c;<CR>while(c!=EOF)<CR>{<CR>c=getchar();<CR>}<Esc>O
+autocmd FileType c inoremap ,fr for(int i = 0;;i++)<CR>{<CR><CR>}<Esc>3kf;a
+autocmd FileType c inoremap ,wl while()<CR>{<CR><CR>}<Esc>3kf)i
+autocmd FileType c inoremap ,inpstr char c;<CR>while(c!=EOF)<CR>{<CR>c=getchar();<CR>}<Esc>O
 autocmd FileType c inoremap ,incl #include <><Esc>i
 autocmd FileType c map <leader>c I/*<Esc>A*/<Esc>
 autocmd FileType c inoremap ,br {<CR>}<Esc>O

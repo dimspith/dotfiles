@@ -1,33 +1,43 @@
 clean:
-	rm -rf localbcp remotebcp
+	@rm -rf localbcp remotebcp
 
 localbackup:
-	rm -rf localbcp
-	mkdir localbcp
-	cp -rf ~/.config/i3/config localbcp/i3cfg
-	cp -rf ~/.zshrc localbcp/zshrc
-	cp -rf ~/.config/polybar/config localbcp/polybarcfg
-	cp -rf ~/.config/nvim/ localbcp/
+	@echo "Making backup of user configs..."
+	@-mkdir localbcp
+	@-cp -rf ~/.config/i3/ localbcp/
+	@-cp -rf ~/.zshrc localbcp/
+	@-cp -rf ~/.config/polybar/ localbcp/
+	@-cp -rf ~/.config/nvim/ localbcp/
+	@-cp -rf ~/.config/rofi/ localbcp/
+	@-cp -rf ~/.tmux.conf localbcp/
 
 remotebackup:
-	rm -rf remotebcp
-	mkdir remotebcp
-	cp -rf .config/i3/config remotebcp/i3cfg
-	cp -rf .zshrc remotebcp/zshrc
-	cp -rf .config/polybar/config remotebcp/polybarcfg
-	cp -rf .config/nvim/ remotebcp/
+	@echo "Making backup of repo's configs..."
+	@-rsync -a --exclude .git .[^.]* remotebcp
 
-replace: remotebackup
-	cp -rf ~/.config/i3/config .config/i3/config
-	cp -rf ~/.zshrc .zshrc
-	cp -rf ~/.config/polybar/config .config/polybar/config
-	cp -rf ~/.config/nvim/ .config/
-	rm -rf .config/nvim/plugged/*
+replace: clean remotebackup
+	@echo "Replacing i3 config..."
+	@cp -rf ~/.config/i3/config .config/i3/config
+	@echo "Replacing zsh config..."
+	@cp -rf ~/.zshrc .zshrc
+	@echo "Replacing polybar config..."
+	@cp -rf ~/.config/polybar/config .config/polybar/config
+	@echo "Replacing rofi config..."
+	@cp -rf ~/.config/rofi/config .config/rofi/config
+	@echo "Replacing tmux config..."
+	@cp -rf ~/.tmux.conf .tmux.conf
+	@echo "Replacing neovim config..."
+	@cp -rf ~/.config/nvim/ .config/
+	@echo "Removing neovim plugins..."
+	@rm -rf .config/nvim/plugged/*
+	@echo "All done!"
 
-install: localbackup
-	cp -rf .config/i3/config ~/.config/i3/config
-	cp -rf .zshrc ~/.zshrc
-	cp -rf .config/polybar/config  ~/.config/polybar/config
-	cp -rf .config/nvim/ ~/.config/
+install: clean localbackup
+	echo "Installing configuration files..."
+	@cp -rf .config/i3/config ~/.config/i3/config
+	@cp -rf .zshrc ~/.zshrc
+	@cp -rf .config/polybar/config  ~/.config/polybar/config
+	@cp -rf .config/nvim/ ~/.config/
+	@cp -rf .tmux.conf ~/.tmux.conf
 
 

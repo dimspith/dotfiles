@@ -4,13 +4,13 @@
 # ==================
 
 
-#  ▄▄▄▄           ▄      ▄      ▀                        
-# █▀   ▀  ▄▄▄   ▄▄█▄▄  ▄▄█▄▄  ▄▄▄    ▄ ▄▄    ▄▄▄▄   ▄▄▄  
-# ▀█▄▄▄  █▀  █    █      █      █    █▀  █  █▀ ▀█  █   ▀ 
-#     ▀█ █▀▀▀▀    █      █      █    █   █  █   █   ▀▀▀▄ 
-# ▀▄▄▄█▀ ▀█▄▄▀    ▀▄▄    ▀▄▄  ▄▄█▄▄  █   █  ▀█▄▀█  ▀▄▄▄▀ 
-#                                            ▄  █        
-#                                             ▀▀         
+#  ▄▄▄▄           ▄      ▄      ▀
+# █▀   ▀  ▄▄▄   ▄▄█▄▄  ▄▄█▄▄  ▄▄▄    ▄ ▄▄    ▄▄▄▄   ▄▄▄
+# ▀█▄▄▄  █▀  █    █      █      █    █▀  █  █▀ ▀█  █   ▀
+#     ▀█ █▀▀▀▀    █      █      █    █   █  █   █   ▀▀▀▄
+# ▀▄▄▄█▀ ▀█▄▄▀    ▀▄▄    ▀▄▄  ▄▄█▄▄  █   █  ▀█▄▀█  ▀▄▄▄▀
+#                                            ▄  █
+#                                             ▀▀
 # Shortcut: <Settings>
 
 # Desktop layout <default|stacking|tabbed>
@@ -58,14 +58,14 @@ for_window [class="Xfburn"] floating enable
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
-                                                                             
-# ▄    ▄               █        ▀               █    ▀                        
-# █  ▄▀   ▄▄▄   ▄   ▄  █▄▄▄   ▄▄▄    ▄ ▄▄    ▄▄▄█  ▄▄▄    ▄ ▄▄    ▄▄▄▄   ▄▄▄  
-# █▄█    █▀  █  ▀▄ ▄▀  █▀ ▀█    █    █▀  █  █▀ ▀█    █    █▀  █  █▀ ▀█  █   ▀ 
-# █  █▄  █▀▀▀▀   █▄█   █   █    █    █   █  █   █    █    █   █  █   █   ▀▀▀▄ 
-# █   ▀▄ ▀█▄▄▀   ▀█    ██▄█▀  ▄▄█▄▄  █   █  ▀█▄██  ▄▄█▄▄  █   █  ▀█▄▀█  ▀▄▄▄▀ 
-#                ▄▀                                               ▄  █        
-#               ▀▀                                                 ▀▀         
+
+# ▄    ▄               █        ▀               █    ▀
+# █  ▄▀   ▄▄▄   ▄   ▄  █▄▄▄   ▄▄▄    ▄ ▄▄    ▄▄▄█  ▄▄▄    ▄ ▄▄    ▄▄▄▄   ▄▄▄
+# █▄█    █▀  █  ▀▄ ▄▀  █▀ ▀█    █    █▀  █  █▀ ▀█    █    █▀  █  █▀ ▀█  █   ▀
+# █  █▄  █▀▀▀▀   █▄█   █   █    █    █   █  █   █    █    █   █  █   █   ▀▀▀▄
+# █   ▀▄ ▀█▄▄▀   ▀█    ██▄█▀  ▄▄█▄▄  █   █  ▀█▄██  ▄▄█▄▄  █   █  ▀█▄▀█  ▀▄▄▄▀
+#                ▄▀                                               ▄  █
+#               ▀▀                                                 ▀▀
 #                              Shortcut: <Keybindings>
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
@@ -76,7 +76,7 @@ floating_modifier $mod
 
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y border pixel 1
+bindsym $mod+y border pixel 2
 bindsym $mod+n border normal
 
 # Start a terminal
@@ -86,7 +86,7 @@ bindsym $mod+Return exec terminal
 bindsym $mod+Shift+q kill
 
 # Start dmenu launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency 
+bindsym $mod+d exec --no-startup-id dmenu_recency
 
 # Launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -183,22 +183,20 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-#  ▄▄▄▄    ▄                    ▄                 
-# █▀   ▀ ▄▄█▄▄   ▄▄▄    ▄ ▄▄  ▄▄█▄▄  ▄   ▄  ▄▄▄▄  
-# ▀█▄▄▄    █    ▀   █   █▀  ▀   █    █   █  █▀ ▀█ 
-#     ▀█   █    ▄▀▀▀█   █       █    █   █  █   █ 
-# ▀▄▄▄█▀   ▀▄▄  ▀▄▄▀█   █       ▀▄▄  ▀▄▄▀█  ██▄█▀ 
-#                                           █     
-#                                           ▀     
+#  ▄▄▄▄    ▄                    ▄
+# █▀   ▀ ▄▄█▄▄   ▄▄▄    ▄ ▄▄  ▄▄█▄▄  ▄   ▄  ▄▄▄▄
+# ▀█▄▄▄    █    ▀   █   █▀  ▀   █    █   █  █▀ ▀█
+#     ▀█   █    ▄▀▀▀█   █       █    █   █  █   █
+# ▀▄▄▄█▀   ▀▄▄  ▀▄▄▀█   █       ▀▄▄  ▀▄▄▀█  ██▄█▀
+#                                           █
+#                                           ▀
 #                Shortcut: <Startup>
 
 # === Sound section - configuration. (Proceed with care) ===
 exec --no-startup-id volumeicon
-exec --no-startup-id pulseaudio
+exec --no-startup-id pulseaudio --start
 
 # Autostart applications
-exec --no-startup-id start_custom_conky
-exec --no-startup-id sh /home/dimitris/.fehbg
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
@@ -210,17 +208,16 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id  sh $HOME/.config/polybar/launch.sh
-exec --no-startup-id guake
-exec --no-startup-id pulseaudio
+exec --no-startup-id yakuake
 exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
 
-#▄     ▄               █                                               
-#█  █  █  ▄▄▄    ▄ ▄▄  █   ▄   ▄▄▄   ▄▄▄▄    ▄▄▄    ▄▄▄    ▄▄▄    ▄▄▄  
-#█ █▀█ █ █▀ ▀█   █▀  ▀ █ ▄▀   █   ▀  █▀ ▀█  ▀   █  █▀  ▀  █▀  █  █   ▀ 
-# ██ ██▀ █   █   █     █▀█     ▀▀▀▄  █   █  ▄▀▀▀█  █      █▀▀▀▀   ▀▀▀▄ 
-# █   █  ▀█▄█▀   █     █  ▀▄  ▀▄▄▄▀  ██▄█▀  ▀▄▄▀█  ▀█▄▄▀  ▀█▄▄▀  ▀▄▄▄▀ 
-#                                    █                                 
-#                                    ▀                                 
+#▄     ▄               █
+#█  █  █  ▄▄▄    ▄ ▄▄  █   ▄   ▄▄▄   ▄▄▄▄    ▄▄▄    ▄▄▄    ▄▄▄    ▄▄▄
+#█ █▀█ █ █▀ ▀█   █▀  ▀ █ ▄▀   █   ▀  █▀ ▀█  ▀   █  █▀  ▀  █▀  █  █   ▀
+# ██ ██▀ █   █   █     █▀█     ▀▀▀▄  █   █  ▄▀▀▀█  █      █▀▀▀▀   ▀▀▀▄
+# █   █  ▀█▄█▀   █     █  ▀▄  ▀▄▄▄▀  ██▄█▀  ▀▄▄▀█  ▀█▄▄▀  ▀█▄▄▀  ▀▄▄▄▀
+#                                    █
+#                                    ▀
 #                        Shortcut: <Workspaces>
 
 #navigate workspaces next / previous
@@ -326,13 +323,13 @@ set_from_resource $term_color15    color15
 
   client.background       #2B2C2B
 
-#   ▀     ▄▄▄▄                                    
-# ▄▄▄    ▀   ▀█         ▄▄▄▄   ▄▄▄   ▄▄▄▄    ▄▄▄  
-#   █      ▄▄▄▀        █▀ ▀█  ▀   █  █▀ ▀█  █   ▀ 
-#   █        ▀█  ▀▀▀   █   █  ▄▀▀▀█  █   █   ▀▀▀▄ 
-# ▄▄█▄▄  ▀▄▄▄█▀        ▀█▄▀█  ▀▄▄▀█  ██▄█▀  ▀▄▄▄▀ 
-#                       ▄  █         █            
-#                        ▀▀          ▀            
+#   ▀     ▄▄▄▄
+# ▄▄▄    ▀   ▀█         ▄▄▄▄   ▄▄▄   ▄▄▄▄    ▄▄▄
+#   █      ▄▄▄▀        █▀ ▀█  ▀   █  █▀ ▀█  █   ▀
+#   █        ▀█  ▀▀▀   █   █  ▄▀▀▀█  █   █   ▀▀▀▄
+# ▄▄█▄▄  ▀▄▄▄█▀        ▀█▄▀█  ▀▄▄▀█  ██▄█▀  ▀▄▄▄▀
+#                       ▄  █         █
+#                        ▀▀          ▀
 #                Shortcut: <i3-gaps>
 
 # Set inner/outer gaps

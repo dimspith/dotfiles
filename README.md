@@ -1,7 +1,7 @@
-### Configurations and scripts
-This is a collection of scripts and configuration files for:
+## Dotfiles contain configs for these programs:
 * zsh
 * i3
 * tmux
 * vim
 * polybar
+* firefox (mildly hardened user.js)

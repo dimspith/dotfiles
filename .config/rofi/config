@@ -2,13 +2,13 @@
 rofi.modi:                           window,run,ssh,drun
 
 "Window width" Set from: Default
-rofi.width:                          50
+rofi.width:                          40
 
 "Number of lines" Set from: Default
-rofi.lines:                          15
+rofi.lines:                          10
 
 "Number of columns" Set from: Default
-rofi.columns:                        1
+rofi.columns:                        2
 
 "Font to use" Set from: Default
 rofi.font:                           inconsolata 14
@@ -17,13 +17,13 @@ rofi.font:                           inconsolata 14
 rofi.bw:                             1
 
 "Location on screen" Set from: Default
-rofi.location:                       0
+rofi.location:                       1
 
 "Padding" Set from: Default
 rofi.padding:                        5
 
 "Y-offset relative to location" Set from: Default
-rofi.yoffset:                        0
+rofi.yoffset:                        26
 
 "X-offset relative to location" Set from: Default
 rofi.xoffset:                        0
@@ -47,7 +47,7 @@ rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
 rofi.run-command:                    {cmd}
 
 ! "Command to get extra run targets" Set from: Default
-! rofi.run-list-command:               
+! rofi.run-list-command:
 
 "Run command to execute that runs in shell" Set from: Default
 rofi.run-shell-command:              {terminal} -e {cmd}
@@ -59,7 +59,7 @@ rofi.window-command:                 xkill -id {window}
 rofi.window-match-fields:            all
 
 ! "Theme to use to look for icons" Set from: Default
-! rofi.icon-theme:                     
+! rofi.icon-theme:
 
 "Desktop entry fields to match in drun" Set from: Default
 rofi.drun-match-fields:              name,generic,exec,categories
@@ -74,10 +74,10 @@ rofi.drun-display-format:            {name} [<span weight='light' size='small'><
 rofi.disable-history:                false
 
 "Use sorting" Set from: Default
-rofi.sort:                           false
+rofi.sort:                           true
 
 ! "Choose the strategy used for sorting: normal (levenshtein) or fzf." Set from: Default
-! rofi.sorting-method:                 
+rofi.sorting-method:                 fzf
 
 "Set case-sensitivity" Set from: Default
 rofi.case-sensitive:                 false
@@ -119,7 +119,7 @@ rofi.line-margin:                    2
 rofi.line-padding:                   1
 
 ! "Pre-set filter" Set from: Default
-! rofi.filter:                         
+! rofi.filter:
 
 "Separator style (none, dash, solid) *DEPRECATED*" Set from: Default
 rofi.separator-style:                dash
@@ -158,19 +158,19 @@ rofi.click-to-exit:                  true
 rofi.show-match:                     true
 
 ! "New style theme file" Set from: Default
-! rofi.theme:                          
+! rofi.theme:
 
 ! "Color scheme for normal row" Set from: Default
-! rofi.color-normal:                   
+! rofi.color-normal:
 
 ! "Color scheme for urgent row" Set from: Default
-! rofi.color-urgent:                   
+! rofi.color-urgent:
 
 ! "Color scheme for active row" Set from: Default
-! rofi.color-active:                   
+! rofi.color-active:
 
 ! "Color scheme window" Set from: Default
-! rofi.color-window:                   
+! rofi.color-window:
 
 "Max history size (WARNING: can cause slowdowns when set to high)." Set from: Default
 rofi.max-history-size:               25
@@ -185,25 +185,25 @@ rofi.matching-negate-char:           -
 rofi.pid:                            /run/user/1000/rofi.pid
 
 "The display name of this browser" Set from: Default
-rofi.display-window:                 
+rofi.display-window:
 
 "The display name of this browser" Set from: Default
-rofi.display-windowcd:               
+rofi.display-windowcd:
 
 "The display name of this browser" Set from: Default
-rofi.display-run:                    
+rofi.display-run:
 
 "The display name of this browser" Set from: Default
-rofi.display-ssh:                    
+rofi.display-ssh:
 
 "The display name of this browser" Set from: Default
-rofi.display-drun:                   
+rofi.display-drun:
 
 "The display name of this browser" Set from: Default
-rofi.display-combi:                  
+rofi.display-combi:
 
 "The display name of this browser" Set from: Default
-rofi.display-keys:                   
+rofi.display-keys:
 
 "Paste primary selection" Set from: Default
 rofi.kb-primary-paste:               Control+V,Shift+Insert
@@ -417,4 +417,4 @@ rofi.me-accept-entry:                MouseDPrimary
 
 "Accept hovered row with custom action" Set from: Default
 rofi.me-accept-custom:               Control+MouseDPrimary
-rofi.theme: /usr/share/rofi/themes/purple.rasi
+rofi.theme: /usr/share/rofi/themes/gruvbox-dark-hard.rasi

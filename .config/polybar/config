@@ -14,10 +14,8 @@ blue =    #3971ed
 magenta = #a36ac7
 cyan =    #3971ed
 white =   #c5c8c6
-
 background = ${colors.black}
 foreground = #ffffff
-
 
 [global/wm]
 margin-top = 0
@@ -57,7 +55,7 @@ offset-x = 0
 offset-y = 0
 background = ${colors.background}
 foreground = ${colors.foreground}
-radius = 4
+radius = 3
 line-size = 2
 line-color = #f00
 padding-left = 1

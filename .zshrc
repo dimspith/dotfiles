@@ -1,36 +1,44 @@
 #
 #===================
 
-# THIS CONFIG IS USED WITH OH-MY-ZSH,
+# THIS CONFIG IS USED WITH ZGEN,
 # INSTALL IT BEFORE USING IT
+# command: git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 #===================
-
-# The theme that zsh is using.
-ZSH_THEME="clean"
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+#=== ZGEN ===
 
-# Source file.
-source $ZSH/oh-my-zsh.sh
+# load zgen
+source "${HOME}/.zgen/zgen.zsh"
 
-# The list of plugins to load.
-plugins=(
-git
-)
+# if the init script doesn't exist
+if ! zgen saved; then
 
+  zgen oh-my-zsh
 
-# Change shell variables
-export EDITOR=/usr/bin/nvim
+  # plugins
+  zgen load "zdharma/fast-syntax-highlighting"
+  zgen load "MichaelAquilina/zsh-you-should-use"
+  zgen load "wting/autojump"
 
+  # theme
+  zgen oh-my-zsh themes/kolo
+
+  # save to init script
+  zgen save
+
+fi
+
+#=============
 # Aliases.
-alias v="nvim"
-alias la="ls -gGAh"
-alias rm="rm -I"
+alias v="nvim" # Save time by typing v instead of nvim
+alias la="ls -gGAh" # List hidden files in a simple format
+alias ls="ls --color=always"
+alias rm="rm -I" # Promt on multiple file deletion
 alias aliases="alias|less"
 alias pupg="sudo pacman -Syu"
 alias vf="nvim \$(fzf)"
@@ -42,12 +50,13 @@ alias vrc="nvim $HOME/.config/nvim/init.vim"
 alias vpol="nvim $HOME/.config/polybar/config"
 alias vi3="nvim $HOME/.config/i3/config"
 alias vrf="nvim $HOME/.config/rofi/config"
+alias vtm="nvim $HOME/.config/termite/config"
 
 alias youtube="toilet -f mono9 --rainbow Youtube;youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(xclip -o)"
-alias diskspace="df -h | grep /dev/sdc | awk {'print \$4'}"
+alias diskspace="df -h | grep /dev/sda | awk {'print \$4'}"
 alias open="xdg-open"
 alias pdf="setsid zathura"
-alias cdf="cd \$(fzf) -d"
+alias repulse="pulseaudio --kill && pulseaudio --start"
 
 # Keybindings
 bindkey -v
