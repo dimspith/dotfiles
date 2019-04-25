@@ -2,6 +2,7 @@
 * zsh
 * i3
 * tmux
-* vim
+* nvim (.config/nvim/init.vim)
+* vim (.vimrc for compatibility)
 * polybar
 * firefox (mildly hardened user.js)

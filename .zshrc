@@ -18,33 +18,40 @@ source "${HOME}/.zgen/zgen.zsh"
 # if the init script doesn't exist
 if ! zgen saved; then
 
+  # Enable oh-my-zsh support
   zgen oh-my-zsh
 
-  # plugins
   zgen load "zdharma/fast-syntax-highlighting"
   zgen load "MichaelAquilina/zsh-you-should-use"
+
+  # Execute install.py in it's directory to install it.
   zgen load "wting/autojump"
 
   # theme
-  zgen oh-my-zsh themes/kolo
+  zgen oh-my-zsh themes/mrtazz
 
   # save to init script
   zgen save
 
 fi
 
+# Autojump plugin configuration
+[[ -s /home/dimitris/.autojump/etc/profile.d/autojump.sh ]] && source /home/dimitris/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
 #=============
+
 # Aliases.
 alias v="nvim" # Save time by typing v instead of nvim
 alias la="ls -gGAh" # List hidden files in a simple format
-alias ls="ls --color=always"
+alias ls="ls --color=always -X --group-directories-first"
 alias rm="rm -I" # Promt on multiple file deletion
 alias aliases="alias|less"
 alias pupg="sudo pacman -Syu"
-alias vf="nvim \$(fzf)"
+alias gotop="gotop -c monokai"
 
 alias rlconf="source ~/.zshrc"
 
+alias vf="nvim \$(fzf)"
 alias vzc="nvim $HOME/.zshrc"
 alias vrc="nvim $HOME/.config/nvim/init.vim"
 alias vpol="nvim $HOME/.config/polybar/config"
@@ -52,11 +59,13 @@ alias vi3="nvim $HOME/.config/i3/config"
 alias vrf="nvim $HOME/.config/rofi/config"
 alias vtm="nvim $HOME/.config/termite/config"
 
-alias youtube="toilet -f mono9 --rainbow Youtube;youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(xclip -o)"
+alias youtube="toilet -f mono9 --rainbow YoutubeDL;youtube-dl --no-playlist --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(xclip -o) | grep \"\[download\]\""
+alias youtubev="toilet -f mono9 --rainbow YoutubeDL;youtube-dl --no-playlist --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --format webm \$(xclip -o) | grep \"\[download\]\""
+alias youtubepl="toilet -f mono9 --rainbow YoutubeDL;echo \"[Playlist Mode]\";youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(xclip -o) | grep \"\[download\]\""
 alias diskspace="df -h | grep /dev/sda | awk {'print \$4'}"
 alias open="xdg-open"
 alias pdf="setsid zathura"
-alias repulse="pulseaudio --kill && pulseaudio --start"
+alias repulse="pulseaudio --kill;setsid pulseaudio"
 
 # Keybindings
 bindkey -v
