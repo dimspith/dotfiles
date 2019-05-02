@@ -28,7 +28,7 @@ if ! zgen saved; then
   zgen load "wting/autojump"
 
   # theme
-  zgen oh-my-zsh themes/mrtazz
+  zgen oh-my-zsh themes/gentoo
 
   # save to init script
   zgen save
@@ -46,10 +46,9 @@ alias la="ls -gGAh" # List hidden files in a simple format
 alias ls="ls --color=always -X --group-directories-first"
 alias rm="rm -I" # Promt on multiple file deletion
 alias aliases="alias|less"
-alias pupg="sudo pacman -Syu"
 alias gotop="gotop -c monokai"
-
 alias rlconf="source ~/.zshrc"
+
 
 alias vf="nvim \$(fzf)"
 alias vzc="nvim $HOME/.zshrc"
@@ -59,10 +58,9 @@ alias vi3="nvim $HOME/.config/i3/config"
 alias vrf="nvim $HOME/.config/rofi/config"
 alias vtm="nvim $HOME/.config/termite/config"
 
-alias youtube="toilet -f mono9 --rainbow YoutubeDL;youtube-dl --no-playlist --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(xclip -o) | grep \"\[download\]\""
-alias youtubev="toilet -f mono9 --rainbow YoutubeDL;youtube-dl --no-playlist --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --format webm \$(xclip -o) | grep \"\[download\]\""
-alias youtubepl="toilet -f mono9 --rainbow YoutubeDL;echo \"[Playlist Mode]\";youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(xclip -o) | grep \"\[download\]\""
-alias diskspace="df -h | grep /dev/sda | awk {'print \$4'}"
+alias youtube="toilet -f mono9 --rainbow YoutubeDL;youtube-dl --no-playlist --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(xclip -o)"
+alias youtubev="toilet -f mono9 --rainbow YoutubeDL;youtube-dl --no-playlist --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --format webm \$(xclip -o)"
+alias youtubepl="toilet -f mono9 --rainbow YoutubeDL;echo \"[Playlist Mode]\";youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(xclip -o)"
 alias open="xdg-open"
 alias pdf="setsid zathura"
 alias repulse="pulseaudio --kill;setsid pulseaudio"

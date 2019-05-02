@@ -6,16 +6,41 @@
 [colors]
 
 ; Google Dark Theme
-black =   #1d1f21
-red =     #cc342b
-green =   #198844
-yellow =  #fba922
-blue =    #3971ed
-magenta = #a36ac7
-cyan =    #3971ed
-white =   #c5c8c6
-background = ${colors.black}
-foreground = #ffffff
+;black      = #1d1f21
+;red        = #cc342b
+;green      = #198844
+;yellow     = #fba922
+;blue       = #3971ed
+;magenta    = #a36ac7
+;cyan       = #3971ed
+;white      = #c5c8c6
+;background = ${colors.black}
+;foreground = #ffffff
+
+; Material
+;black      = #263238
+;red        = #ff9800
+;green      = #8bc34a
+;yellow     = #ffc107
+;blue       = #03a9f4
+;magenta    = #e91e63
+;cyan       = #009688
+;white      = #cfd8dc
+;foreground = #eceff1
+;background = #263238
+
+; Isotope dark
+black      = #000000
+red        = #ff0000
+green      = #33ff00
+yellow     = #ff0099
+blue       = #0066ff
+magenta    = #cc00ff
+cyan       = #00ffff
+white      = #d0d0d0
+foreground = #d0d0d0
+background = #000000
+
 
 [global/wm]
 margin-top = 0

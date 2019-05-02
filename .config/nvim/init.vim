@@ -83,8 +83,10 @@ endif
 "                 |_|   |_|            |___/     
 "{{{
 
-let mapleader="," " Set the map leader to , (used in global maps)
-let localleader="," " Set the local map leader to , (used in specific autocommands for compatibility reasons)
+" Set the map leader to , (used in global maps)
+let mapleader="," 
+" Set the local map leader to , (used in specific autocommands for compatibility reasons)
+let localleader=","
 
 " ===== EASE OF USE =====
 
@@ -122,9 +124,11 @@ nmap q: <nop>
 " ===== MISC =====
 
 " Fold an entire paragraph of text
-nnoremap <leader>fp Vapzfj
+nnoremap <leader>fp zfip
+
 " C-u capitalizes the current word in insert mode
 inoremap <c-u> <esc>viwUea 
+
 " Movement 'isp' highlights the current text around spaces (with or without
 " them)
 onoremap isp :<c-u>normal! T<space>vt<space><cr>
@@ -166,15 +170,15 @@ augroup END
 
 " For c files
 augroup filetype_c
-	autocmd!
-	autocmd FileType c nnoremap <buffer> <F5> :w<CR> :!gcc -ansi -pedantic -Wall -g % -o %:r<CR>
+	 autocmd!
+	 autocmd FileType c nnoremap <buffer> <F5> :w<CR> :!gcc -ansi -pedantic -Wall -g % -o %:r<CR>
      autocmd FileType c nnoremap <F6> :!./%:r<CR>
-     autocmd FileType c nnoremap <leader>c I/*<Esc>A*/<Esc>
-     autocmd FileType c nnoremap <leader>br {<CR>}<Esc>O
+     autocmd FileType c inoremap <leader>c I/*<Esc>A*/<Esc>
+     autocmd FileType c inoremap <leader>br {<CR>}<Esc>O
      autocmd FileType c iabbrev pprintf printf("");<Esc>F"i
      autocmd FileType c iabbrev iff if()<CR>{<CR><CR>}<Esc>3kf)i
      autocmd FileType c iabbrev ffor for()<CR>{<CR><CR>}<Esc>3kf)i
-     autocmd FileType c iabbrev wwhile while()<CR>{<CR><CR>}<Esc>3kf)hxi
+     autocmd FileType c iabbrev wwhile while()<CR>{<CR><CR>}<Esc>3kf)hi
      autocmd FileType c iabbrev incl #include <><Esc>i
 augroup END
 
