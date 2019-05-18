@@ -9,26 +9,33 @@
 " | .__/|_|\__,_|\__, |_|_| |_|___/
 " |_|            |___/             
 "{{{
-
-call plug#begin('~/.config/nvim/plugged')
-     Plug 'w0rp/ale' " Code linting
-     Plug 'tpope/vim-surround' " Surround text in vim
-     Plug 'tpope/vim-repeat' " Add repeat (.) functionality to many actions
-     Plug 'scrooloose/nerdtree' " File browser
-     Plug 'junegunn/goyo.vim' " Distraction free text centering
-     Plug 'lifepillar/vim-mucomplete' " Simple vim Autocomplete
-     Plug 'itchyny/lightline.vim' " Alternative status bar
-     Plug 'drewtempelmeyer/palenight.vim' " Palenight colorscheme (Atom)
-     Plug 'morhetz/gruvbox' " Gruvbox Colorscheme
-     Plug 'tpope/vim-fugitive' "The most awesome git wrapper
-call plug#end()
-
 " ==== PLUGIN SETTINGS ====
 let g:lightline = {'colorscheme': 'deus'} " Set lightline theme
 
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR> 
 let NERDTreeMinimalUI = 1
 
+let g:ale_completion_enabled = 1
+let g:ale_fixers = ['prettier', 'eslint']
+let g:ale_linters = {'cpp': ['clang']}
+let g:ale_linters = {'bash': ['shellcheck']}
+let g:ale_linters = {'ruby': ['ruby']}
+let g:ale_linters = {'awk': ['gawk']}
+
+" ==== PLUGINS ====
+call plug#begin('~/.config/nvim/plugged')
+     Plug 'tpope/vim-surround'              " Surround text in vim
+     Plug 'tpope/vim-repeat'                " Add repeat functionality to many actions
+     Plug 'scrooloose/nerdtree'             " File browser
+     Plug 'junegunn/goyo.vim'               " Distraction free text centering
+     Plug 'itchyny/lightline.vim'           " Alternative status bar
+     Plug 'drewtempelmeyer/palenight.vim'   " Palenight colorscheme (Atom)
+     Plug 'morhetz/gruvbox'                 " Gruvbox Colorscheme
+     Plug 'tpope/vim-fugitive'              " Vim git wrapper
+     Plug 'w0rp/ale'                        " Code linting
+     Plug 'ngmy/vim-rubocop'                " Rubocop vim plugin for Ruby code repair
+     Plug 'ervandew/supertab'               " Use Tab for autocompletion
+call plug#end()
 "}}}
 "                                  _ 
 "   __ _  ___ _ __   ___ _ __ __ _| |
@@ -131,7 +138,7 @@ inoremap <c-u> <esc>viwUea
 
 " Movement 'isp' highlights the current text around spaces (with or without
 " them)
-onoremap isp :<c-u>normal! T<space>vt<space><cr>
+onoremap isp :<c-u>normal! T vt <cr>
 onoremap asp :<c-u>normal! F<space>vf<space><cr>
 
 "Disable arrow keys in Normal and insert mode
@@ -157,43 +164,54 @@ augroup filetype_vim
      autocmd!
      autocmd FileType vim setlocal foldmethod=marker
 augroup END
-" 
 
 " For go files
 augroup filetype_go
      autocmd!
-     autocmd FileType go nnoremap <F5> :w<CR> :!go build %<CR>
-     autocmd FileType go nnoremap <F6> :!./%:r<CR>
-     autocmd FileType go nnoremap <F7> :w<CR> :!go run %<CR>
-     autocmd FileType go inoremap <leader>pr fmt.Println()<Left>
+     autocmd FileType go nnoremap <buffer> <F5> :w<CR> :!go build %<CR>
+     autocmd FileType go nnoremap <buffer> <F6> :!./%:r<CR>
+     autocmd FileType go nnoremap <buffer> <F7> :w<CR> :!go run %<CR>
+     autocmd FileType go inoremap <buffer> <leader>pr fmt.Println()<Left>
 augroup END
 
 " For c files
 augroup filetype_c
 	 autocmd!
 	 autocmd FileType c nnoremap <buffer> <F5> :w<CR> :!gcc -ansi -pedantic -Wall -g % -o %:r<CR>
-     autocmd FileType c nnoremap <F6> :!./%:r<CR>
-     autocmd FileType c inoremap <leader>c I/*<Esc>A*/<Esc>
-     autocmd FileType c inoremap <leader>br {<CR>}<Esc>O
-     autocmd FileType c iabbrev pprintf printf("");<Esc>F"i
-     autocmd FileType c iabbrev iff if()<CR>{<CR><CR>}<Esc>3kf)i
-     autocmd FileType c iabbrev ffor for()<CR>{<CR><CR>}<Esc>3kf)i
-     autocmd FileType c iabbrev wwhile while()<CR>{<CR><CR>}<Esc>3kf)hi
-     autocmd FileType c iabbrev incl #include <><Esc>i
+     autocmd FileType c nnoremap <buffer> <F6> :!./%:r<CR>
+     autocmd FileType c inoremap <buffer> <leader>c I/*<Esc>A*/<Esc>
+     autocmd FileType c inoremap <buffer> <leader>br {<CR>}<Esc>O
+     autocmd FileType c iabbrev <buffer> pprintf printf("");<Esc>F"i
+     autocmd FileType c iabbrev <buffer> iff if()<CR>{<CR><CR>}<Esc>3kf)i
+     autocmd FileType c iabbrev <buffer> ffor for()<CR>{<CR><CR>}<Esc>3kf)i
+     autocmd FileType c iabbrev <buffer> wwhile while()<CR>{<CR><CR>}<Esc>3kf)hi
+     autocmd FileType c iabbrev <buffer> incl #include <><Esc>i
 augroup END
 
 " For html files
 augroup filetype_html
      autocmd!
-     autocmd FileType html inoremap <leader>html <html><CR></html><Esc>O
-     autocmd FileType html inoremap <leader>hd <head><CR></head><Esc>O
-     autocmd FileType html inoremap <leader>h2 <h2><CR></h2><Esc>O
-     autocmd FileType html inoremap <leader>str <strong><CR></strong><Esc>O
-     autocmd FileType html inoremap <leader>p <p><CR></p><Esc>O
-     autocmd FileType html inoremap <leader>img <img src=""><Esc>hi
-     autocmd FileType html inoremap <leader>bd <body><CR></body><Esc>O
-     autocmd FIleType html inoremap <leader>tit <title></title><esc>F<i
-	 autocmd FileType html nnoremap <buffer> <leader>f zfit
+     autocmd FileType html inoremap <buffer> <leader>html <html><CR></html><Esc>O
+     autocmd FileType html inoremap <buffer> <leader>hd <head><CR></head><Esc>O
+     autocmd FileType html inoremap <buffer> <leader>h2 <h2><CR></h2><Esc>O
+     autocmd FileType html inoremap <buffer> <leader>str <strong><CR></strong><Esc>O
+     autocmd FileType html inoremap <buffer> <leader>p <p><CR></p><Esc>O
+     autocmd FileType html inoremap <buffer> <leader>img <img src=""><Esc>hi
+     autocmd FileType html inoremap <buffer> <leader>bd <body><CR></body><Esc>O
+     autocmd FileType html inoremap <buffer> <leader>tit <title></title><esc>F<i
+	 autocmd FileType html nnoremap <buffer> <buffer> <leader>f zfit
+augroup END
+
+" For Python files
+augroup filetype_python
+    autocmd FileType python nnoremap <buffer> <F5> :w<CR> :!python %<CR>
+    autocmd FileType python inoremap <buffer> <leader>p print("")<Esc>hi
+augroup END
+
+" For Ruby Files
+augroup filetype_ruby
+    autocmd FileType ruby nnoremap <buffer> <F5> :w<CR> :!ruby %<CR>
+    autocmd FileType ruby set tabstop=2 expandtab smarttab shiftwidth=2
 augroup END
 
 "}}}

@@ -48,7 +48,7 @@ alias rm="rm -I" # Promt on multiple file deletion
 alias aliases="alias|less"
 alias gotop="gotop -c monokai"
 alias rlconf="source ~/.zshrc"
-
+alias rlprof="source ~/.zprofile"
 
 alias vf="nvim \$(fzf)"
 alias vzc="nvim $HOME/.zshrc"
@@ -61,9 +61,10 @@ alias vtm="nvim $HOME/.config/termite/config"
 alias youtube="toilet -f mono9 --rainbow YoutubeDL;youtube-dl --no-playlist --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(xclip -o)"
 alias youtubev="toilet -f mono9 --rainbow YoutubeDL;youtube-dl --no-playlist --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --format webm \$(xclip -o)"
 alias youtubepl="toilet -f mono9 --rainbow YoutubeDL;echo \"[Playlist Mode]\";youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(xclip -o)"
-alias open="xdg-open"
+alias open="setsid xdg-open"
 alias pdf="setsid zathura"
-alias repulse="pulseaudio --kill;setsid pulseaudio"
+alias repulse="pulseaudio --kill && pulseaudio --start"
+alias gitlog="git log --all --decorate --oneline --graph"
 
 # Keybindings
 bindkey -v
