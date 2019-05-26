@@ -65,7 +65,7 @@ compositing-border = over
 
 [bar/mainbar]
 ;=== MONITOR AND WM ===================================
-monitor = eDP1
+monitor = 
 monitor-fallback =
 monitor-strict = false
 override-redirect = false

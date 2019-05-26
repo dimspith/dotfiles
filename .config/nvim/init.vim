@@ -17,10 +17,13 @@ let NERDTreeMinimalUI = 1
 
 let g:ale_completion_enabled = 1
 let g:ale_fixers = ['prettier', 'eslint']
-let g:ale_linters = {'cpp': ['clang']}
-let g:ale_linters = {'bash': ['shellcheck']}
-let g:ale_linters = {'ruby': ['ruby']}
-let g:ale_linters = {'awk': ['gawk']}
+let g:ale_linters = {
+\   'cpp': ['clang'],
+\   'bash':['shellcheck'],
+\   'ruby':['ruby'],
+\   'awk':['gawk'],
+\   'haskell':['ghc'],
+\}
 
 " ==== PLUGINS ====
 call plug#begin('~/.config/nvim/plugged')
@@ -115,8 +118,11 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-" Save with Ctrl-S
-noremap <C-s> :w<CR>
+" Save with space-w, quit with space-q, both with space wq
+nnoremap <space>w :w<CR>
+nnoremap <space>q :q<CR>
+nnoremap <space>wq :wq<CR>
+
 
 " Perform :help on the selected word with F1
 noremap <F1> K
