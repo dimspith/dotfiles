@@ -52,6 +52,7 @@ alias aliases="alias|less"
 alias gotop="gotop -c monokai"
 alias rlconf="source ~/.zshrc"
 alias rlprof="source ~/.zprofile"
+alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle ; xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
 
 alias vf="nvim \$(fzf)"
 alias vzc="nvim $HOME/.zshrc"
@@ -66,8 +67,9 @@ alias youtubev="toilet -f mono9 --rainbow YoutubeDL;youtube-dl --no-playlist --o
 alias youtubepl="toilet -f mono9 --rainbow YoutubeDL;echo \"[Playlist Mode]\";youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3 \$(xclip -o)"
 alias open="setsid xdg-open"
 alias pdf="setsid zathura"
-alias repulse="pulseaudio --kill && pulseaudio --start"
+alias repulse="pulseaudio --kill && sleep 2 && pulseaudio --start"
 alias gitlog="git log --all --decorate --oneline --graph"
+alias bro="bro 2>/dev/null"
 
 # Keybindings
 bindkey -v

@@ -9,35 +9,67 @@
 " | .__/|_|\__,_|\__, |_|_| |_|___/
 " |_|            |___/             
 "{{{
+" Required_Packages:
+" -> Cabal: hoogle      (vim-hoogle)
+" -> Cabal: hlint       (ALE haskell linting)
+" -> clang              (ALE C/C++ linting)
+" -> shellcheck         (ALE Bash/Shell linting)
+
 " ==== PLUGIN SETTINGS ====
-let g:lightline = {'colorscheme': 'deus'} " Set lightline theme
+" Haskell_vim:
 
-map <C-n> :NERDTreeToggle<CR> 
-let NERDTreeMinimalUI = 1
+let g:haskell_classic_highlighting = 1
+" 4 spaces of indentation
+let g:haskell_indent_let = 4
 
+"""""""""""""""""""""""""""
+" Lightline:
+
+let g:lightline = {
+      \ 'colorscheme': 'deus',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ]
+      \ }
+      \ }
+
+""""""""""""""""""""""""""""""""""""""""""
+" ALE:
+"
 let g:ale_completion_enabled = 1
-let g:ale_fixers = ['prettier', 'eslint']
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\}
+
 let g:ale_linters = {
 \   'cpp': ['clang'],
 \   'bash':['shellcheck'],
 \   'ruby':['ruby'],
 \   'awk':['gawk'],
-\   'haskell':['ghc'],
+\   'haskell':['ghc', 'hlint'],
+\   'rust':['rustc'],
 \}
+
+""""""""""""""""""""""""""""""""""""""""""
 
 " ==== PLUGINS ====
 call plug#begin('~/.config/nvim/plugged')
      Plug 'tpope/vim-surround'              " Surround text in vim
      Plug 'tpope/vim-repeat'                " Add repeat functionality to many actions
-     Plug 'scrooloose/nerdtree'             " File browser
      Plug 'junegunn/goyo.vim'               " Distraction free text centering
      Plug 'itchyny/lightline.vim'           " Alternative status bar
-     Plug 'drewtempelmeyer/palenight.vim'   " Palenight colorscheme (Atom)
-     Plug 'morhetz/gruvbox'                 " Gruvbox Colorscheme
+     Plug 'dkasak/gruvbox'                  " Gruvbox Colorscheme
+     Plug 'sjl/badwolf'                     " Badwolf Colorscheme
+     Plug 'christophermca/meta5'            " Tron inspired colorscheme
+     Plug 'joshdick/onedark.vim'            " One dark (Atom) Colorscheme
      Plug 'tpope/vim-fugitive'              " Vim git wrapper
      Plug 'w0rp/ale'                        " Code linting
      Plug 'ngmy/vim-rubocop'                " Rubocop vim plugin for Ruby code repair
      Plug 'ervandew/supertab'               " Use Tab for autocompletion
+     Plug 'neovimhaskell/haskell-vim'       " Haskell syntax highlighting
+     Plug 'Twinside/vim-hoogle'             " Vim Hoogle query plugin
+     Plug 'godlygeek/tabular'               " Text filtering and alignment
 call plug#end()
 "}}}
 "                                  _ 
@@ -47,11 +79,11 @@ call plug#end()
 "  \__, |\___|_| |_|\___|_|  \__,_|_|
 "  |___/  
 "{{{
-
 set nu relativenumber " Enable line (+ relative) numbers
 set background=dark " Set the background theme to dark
-syntax enable " Enable syntax highlighting
-colorscheme gruvbox " Set the colorscheme
+syntax on " Enable syntax highlighting
+filetype plugin indent on " Enable plugin indentation
+colorscheme badwolf " Set the colorscheme
 set autoindent smartindent cindent " Set code autoindentation
 set cursorline " Highlight current line
 set tabstop=4 expandtab smarttab shiftwidth=4 " One TAB appears to be 4 spaces
@@ -83,7 +115,6 @@ endif
 if (has("termguicolors"))
      set termguicolors
 endif
-
 "}}}
 "                              _                 
 "  _ __ ___   __ _ _ __  _ __ (_)_ __   __ _ ___ 
@@ -92,7 +123,6 @@ endif
 " |_| |_| |_|\__,_| .__/| .__/|_|_| |_|\__, |___/
 "                 |_|   |_|            |___/     
 "{{{
-
 " Set the map leader to , (used in global maps)
 let mapleader="," 
 " Set the local map leader to , (used in specific autocommands for compatibility reasons)
@@ -119,9 +149,9 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 " Save with space-w, quit with space-q, both with space wq
-nnoremap <space>w :w<CR>
-nnoremap <space>q :q<CR>
-nnoremap <space>wq :wq<CR>
+nnoremap <space>w :w<cr>
+nnoremap <space>q :q<cr>
+nnoremap <space>wq :wq<cr>
 
 
 " Perform :help on the selected word with F1
@@ -156,7 +186,6 @@ ino <Up> <nop>
 ino <Down> <nop>
 ino <Left> <nop>
 ino <Right> <nop>
-
 "}}}
 "              _                           _ 
 "   __ _ _   _| |_ ___   ___ _ __ ___   __| |
@@ -174,50 +203,61 @@ augroup END
 " For go files
 augroup filetype_go
      autocmd!
-     autocmd FileType go nnoremap <buffer> <F5> :w<CR> :!go build %<CR>
-     autocmd FileType go nnoremap <buffer> <F6> :!./%:r<CR>
-     autocmd FileType go nnoremap <buffer> <F7> :w<CR> :!go run %<CR>
+     autocmd FileType go nnoremap <buffer> <F5> :w<cr> :!go build %<cr>
+     autocmd FileType go nnoremap <buffer> <F6> :!./%:r<cr>
+     autocmd FileType go nnoremap <buffer> <F7> :w<cr> :!go run %<cr>
      autocmd FileType go inoremap <buffer> <leader>pr fmt.Println()<Left>
 augroup END
 
 " For c files
 augroup filetype_c
 	 autocmd!
-	 autocmd FileType c nnoremap <buffer> <F5> :w<CR> :!gcc -ansi -pedantic -Wall -g % -o %:r<CR>
-     autocmd FileType c nnoremap <buffer> <F6> :!./%:r<CR>
+	 autocmd FileType c nnoremap <buffer> <F5> :w<cr> :!gcc -ansi -pedantic -Wall -g % -o %:r<cr>
+     autocmd FileType c nnoremap <buffer> <F6> :!./%:r<cr>
      autocmd FileType c inoremap <buffer> <leader>c I/*<Esc>A*/<Esc>
-     autocmd FileType c inoremap <buffer> <leader>br {<CR>}<Esc>O
+     autocmd FileType c inoremap <buffer> <leader>br {<cr>}<Esc>O
      autocmd FileType c iabbrev <buffer> pprintf printf("");<Esc>F"i
-     autocmd FileType c iabbrev <buffer> iff if()<CR>{<CR><CR>}<Esc>3kf)i
-     autocmd FileType c iabbrev <buffer> ffor for()<CR>{<CR><CR>}<Esc>3kf)i
-     autocmd FileType c iabbrev <buffer> wwhile while()<CR>{<CR><CR>}<Esc>3kf)hi
+     autocmd FileType c iabbrev <buffer> iff if()<cr>{<cr><cr>}<Esc>3kf)i
+     autocmd FileType c iabbrev <buffer> ffor for()<cr>{<cr><cr>}<Esc>3kf)i
+     autocmd FileType c iabbrev <buffer> wwhile while()<cr>{<cr><cr>}<Esc>3kf)hi
      autocmd FileType c iabbrev <buffer> incl #include <><Esc>i
 augroup END
 
 " For html files
 augroup filetype_html
      autocmd!
-     autocmd FileType html inoremap <buffer> <leader>html <html><CR></html><Esc>O
-     autocmd FileType html inoremap <buffer> <leader>hd <head><CR></head><Esc>O
-     autocmd FileType html inoremap <buffer> <leader>h2 <h2><CR></h2><Esc>O
-     autocmd FileType html inoremap <buffer> <leader>str <strong><CR></strong><Esc>O
-     autocmd FileType html inoremap <buffer> <leader>p <p><CR></p><Esc>O
+     autocmd FileType html inoremap <buffer> <leader>html <html><cr></html><Esc>O
+     autocmd FileType html inoremap <buffer> <leader>hd <head><cr></head><Esc>O
+     autocmd FileType html inoremap <buffer> <leader>h2 <h2><cr></h2><Esc>O
+     autocmd FileType html inoremap <buffer> <leader>str <strong><cr></strong><Esc>O
+     autocmd FileType html inoremap <buffer> <leader>p <p><cr></p><Esc>O
      autocmd FileType html inoremap <buffer> <leader>img <img src=""><Esc>hi
-     autocmd FileType html inoremap <buffer> <leader>bd <body><CR></body><Esc>O
+     autocmd FileType html inoremap <buffer> <leader>bd <body><cr></body><Esc>O
      autocmd FileType html inoremap <buffer> <leader>tit <title></title><esc>F<i
 	 autocmd FileType html nnoremap <buffer> <buffer> <leader>f zfit
 augroup END
 
 " For Python files
 augroup filetype_python
-    autocmd FileType python nnoremap <buffer> <F5> :w<CR> :!python %<CR>
+    autocmd FileType python nnoremap <buffer> <F5> :w<cr> :!python %<cr>
     autocmd FileType python inoremap <buffer> <leader>p print("")<Esc>hi
 augroup END
 
 " For Ruby Files
 augroup filetype_ruby
-    autocmd FileType ruby nnoremap <buffer> <F5> :w<CR> :!ruby %<CR>
     autocmd FileType ruby set tabstop=2 expandtab smarttab shiftwidth=2
+    autocmd FileType ruby nnoremap <buffer> <F5> :w<cr> :!ruby %<cr>
 augroup END
 
+" For Haskell Files
+augroup filetype_haskell
+    autocmd FileType haskell nnoremap <buffer> <F5> :w<cr> :!ghc -Wall -O2 --make -threaded -o %:r %<cr>
+    autocmd FileType haskell nnoremap <buffer> <F6> :!./%:r<cr>
+    autocmd FileType haskell set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+augroup END
+
+" For Bash scripts
+augroup filetype_bash
+    autocmd FileType bash nnoremap <buffer> <F5> :w<cr> :!./%<cr> 
+augroup END
 "}}}
