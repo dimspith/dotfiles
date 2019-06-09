@@ -1,6 +1,6 @@
 " ======================
 " | neovim config file |
-" | Author: Risorg     |
+" | Author: risorg     |
 " ======================
 "        _             _           
 "  _ __ | |_   _  __ _(_)_ __  ___ 
@@ -9,20 +9,14 @@
 " | .__/|_|\__,_|\__, |_|_| |_|___/
 " |_|            |___/             
 "{{{
-" Required_Packages:
-" -> Cabal: hoogle      (vim-hoogle)
-" -> Cabal: hlint       (ALE haskell linting)
-" -> clang              (ALE C/C++ linting)
-" -> shellcheck         (ALE Bash/Shell linting)
+" Required_Packages: 
+" =======<Install_with>=======<Package>=======<Description>=======
+" ->      Cabal                hoogle         (vim-hoogle dependency)
+" ->      Cabal                hlint          (ALE haskell linting)
+" ->      Package manager      clang          (ALE C/C++ linting)
+" ->      Package manager      shellcheck     (ALE Bash/Shell linting)
 
 " ==== PLUGIN SETTINGS ====
-" Haskell_vim:
-
-let g:haskell_classic_highlighting = 1
-" 4 spaces of indentation
-let g:haskell_indent_let = 4
-
-"""""""""""""""""""""""""""
 " Lightline:
 
 let g:lightline = {
@@ -55,21 +49,19 @@ let g:ale_linters = {
 
 " ==== PLUGINS ====
 call plug#begin('~/.config/nvim/plugged')
-     Plug 'tpope/vim-surround'              " Surround text in vim
-     Plug 'tpope/vim-repeat'                " Add repeat functionality to many actions
-     Plug 'junegunn/goyo.vim'               " Distraction free text centering
-     Plug 'itchyny/lightline.vim'           " Alternative status bar
-     Plug 'dkasak/gruvbox'                  " Gruvbox Colorscheme
-     Plug 'sjl/badwolf'                     " Badwolf Colorscheme
-     Plug 'christophermca/meta5'            " Tron inspired colorscheme
-     Plug 'joshdick/onedark.vim'            " One dark (Atom) Colorscheme
-     Plug 'tpope/vim-fugitive'              " Vim git wrapper
-     Plug 'w0rp/ale'                        " Code linting
-     Plug 'ngmy/vim-rubocop'                " Rubocop vim plugin for Ruby code repair
-     Plug 'ervandew/supertab'               " Use Tab for autocompletion
-     Plug 'neovimhaskell/haskell-vim'       " Haskell syntax highlighting
-     Plug 'Twinside/vim-hoogle'             " Vim Hoogle query plugin
-     Plug 'godlygeek/tabular'               " Text filtering and alignment
+     Plug 'tpope/vim-surround'    " Surround text in vim
+     Plug 'tpope/vim-repeat'      " Add repeat functionality to many actions
+     Plug 'junegunn/goyo.vim'     " Distraction free text centering
+     Plug 'itchyny/lightline.vim' " Alternative status bar
+     Plug 'dkasak/gruvbox'        " Gruvbox Colorscheme
+     Plug 'sjl/badwolf'           " Badwolf Colorscheme
+     Plug 'joshdick/onedark.vim'  " One dark (Atom) Colorscheme
+     Plug 'tpope/vim-fugitive'    " Vim git wrapper
+     Plug 'w0rp/ale'              " Code linting
+     Plug 'ervandew/supertab'     " Use Tab for autocompletion
+     Plug 'Twinside/vim-hoogle'   " Vim Hoogle query plugin
+     Plug 'godlygeek/tabular'     " Text filtering and alignment
+     Plug 'sheerun/vim-polyglot'  " Vim language support pack
 call plug#end()
 "}}}
 "                                  _ 
@@ -79,16 +71,26 @@ call plug#end()
 "  \__, |\___|_| |_|\___|_|  \__,_|_|
 "  |___/  
 "{{{
-set nu relativenumber " Enable line (+ relative) numbers
-set background=dark " Set the background theme to dark
+" Colors:
+" Set true colors
+if (has("nvim"))
+     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+if (has("termguicolors"))
+     set termguicolors
+endif
+
+" Settings:
 syntax on " Enable syntax highlighting
-filetype plugin indent on " Enable plugin indentation
 colorscheme badwolf " Set the colorscheme
+set background=dark " Set the background theme to dark
+set nu relativenumber " Enable line (+ relative) numbers
+filetype plugin indent on " Enable plugin indentation
 set autoindent smartindent cindent " Set code autoindentation
 set cursorline " Highlight current line
+set noshowmode " Don't show the indicator in insert mode.
 set tabstop=4 expandtab smarttab shiftwidth=4 " One TAB appears to be 4 spaces
 set splitbelow splitright " Splits open at the bottom and right
-set noshowmode " Don't show the indicator in insert mode.
 set completeopt=longest,menuone,noselect " Improve completion menu
 set textwidth=80 " Set max text in a line to 80
 set mouse=nicr " Smooth mouse scrolling
@@ -99,22 +101,13 @@ set directory=/tmp//
 set undodir=/tmp//
 
 set ignorecase smartcase " Ignore the case of letters only if no Upper case is present
-set incsearch hlsearch " Show search while typing and highlight everything
+set incsearch " Show search while typing
 set showmatch " Show matching brackets when text indicator is over them
 
 "Wildmode
 set wildmenu
 set wildmode=list:longest,full
 
-" ===== COLORS =====
-
-" Set true colors
-if (has("nvim"))
-     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-if (has("termguicolors"))
-     set termguicolors
-endif
 "}}}
 "                              _                 
 "  _ __ ___   __ _ _ __  _ __ (_)_ __   __ _ ___ 
@@ -128,9 +121,7 @@ let mapleader=","
 " Set the local map leader to , (used in specific autocommands for compatibility reasons)
 let localleader=","
 
-" ===== EASE OF USE =====
-
-" H and L navigate to start or end of line
+"Navigate to start or end of line
 nnoremap H ^
 vnoremap H ^
 onoremap H ^
@@ -138,7 +129,17 @@ nnoremap L $
 vnoremap L $
 onoremap L $
 
-" J and K navigate to start or end of screen
+" Move along visual lines, not numbered ones
+nnoremap j gj
+nnoremap k gk
+nnoremap ^ g^
+nnoremap $ g$
+vnoremap j gj
+vnoremap k gk
+vnoremap ^ g^
+vnoremap $ g$
+
+" Navigate to start or end of screen
 nnoremap K H
 nnoremap J L
 
@@ -148,13 +149,12 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
-" Save with space-w, quit with space-q, both with space wq
+" Save keystrokes on save/quit
 nnoremap <space>w :w<cr>
 nnoremap <space>q :q<cr>
 nnoremap <space>wq :wq<cr>
 
-
-" Perform :help on the selected word with F1
+" Perform :help on the selected word
 noremap <F1> K
 
 " Open your vimrc file in a split window for quick edits and reload it
@@ -164,18 +164,18 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " Unmap q:
 nmap q: <nop>
 
-" ===== MISC =====
-
 " Fold an entire paragraph of text
 nnoremap <leader>fp zfip
 
-" C-u capitalizes the current word in insert mode
+" Capitalize the current word in insert mode
 inoremap <c-u> <esc>viwUea 
 
-" Movement 'isp' highlights the current text around spaces (with or without
-" them)
+" Highlight the current text surrounded by spaces (with or without them)
 onoremap isp :<c-u>normal! T vt <cr>
 onoremap asp :<c-u>normal! F<space>vf<space><cr>
+
+" 
+nnoremap <space>h :noh<cr>
 
 "Disable arrow keys in Normal and insert mode
 no <Up> <nop>
@@ -253,7 +253,6 @@ augroup END
 augroup filetype_haskell
     autocmd FileType haskell nnoremap <buffer> <F5> :w<cr> :!ghc -Wall -O2 --make -threaded -o %:r %<cr>
     autocmd FileType haskell nnoremap <buffer> <F6> :!./%:r<cr>
-    autocmd FileType haskell set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 augroup END
 
 " For Bash scripts
