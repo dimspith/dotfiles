@@ -15,6 +15,7 @@
 " ->      Cabal                hlint          (ALE haskell linting)
 " ->      Package manager      clang          (ALE C/C++ linting)
 " ->      Package manager      shellcheck     (ALE Bash/Shell linting)
+" ->      Stack                apply-refact   (ALE hlint refactoring: stack --resolver=nightly install apply-refact)
 
 " ==== PLUGIN SETTINGS ====
 " Lightline:
@@ -29,20 +30,27 @@ let g:lightline = {
 
 """"""""""""""""""""""""""""""""""""""""""
 " ALE:
-"
+
+" Fix files with F8
+nmap <F8> :ALEFix<cr>
+
 let g:ale_completion_enabled = 1
 
+" Fixers
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'haskell':  ['hlint'],
+\   'rust':     ['rustc'],
 \}
+let g:ale_haskell_hlint_options = '--refactor  --refactor-options="--inplace"'
 
+"Linters
 let g:ale_linters = {
-\   'cpp': ['clang'],
-\   'bash':['shellcheck'],
-\   'ruby':['ruby'],
-\   'awk':['gawk'],
-\   'haskell':['ghc', 'hlint'],
-\   'rust':['rustc'],
+\   'cpp':      ['clang'],
+\   'bash':     ['shellcheck'],
+\   'ruby':     ['ruby'],
+\   'awk':      ['gawk'],
+\   'haskell':  ['ghc', 'hlint'],
+\   'rust':     ['rustc'],
 \}
 
 """"""""""""""""""""""""""""""""""""""""""
@@ -64,12 +72,12 @@ call plug#begin('~/.config/nvim/plugged')
      Plug 'sheerun/vim-polyglot'  " Vim language support pack
 call plug#end()
 "}}}
-"                                  _ 
-"   __ _  ___ _ __   ___ _ __ __ _| |
-"  / _` |/ _ \ '_ \ / _ \ '__/ _` | |
-" | (_| |  __/ | | |  __/ | | (_| | |
-"  \__, |\___|_| |_|\___|_|  \__,_|_|
-"  |___/  
+"          _   _   _                 
+" ___  ___| |_| |_(_)_ __   __ _ ___ 
+"/ __|/ _ \ __| __| | '_ \ / _` / __|
+"\__ \  __/ |_| |_| | | | | (_| \__ \
+"|___/\___|\__|\__|_|_| |_|\__, |___/
+"                          |___/     
 "{{{
 " Colors:
 " Set true colors
@@ -143,6 +151,9 @@ vnoremap $ g$
 nnoremap K H
 nnoremap J L
 
+" Space cancels the current command
+onoremap <space> <esc>
+
 " Shortcutting split navigation, saving a keypress:
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
@@ -152,6 +163,7 @@ noremap <C-l> <C-w>l
 " Save keystrokes on save/quit
 nnoremap <space>w :w<cr>
 nnoremap <space>q :q<cr>
+nnoremap <space>q! :q!<cr>
 nnoremap <space>wq :wq<cr>
 
 " Perform :help on the selected word
@@ -174,7 +186,7 @@ inoremap <c-u> <esc>viwUea
 onoremap isp :<c-u>normal! T vt <cr>
 onoremap asp :<c-u>normal! F<space>vf<space><cr>
 
-" 
+" Disable highlighting
 nnoremap <space>h :noh<cr>
 
 "Disable arrow keys in Normal and insert mode

@@ -3,12 +3,9 @@
 
 # THIS CONFIG IS USED WITH ZGEN,
 # INSTALL IT BEFORE USING IT
-# command: git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+
 
 #===================
-
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Haskell ghcup
 source $HOME/.ghcup/env
@@ -52,8 +49,6 @@ alias aliases="alias|less"
 alias gotop="gotop -c monokai"
 alias rlconf="source ~/.zshrc"
 alias rlprof="source ~/.zprofile"
-alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle ; xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
-
 alias vf="nvim \$(fzf)"
 alias vzc="nvim $HOME/.zshrc"
 alias vrc="nvim $HOME/.config/nvim/init.vim"
@@ -70,6 +65,7 @@ alias pdf="setsid zathura"
 alias repulse="pulseaudio --kill && sleep 2 && pulseaudio --start"
 alias gitlog="git log --all --decorate --oneline --graph"
 alias bro="bro 2>/dev/null"
+alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle ; setxkbmap -option ctrl:nocaps"
 
 # Keybindings
 bindkey -v

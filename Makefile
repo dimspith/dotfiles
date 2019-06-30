@@ -23,3 +23,5 @@ replace: clean remotebackup
 	@echo "Removing neovim plugins..."
 	@rm -rf .config/nvim/plugged/*
 	@echo "All done!"
+	@cp -rf ~/.emacs .emacs
+	@echo "Replacing emacs config..."

@@ -1,8 +1,9 @@
-## Dotfiles contain configs for these programs:
+## Dotfiles for these programs:
 * zsh
 * i3
 * tmux
-* nvim (.config/nvim/init.vim)
-* vim (.vimrc for compatibility)
+* nvim
+* vim (.vimrc)
 * polybar
-* firefox (mildly hardened user.js)
+* emacs
+* rofi
