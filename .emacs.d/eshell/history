@@ -1,0 +1,128 @@
+clc
+ls
+ls
+la
+pwd
+sudo updatedb
+neofetch
+neofetch
+pdf Downloads/pdfs/orgguide.pdf 
+setsid zathura Downloads/pdfs/orgguide.pdf 
+cd
+clear
+neofetch
+v Desktop/Programming/Haskell/Book/after13.hs 
+nvim Desktop/Programming/Haskell/Book/after13.hs 
+....
+ls
+cd ~/Downloads/
+ls
+lsd
+chmox +x rogue_legacy_en_1_4_0_22617.sh 
+chmod +x rogue_legacy_en_1_4_0_22617.sh 
+./rogue_legacy_en_1_4_0_22617.sh 
+cd
+ls
+s
+ls
+d
+la
+neofetch
+neofetch*** output flush
+██████████████████  ████████
+o
+o: command not found
+uname -r
+clear
+cd
+cabal install yi
+cabal new-install yi
+cabal update
+cabal new-install yi
+sudo cabal new-install yi
+mkdir -p /home/dimitris/.cabal/store/ghc-8.6.3/package.db/
+cabal new-install yi
+cd /home/dimitris/.cabal/store/ghc-8.6.3/
+ls
+cd package.db/
+ls
+ls '*ack*'
+clear
+echo "" | cabal new-repl -w ghc-8.6.1 --build-dep fail
+echo "" | cabal new-repl -w ghc-8.6.3 --build-dep fail
+cabal install yi
+yi
+ls
+..
+...
+ls
+..
+..
+..
+dot
+sudo pacman -Rns ocaml
+vi
+ls
+sudo chattr -i /etc/resolv.conf
+sudo chattr +i /etc/resolv.conf
+cat /etc/resolv.conf
+!
+cd ~
+ls
+curl https://getcroc.schollz.com | bash
+dired-du
+man sort
+man cpupower
+ddh
+man ddh
+ls
+mr -rf table.html table test.bash test.c test.rs orgmode.html
+rm -rf table.html table test.bash test.c test.rs orgmode.html
+ls
+gpg -c orgmode.org
+ls
+mv orgmode.org.gpg ..
+cd ..
+ls
+gpg -c orgmode.org.gpg 
+ls
+rm orgmode.org.gpg.gpg
+ls
+gpg -d orgmode.org.gpg 
+which firejail
+which firejail
+ls
+sh testfile.sh 
+ls
+ls
+cd
+ls
+cd Documents/GitProjects/dotfiles/
+ls
+la
+ls -a
+la
+lah
+v
+cd
+cd Documents/GitProjects/dotfiles/
+ls
+la
+ls -a
+l
+./a.out 
+./a.out 
+/clera
+/clear
+clear
+ls
+cd
+cd Desktop/Testing_Grounds/Haskell/Book/
+ls
+ghc simple_cal.hs 
+ghc simple_cal.hs 
+ls
+./simple_cal 
+./simple_cal 
+ghc simple_cal.hs
+./simple_cal 

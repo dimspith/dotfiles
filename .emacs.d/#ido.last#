@@ -1,0 +1,135 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/dimitris/FileCollection/" . "Notes/")
+ ("/sudo::/usr/share/" . "applications/")
+ ("/usr/share/" . "applications/")
+ ("/sudo::/" . "etc/")
+ ("/home/dimitris/.emacs.d/" . "auto-save-list/")
+ ("/home/dimitris/Desktop/CSD/HY255/" . "ask3/")
+ ("/home/dimitris/Desktop/CSD/" . "Software Lab 255/")
+ ("/home/dimitris/" . "Desktop/")
+ ("/home/" . "dimitris/")
+ ("/" . "etc/")
+ ("/home/dimitris/Desktop/Programming/Haskell/" . "Book/")
+ ("/home/dimitris/Desktop/Programming/" . "Haskell/")
+ ("/home/dimitris/Desktop/" . "CSD/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/dimitris/Desktop/Testing_Grounds/Haskell/Book/"
+ "/home/dimitris/.emacs.d/"
+ "/home/dimitris/Desktop/CSD/Software Lab 255/"
+ "/home/dimitris/"
+ "/home/dimitris/FileCollection/Notes/"
+ "/home/dimitris/Desktop/Testing_Grounds/C/"
+ "/home/dimitris/Desktop/Random/"
+ "/home/dimitris/Documents/GitProjects/dotfiles/"
+ "/home/dimitris/Documents/Notes/"
+ "/"
+ "/home/dimitris/Desktop/"
+ "/home/dimitris/Desktop/Programming/Haskell/Book/"
+ "/sudo::/usr/share/applications/"
+ "/usr/share/applications/"
+ "/etc/"
+ "/home/dimitris/Desktop/Notes/"
+ "/sudo::/etc/"
+ "/home/dimitris/Desktop/CSD/HY255/ask3/"
+ "/home/dimitris/.config/i3/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "simple_cal.hs"
+ "init.el~"
+ "Unit3-20.hs"
+ "TODO.org"
+ "Unit3-19.hs"
+ "resume.org"
+ "projectideas.org"
+ "Unit3-rest.hs"
+ "discord.desktop"
+ "Unit3.hs"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/dimitris/" (23932 5975 713729 484000) "Desktop/" ".electron/" ".steampid" ".swt/" ".cache/" ".xsession-errors.old" ".i3/" ".xinitrc" ".moonchild productions/" ".gdb_history" ".mysql/" ".steampath" ".tmux.conf" ".pki/" ".zshrc" ".wine/" ".yarnrc" "FileCollection/" ".install4j" ".zgen/" ".viminfo" ".texlive/" ".zsh_history" ".wget-hsts" ".bash_history" ".v8flags.7.0.276.38-node.18.9a1d84e123d607ac176c4ee646c5e357.json" ".rustup/" ".bash_profile" ".xonotic/" ".gtkrc-2.0" ".w3m/" "go/" ".claws-mail/" ".dosbox/" ".urxvt/" ".zcompdump-solitude-5.7.1" ".bro" "dist/" ".psensor/" ".xsession-errors" ".profile" "Downloads/" ".python_history" ".zshrc.pre-oh-my-zsh" ".stack/" "Videos/" "Music/" ".muttrc" ".lesshst" ".thunderbird/" ".babel.json" ".bash_logout" ".ghcup/" ".pulse-cookie" ".cargo/" ".hoogle/" ".Xauthority" ".config/" ".saves/" ".xscreensaver" ".moc/" ".mono/" ".Xclients" ".fontconfig/" ".vim/" ".java/" ".gtk-bookmarks" ".bashrc" ".yarn/" ".cabal/" ".thumbnails/" ".xmonad/" ".electron-gyp/" "../" ".dmenurc" ".Xresources" "CustomInstalls/" ".autojump/" ".macromedia/" ".zcompdump.solitude.16277" ".npm/" ".irssi/" ".addressbook" ".gem/" ".zcompdump-solitude-5.6.2" ".mtab.fuseiso" ".gimp-2.8/" ".dmrc" ".local/" ".emacs.d/" ".gnupg/" ".mozilla/" ".hplip/" ".gitconfig" ".ghc/" ".gnuplot_history" ".vimrc" "GOG Games/" ".emacs~" ".i2p/" "Documents/" ".zcompdump" ".steam/" "Pictures/" ".m2/" ".ssh/" ".minecraft/" ".esd_auth" ".dir_colors" ".node-gyp/" "./" ".icons/")
+
+ ("/home/dimitris/.config/i3/" (23927 52681 720042 640000) "config" "../" "config~" "./")
+
+ ("/etc/" (23930 55119 438306 592000) "vbox/" "udev/" "udisks2/" "machine-id" "cups/" "services" "NetworkManager/" "yaourtrc" "timezone" "xml/" "group-" "openswap.conf" "asound.conf" "UPower/" "sudoers" "login.defs" "slsh.rc" "manjaro-firefox.ini" "hosts" "protocols" "nfs.conf" "skel/" "pulse/" "ifplugd/" "rsyncd.conf" "xattr.conf" "manjaro-firefox-developer-edition.ini" "logrotate.d/" "cupshelpers/" "php/" "wgetrc" "modprobe.d/" "openldap/" "mke2fs.conf" "securetty" "mailcap" "libblockdev/" "wpa_supplicant/" "mail.rc" "dbus-1/" "hostname" "geoclue/" "cdmrc" "exports.d/" "default/" "pamac-new-03242152.conf" "passwd-" "xdg/" "exports" "ImageMagick-7/" "i3status.conf" "tor/" "openmpi/" "Nextcloud/" "sane.d/" "binfmt.d/" "bash.bashrc" "topdefaultrc" "man_db.conf" "modules-load.d/" "riot/" "cpufreq-bench.conf" "group" "depmod.d/" "iproute2/" "arch-release" "request-key.d/" "rpc" "sensors3.conf" "gtk-2.0/" "locale.conf" "printcap" "ppp/" "environment" "systemd/" "pacman-mirrors.conf" "iptables/" "ImageMagick-6/" "adjtime" "firejail/" "audit/" ".pwd.lock" "webapps/" "pam.d/" "gdb/" "sysctl.d/" "i3/" "profile" "makepkg.conf" "apparmor.d/" "inputrc" "bindresvport.blacklist" "shadow-" "foomatic/" "libpaper.d/" "java-8-openjdk/" "e2scrub.conf" "netconfig" "lvm/" "fonts/" "alsa/" "libnl/" "passwd.OLD" "resolv.conf" "os-release" "locale.gen" "krb5.conf" "vconsole.conf" "pacman.d/" "crypttab" "fuse.conf" "cifs-utils/" "mpv/" "trusted-key.key" "tmpfiles.d/" "idmapd.conf" "nanorc" "gshadow-" "ntp.conf" "mtab" "motd" "apparmor/" "openvpn/" "mdadm.conf" "ethertypes" "libreoffice/" "netctl/" "nginx/" "passwd" "gtk-3.0/" "audisp/" "ufw/" "libaudit.conf" "vpnc/" "resolv.conw~" "gufw/" "gconf/" "healthd.conf" "pkcs11/" "gss/" "issue" "syslog-ng/" "sensors.d/" "texmf/" "manjaro-firefox-kde.ini" "bash.bash_logout" "vdpau_wrapper.cfg" "manjaro-release" "grub.d/" "kernel/" "xinetd.d/" "xkbsel/" "pip.conf" "dconf/" "polkit-1/" "gai.conf" "request-key.conf" "acpi/" "ld.so.conf" "initcpio/" "resolv.conf~" "hp/" "ld.so.cache" "lightdm/" "lsb-release" "ca-certificates/" "profile.d/" "updatedb.conf" "lightdm.conf.save" "resolv.conz~" "localtime" "conf.d/" "bluetooth/" "gimp/" "sudoers.d/" "logrotate.conf" "samba/" "nscd.conf" "ndctl/" "host.conf" "mime.types" "mhwd-x86_64.conf" "resolvconf.conf" "resolv.cony~" "nsswitch.conf" "manjaro-thunderbird.ini" "rc_maps.cfg" "ssl/" "pamac.conf" "libva.conf" ".updated" "security/" "dnsmasq.conf" "zsh/" "shells" "gssproxy/" "ssh/" "pacman.conf" "ld.so.conf.d/" "X11/" "mkinitcpio.d/" "ts.conf" "fstab" "vimrc" "avahi/" "rc_keymaps/" "mkinitcpio.conf" "shadow" "gemrc" "papersize" "dhcpcd.conf" "gshadow" "resolv.conx~" "nfsmount.conf" "../" "./")
+
+ ("/usr/share/applications/" (23930 55121 861640 857000) "electron.desktop" "qt5ct.desktop" "exo-file-manager.desktop" "xfce4-about.desktop" "xfce4-power-manager-settings.desktop" "vlc.desktop" "isousb.desktop" "org.kde.kdeconnect.nonplasma.desktop" "nvim.desktop" "zenmap.desktop" "xdvi.desktop" "mousepad.desktop" "redshift.desktop" "ipscan.desktop" "gparted.desktop" "pcmanfm.desktop" "steam.desktop" "gcr-viewer.desktop" "designer.desktop" "hp-uiscan.desktop" "popcorntime.desktop" "filezilla.desktop" "winetricks.desktop" "polkit-gnome-authentication-agent-1.desktop" "xfburn.desktop" "qv4l2.desktop" "mpv.desktop" "assistant.desktop" "gucharmap.desktop" "i3.desktop" "kvantummanager.desktop" "compton.desktop" "system-config-printer.desktop" "linguist.desktop" "stoken-gui.desktop" "nm-applet.desktop" "lxshortcut.desktop" "qdbusviewer.desktop" "pamac-updater.desktop" "mimeinfo.cache" "cups.desktop" "epdfview.desktop" "chromium.desktop" "gufw.desktop" "pcmanfm-desktop-pref.desktop" "arandr.desktop" "zenmap-root.desktop" "pamac-installer.desktop" "org.pwmt.zathura.desktop" "msm_notifier_settings.desktop" "libreoffice-writer.desktop" "hplip.desktop" "libreoffice-impress.desktop" "bvnc.desktop" "exo-web-browser.desktop" "markdown_previewer.desktop" "nitrogen.desktop" "libreoffice-math.desktop" "emacs.desktop" "libfm-pref-apps.desktop" "avahi-discover.desktop" "veracrypt.desktop" "telegramdesktop.desktop" "balena-etcher-electron.desktop" "ktelnetservice5.desktop" "gcolor2.desktop" "urxvt-tabbed.desktop" "org.musicbrainz.Picard.desktop" "pamac-manager.desktop" "viewnior.desktop" "org.kde.kdeconnect.telhandler.desktop" "lxappearance.desktop" "syncthing-gtk.desktop" "nm-connection-editor.desktop" "vim.desktop" "qvidcap.desktop" "lightdm-settings.desktop" "wine.desktop" "org.gnome.Screenshot.desktop" "freetube-bin.desktop" "libreoffice-startcenter.desktop" "org.manjaro.pamac.manager.desktop" "onionshare.desktop" "libreoffice-draw.desktop" "htop.desktop" "gimp.desktop" "org.kde.kdeconnect.daemon.desktop" "urxvt.desktop" "lstopo.desktop" "org.pwmt.zathura-pdf-mupdf.desktop" "gcr-prompter.desktop" "stoken-gui-small.desktop" "exo-mail-reader.desktop" "mate-calc.desktop" "firefox.desktop" "discord.desktop" "org.kde.kdeconnect.kcm.desktop" "org.octave.Octave.desktop" "volumeicon.desktop" "nextcloud.desktop" "libreoffice-calc.desktop" "riot.desktop" "termite.desktop" "blueman-manager.desktop" "geoclue-where-am-i.desktop" "virtualbox.desktop" "exo-preferred-applications.desktop" "manjaro-settings-manager.desktop" "claws-mail.desktop" "bleachbit.desktop" "pavucontrol.desktop" "simple-scan.desktop" "libreoffice-xsltfilter.desktop" "urxvtc.desktop" "gtk2fontsel.desktop" "redshift-gtk.desktop" "open-fuse-iso.desktop" "ca.desrt.dconf-editor.desktop" "bssh.desktop" "transmission-gtk.desktop" "vifm.desktop" "exo-terminal-emulator.desktop" "sxiv.desktop" "conky.desktop" "dosbox.desktop" "blueman-adapters.desktop" "xarchiver.desktop" "lxinput.desktop" "libreoffice-base.desktop" "geoclue-demo-agent.desktop" "minecraft-launcher.desktop" "../" "./")
+
+ ("/home/dimitris/Desktop/" (23931 29551 434917 216000) "CSD/" "Mount/" "Current-Books/" "../" "Testing_Grounds/" "./")
+
+ ("/home/dimitris/.emacs.d/" (23932 4058 914732 840000) "bookmarks" "init.el~" "games/" "tutorial/" "url/" "smex-items" "elpa/" "auto-save-list/" "%backup%~" "../" "network-security.data" "tramp" "#ido.last#" "init.el" "ido.last~" "recentf" "transient/" "(bcp)init.el" "eshell/" "ido.last" "recentf~" "./")
+
+ ("/home/dimitris/Desktop/Testing_Grounds/Haskell/Book/" (23932 5800 998921 177000) "after13.hs" "Unit4.o" "Unit3-17.hs" "sum_lazy.hs" "Unit3-18.hs" "Unit4" "../" "Unit3-19.hs" "Unit4.hi" "Unit4.hs" "time_series.hs" "./")
+
+ ("/home/dimitris/Desktop/CSD/Software Lab 255/" (23752 35096 646994 592000) "ask3/" "ask4/" "ask2/" "ask6/" "../" "Notes/" "ask5/" "bcp/" "./")
+
+ ("/home/dimitris/Desktop/CSD/" (23917 11134 802301 945000) "Computation Theory 280/" "Applied Mathematics 215/" "Logic/" "Software Lab 255/" "../" "Computer Organization 225/" "./")
+
+ ("/home/dimitris/Documents/Nextcloud/Notes/" (23927 31486 298273 737000) "TODO.html" "../" "mytools.org" "projectideas.org" "TODO.org" "./")
+
+ ("/home/dimitris/Desktop/Testing_Grounds/C/" (23926 22758 964654 313000) "#main.c#" "a.out" "../" "main.c" "./")
+
+ ("/home/dimitris/FileCollection/Notes/" (23926 22758 964654 313000) "#TODO.org#" "../" "mytools.org" "projectideas.org" "TODO.org" "./")
+
+ ("/home/dimitris/FileCollection/" (23925 12415 677202 845000) "Drawing/" "Current-Books/" "Computers/" "Health/" "Miscellaneous/" "DIY/" "../" "Notes/" "./")
+
+ ("/home/dimitris/Desktop/Testing_Grounds/" (23925 38820 747275 99000) "Neocities/" "Haskell/" "Shell/" "Rust/" "../" "C/" "./")
+
+ ("/home/dimitris/Documents/" (23925 12306 573067 98000) "GitProjects/" "Ungoogled Chromium Addons/" "Google Files/" "Nextcloud/" "../" "./")
+
+ ("/home/dimitris/Documents/Nextcloud/" (23925 36060 120946 832000) "Current-Books/" "._sync_fc4af23d59dd.db" "../" "Notes/" "./")
+
+ ("/home/dimitris/Desktop/Testing_Grounds/Haskell/" (23852 21648 697826 427000) "Projects/" "seas-course/" "../" "Book/" "./")
+
+ ("/home/dimitris/Desktop/Notes/" (23918 15997 796554 166000) "../" "./")
+
+ ("/home/dimitris/Documents/Notes/" (23922 56295 905805 254000) "TODO.tex" "mytools.html" "../" "mytools.org" "projectideas.org" "TODO.org" "./")
+
+ ("/home/dimitris/Desktop/Random/" (23917 10916 211019 205000) "../" "./")
+
+ ("/home/dimitris/Desktop/Programming/" (23922 46811 992949 478000) "Neocities/" "Haskell/" "Shell/" "Rust/" "../" "./")
+
+ ("/home/dimitris/Desktop/Programming/Haskell/Book/" (23922 50149 181925 393000) "after13.hs" "Makefile" "Unit3-17.hs" "../" "#Unit3-rest.hs#" "Unit3-rest.hs" "./")
+
+ ("/home/dimitris/Documents/GitProjects/" (23897 52358 409004 540000) "dotfiles/" "../" "./")
+
+ ("/home/dimitris/Documents/GitProjects/dotfiles/" (23832 53827 246640 920000) ".git/" ".tmux.conf" ".zshrc" "README.md" "LICENSE" "Makefile" ".config/" "../" ".emacs" ".gitignore" ".vimrc" "./")
+
+ ("/usr/" (23920 57664 566521 609000) "man/" "share/" "lib/" "src/" "lib64/" "lib32/" "../" "local/" "include/" "sbin/" "bin/" "./")
+
+ ("/usr/share/" (23920 57242 900544 317000) "t1lib/" "aclocal/" "gettext-0.20/" "vala/" "qlogging-categories5/" "autoconf/" "misc/" "pacman-mirrors/" "pkgconfig/" "cups/" "opt-viewer/" "gvfs/" "xml/" "emacs/" "libthai/" "gtk-engines/" "haskell-byteable/" "vulkan/" "thumbnailers/" "libnumbertext/" "wine/" "gksu-polkit-1/" "ksysguard/" "pmix/" "gtksourceview-4/" "iso-codes/" "keyutils/" "dunst/" "haskell/" "color/" "moc/" "Kvantum/" "graphite2/" "git-gui/" "cmus/" "octave/" "gitweb/" "dhclient/" "filezilla/" "libdrm/" "vifm/" "dbus-1/" "slick-greeter/" "doc/" "stoken/" "liblangtag/" "gnome-vpn-properties/" "libinput/" "firebird/" "gtk-doc/" "defaults/" "nvim/" "installed-tests/" "zenity/" "man/" "sip/" "lxappearance/" "ImageMagick-7/" "slsh/" "haskell-colour/" "mkinitcpio/" "scan-view/" "os-prober/" "pygtk/" "tor/" "openmpi/" "knotifications5/" "haroopad/" "snmp/" "libtool/" "rofi/" "accountsservice/" "cmake/" "file/" "ModemManager/" "openal/" "et/" "locale/" "tc/" "dmenu/" "makepkg-template/" "xcb/" "wayland-protocols/" "help/" "perl-image-exiftool/" "xcalib/" "lensfun/" "xfce4/" "syncthing-gtk/" "ibus/" "kconf_update/" "icu/" "nano/" "mypaint-data/" "kservices5/" "mime-info/" "figlet/" "pcmanfm/" "git/" "apr-1/" "systemtap/" "gtksourceview-3.0/" "gtk-2.0/" "nmap/" "zoneinfo-leaps/" "happy/" "gnuplot/" "ppd/" "info/" "libgphoto2_port/" "wayland/" "systemd/" "iptables/" "ImageMagick-6/" "qt5ct/" "arp-scan/" "kxmlgui5/" "plasma/" "tlpkg/" "drirc.d/" "licenses/" "webapps/" "perl5/" "gdb/" "daxctl/" "makepkg/" "tlp/" "bash-completion/" "kvantummanager/" "pixmaps/" "vim/" "desktop-directories/" ".mono/" "bison/" "redland/" "awk/" "hspell/" "foomatic/" "groff/" "alex/" "bleachbit/" "iana-etc/" "dhcpcd/" "clang/" "kbd/" "poppler/" "haskell-pretty-show/" "idl/" "fonts/" "alsa/" "media-player-info/" "plank/" "fish/" "imlib2/" "subversion/" "tabset/" "libalpm/" "factory/" "pavucontrol/" "cracklib/" "dnsmasq/" "apparmor/" "openvpn/" "texmf-dist/" "pacman/" "git-core/" "ffmpeg/" "termite/" "libreoffice/" "kde4/" "guile/" "python-vobject/" "libfm/" "texinfo/" "gtk-3.0/" "ufw/" "sxiv/" "enchant/" "qt/" "gitk/" "xfburn/" "sounds/" "gufw/" "hwdata/" "w3m/" "viewnior/" "GConf/" "sane/" "kvantumpreview/" "ncat/" "splint/" "syslog-ng/" "glib-2.0/" "kf5/" "texmf/" "libgpg-error/" "epdfview/" "application-registry/" "aclocal-1.16/" "terminfo/" "xkbsel/" "xgreeters/" "gir-1.0/" "grub/" "polkit-1/" "nautilus-python/" "zoneinfo/" "gstreamer-1.0/" "appdata/" "zoneinfo-posix/" "zenmap/" "gegl-0.4/" "system-config-printer/" "gst-plugins-base/" "libgphoto2/" "gnome-shell/" "ntp/" "lua/" "sgml/" "colord/" "libexttextcat/" "GraphicsMagick-1.3.33/" "mime/" "glade/" "gcc-9.1.0/" "jack-audio-connection-kit/" "app-info/" "ca-certificates/" "blueman/" "ghostscript/" "gtksourceview-2.0/" "ss/" "gimp/" "ladspa/" "solid/" "samba/" "liblouis/" "knsrcfiles/" "haskell-doctemplates/" "xsessions/" "sundials/" "popcorntime/" "transmission/" "pulseaudio/" "kservicetypes5/" "lxinput/" "libwmf/" "icons/" "applications/" "mate-calc/" "mesa-demos/" "i18n/" "gettext/" "metainfo/" "conky/" "ecryptfs-utils/" "backgrounds/" "gnupg/" "Thunar/" "dict/" "pygobject/" "readline/" "onionshare/" "hwinfo/" "pandoc/" "zsh/" "common-lisp/" "java/" "mobile-broadband-provider-info/" "hplip/" "glvnd/" "xtables/" "libwacom/" "rlwrap/" "X11/" "bakefile/" "volumeicon/" "m17n/" "avahi/" "gutenprint/" "color-schemes/" "vlc/" "luajit-2.0.5/" "automake-1.16/" "scan-build/" "themes/" "hwloc/" "libcaca/" "p11-kit/" "../" "./")
+
+ ("/usr/share/info/" (23920 57505 819460 643000) "groff.info-2.gz" "aalib.info.gz" "octave.info-6.gz" "vhdl-mode.info.gz" "liboctave.info.gz" "octave.info-10.gz" "cpp.info.gz" "stabs.info.gz" "libc.info-15.gz" "libc.info-1.gz" "octave.info.gz" "mpfr.info.gz" "gdb.info-6.gz" "url.info.gz" "gdb.info-7.gz" "nxml-mode.info.gz" "todo-mode.info.gz" "guile.info-1.gz" "aalib.info-3.gz" "mairix-el.info.gz" "gnutls-layers.png" "automake.info-2.gz" "automake.info.gz" "guile.info-5.gz" "bovine.info.gz" "octave.info-3.gz" "flymake.info.gz" "eintr.info.gz" "gccint.info.gz" "gzip.info.gz" "libffi.info.gz" "flex.info-2.gz" "netcat.info.gz" "libitm.info.gz" "bfd.info.gz" "history.info.gz" "libc.info-11.gz" "emacs-mime.info.gz" "bison.info.gz" "gnutls-x509.png" "texinfo.info-3.gz" "gdb.info-8.gz" "gawkworkflow.info.gz" "newsticker.info.gz" "gnutls-modauth.png" "liblouis.info.gz" "speedbar.info.gz" "autotype.info.gz" "libc.info-16.gz" "bc.info.gz" "guile.info-7.gz" "libtool.info-2.gz" "autosprintf.info.gz" "info-stnd.info.gz" "autoconf.info.gz" "gnutls-internals.png" "aspell.info.gz" "gmp.info-2.gz" "calc.info.gz" "pinentry.info.gz" "libc.info.gz" "gawkinet.info.gz" "octave.info-7.gz" "web2c.info.gz" "tar.info-1.gz" "info.info.gz" "gdb.info-3.gz" "ert.info.gz" "dir" "gnutls-guile.info.gz" "gnus.info.gz" "gnutls.info-2.gz" "gdb.info-4.gz" "guile.info-10.gz" "woman.info.gz" "srecode.info.gz" "ebrowse.info.gz" "sasl.info.gz" "gnutls.info.gz" "grub.info.gz" "groff.info.gz" "dc.info.gz" "nano.info.gz" "elisp.info.gz" "guile.info-3.gz" "octave.info-1.gz" "gpgme.info-1.gz" "flex.info-1.gz" "remember.info.gz" "gnutls.info-7.gz" "parted.info.gz" "dbus.info.gz" "org.info.gz" "ccmode.info.gz" "rluserman.info.gz" "tramp.info.gz" "gprof.info.gz" "eieio.info.gz" "smtpmail.info.gz" "find-maint.info.gz" "mit-scheme-imail.info.gz" "gettext.info.gz" "tlbuild.info.gz" "guile.info-2.gz" "gpgme.info.gz" "automake.info-1.gz" "libtasn1.info.gz" "octave-mode.info.gz" "gdbm.info.gz" "m4.info-2.gz" "ksba.info.gz" "make.info-1.gz" "grub-dev.info.gz" "widget.info.gz" "gdb.info-5.gz" "flex.info.gz" "octave.info-2.gz" "wisent.info.gz" "groff.info-1.gz" "find.info.gz" "efaq.info.gz" "gcrypt.info.gz" "mh-e.info.gz" "libtextstyle.info.gz" "texinfo.info-1.gz" "gnutls-logo.png" "ses.info.gz" "libc.info-6.gz" "ede.info.gz" "ada-mode.info.gz" "wget.info.gz" "libidn-components.png.gz" "make.info.gz" "pgg.info.gz" "diffutils.info.gz" "libc.info-13.gz" "viper.info.gz" "inetutils.info.gz" "vip.info.gz" "libc.info-3.gz" "guile.info.gz" "cl.info.gz" "gcrypt.info-2.gz" "dvips.info.gz" "aalib.info-2.gz" "libc.info-2.gz" "semantic.info.gz" "fftw3.info.gz" "guile.info-9.gz" "aspell-dev.info.gz" "libmpc.info.gz" "gccinstall.info.gz" "sed.info.gz" "auth.info.gz" "octave.info-9.gz" "bash.info.gz" "libc.info-9.gz" "gnutls.info-1.gz" "mikmod.info.gz" "aalib.info-1.gz" "libc.info-8.gz" "gdb.info-2.gz" "gnutls.info-6.gz" "sieve.info.gz" "message.info.gz" "r5rs.info.gz" "eudc.info.gz" "libquadmath.info.gz" "m4.info-1.gz" "libgomp.info.gz" "forms.info.gz" "gnutls.info-3.gz" "dvipng.info.gz" "fftw3.info-1.gz" "htmlfontify.info.gz" "guile.info-6.gz" "assuan.info.gz" "fftw3.info-2.gz" "libc.info-12.gz" "libc.info-4.gz" "ido.info.gz" "edt.info.gz" "libc.info-17.gz" "mjpeg-howto.info.gz" "pcl-cvs.info.gz" "epa.info.gz" "gdb.info.gz" "libconfig.info.gz" "m4.info.gz" "gnutls-handshake-sequence.png" "gnupg.info-1.gz" "rcirc.info.gz" "libc.info-14.gz" "gawk.info.gz" "grub.info-1.gz" "ediff.info.gz" "gnupg.info-2.gz" "readline.info.gz" "guile.info-4.gz" "gnutls-client-server-use-case.png" "automake-history.info.gz" "octave.info-5.gz" "erc.info.gz" "nettle.info.gz" "find.info-2.gz" "emacs.info.gz" "eww.info.gz" "cppinternals.info.gz" "gpgme.info-2.gz" "gcc.info.gz" "kpathsea.info.gz" "tar.info-2.gz" "find.info-1.gz" "gdb.info-1.gz" "idlwave.info.gz" "pkcs11-vision.png" "libunistring.info.gz" "eshell.info.gz" "libc.info-10.gz" "coreutils.info.gz" "annotate.info.gz" "guile.info-8.gz" "reftex.info.gz" "grub.info-2.gz" "emacs-gnutls.info.gz" "libtool.info.gz" "gpm.info.gz" "as.info.gz" "texinfo.info.gz" "binutils.info.gz" "which.info.gz" "grep.info.gz" "gnutls.info-4.gz" "gcrypt.info-1.gz" "libtool.info-1.gz" "dired-x.info.gz" "tar.info.gz" "gmp.info.gz" "gpgrt.info.gz" "gmp.info-1.gz" "octave.info-4.gz" "libcdio.info.gz" "sc.info.gz" "libidn2.info.gz" "libc.info-5.gz" "make.info-2.gz" "gnupg.info.gz" "libext2fs.info.gz" "ld.info.gz" "libc.info-7.gz" "gnutls-handshake-state.png" "gnutls.info-5.gz" "octave.info-8.gz" "texinfo.info-2.gz" "libidn.info.gz" "../" "./")
+
+ ("/home/dimitris/.stack/" (23915 51804 303771 956000) "loaded-snapshot-cache/" "global-project/" "programs/" "build-plan-cache/" "compiler-tools/" "stack.sqlite3" "precompiled/" "setup-exe-src/" "build-plan/" "../" "setup-exe-cache/" "indices/" "config.yaml" "snapshots/" "stack.sqlite3.pantry-write-lock" "pantry/" "./")
+
+ ("/home/dimitris/Desktop/CSD/HY255/ask3/" (23910 64434 594129 959000) "symtablelist.c~" "Makefile" "symtablehash.c~" "#symtablelist.c#" "testsymtab.o" "symtablelist.o" "../" "symtable.h" "testsymtab.c" "symtablehash.c" "testsymtab" "symtablelist.c" "./")
+
+ ("//" (23764 25721 767291 69000) "boot/" "home/" "opt/" "keybase/" "srv/" "lib/" "dev/" "sys/" "usr/" "run/" "etc/" "lib64/" "lost+found/" "../" "tmp/" "rootfs-pkgs.txt" "proc/" "mnt/" ".manjaro-tools" "var/" "sbin/" "bin/" "root/" "app/" "./" "desktopfs-pkgs.txt")
+
+ ("/home/dimitris/.config/" (23880 6551 852584 518000) "menus/" "chromium/" "akonadi_contacts_resource_0rc" "geany/" "Risk_of_Rain/" "clojure/" "pulse/" "manjaro-hello.json" "kid3rc" "akonadi_akonotes_resource_0rc" "dunst/" "Kvantum/" "ranger/" "cmus/" "goa-1.0/" "akonadi/" "mimeapps.list" "octave/" "keybase/" "filezilla/" "vifm/" "qBittorrent/" "cef_user_data/" "nvim/" "cherrymusic/" "Jackbox Games/" "MusicBrainz/" "pamac/" "alacritty/" "rofi/" "VeraCrypt/" "korgacrc" "Turtl/" "mstream/" "xfce4/" "xarchiver/" "emailidentities" "pcmanfm/" "yay/" "zim/" "gtk-2.0/" "TagSpaces/" "qt5ct/" "tomboy/" "i3/" "neofetch/" "ksysguardrc" "Popcorn-Time/" "Electron/" "keepassxc/" "Rambox/" "bleachbit/" "mpd/" "flammarion/" "korganizerrc" "cava/" "compton.conf" "DisplayCAL/" "Riot/" "lutris/" "user-dirs.dirs" "mpv/" "dmenu-recent/" "spotify/" "hexchat/" "zathura/" "termite/" "libreoffice/" "pavucontrol.ini" "specialmailcollectionsrc" "user-dirs.locale" "korganizer.kmessagebox" "qalculate/" "libfm/" "../" "gtk-3.0/" "akonadi-firstrunrc" "manjaro/" "xfburn/" "clipit/" "emaildefaults" "newsboat/" "smb4krc" "gconf/" "i3-scrot.conf" "godot/" "viewnior/" "unity3d/" "discord/" "lxsession/" "yakuakerc" "GIMP/" "kdeconnect/" "Haroopad/" "epdfview/" "okularrc" "RogueLegacy/" "Standard Notes/" "dconf/" "nitrogen/" "lftp/" "AllToMP3/" "polybar/" "BraveSoftware/" "htop/" "configstore/" "autostart/" "incidenceeditorrc" "akonadi_maildir_resource_0rc" "glava/" "Mousepad/" "Boostnote/" "kglobalshortcutsrc" "kcalcrc" "transmission/" "akonadi_indexing_agentrc" "mc/" "procps/" "onionshare/" "turtl/" "VirtualBox/" "morc_menu/" "volumeicon/" "blockify/" "vlc/" "QtProject.conf" "./" "eventviewsrc" "balena-etcher-electron/" "konsolerc")
+
+ ("/home/dimitris/Desktop/CSD/HY225/" (23774 58075 703143 856000) "ask12/" "ask13/" "ask9/" "ask10-11/" "ask8/" "Lectures/" "RISCV/" "../" "ask5/" "./")
+
+ ("/home/dimitris/.stack/global-project/" (23869 27051 353198 328000) ".stack-work/" "stack.yaml.lock" "../" "stack.yaml" "README.txt" "./")
+
+ ("/home/dimitris/.emacs.d/auto-save-list/" (23867 29591 675720 812000) ".saves-16222-solitude~" ".saves-11985-solitude~" ".saves-4766-solitude~" "../" "./")
+
+ ("/home/dimitris/Desktop/CSD/HY255/" (23752 35096 646994 592000) "ask3/" "ask4/" "ask2/" "ask6/" "../" "Notes/" "ask5/" "bcp/" "./")
+
+ ("/home/" (23652 1873 13351 885000) "../" "dimitris/" "./")
+
+ ("/home/dimitris/Desktop/Programming/Haskell/" (23852 21648 697826 427000) "Projects/" "seas-course/" "../" "Book/" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

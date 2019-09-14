@@ -2,6 +2,14 @@
 ; | Polybar config file |
 ; | Author: Risorg      |
 ; =======================
+; For info on how to edit the
+; polybar config visit 
+; https://github.com/polybar/polybar/wiki/Configuration
+;
+; This config was made for use with
+; i3 and uses these fonts:
+; - Futura LT: Condensed (Text)
+; - Ubuntu Nerd Font (Icons)
 
 [colors]
 
@@ -16,19 +24,6 @@ cyan       = #3971ed
 white      = #c5c8c6
 background = ${colors.black}
 foreground = #ffffff
-
-;; Yousai
-;black       = #666661 
-;red         = #992e2e
-;green       = #4c3226
-;yellow      = #a67c53
-;blue        = #4c7399
-;magenta     = #bf9986
-;cyan        = #d97742
-;white       = #34302d
-;foreground  = #34302d
-;background  = #f5e7de
-
 
 ; Isotope dark
 ;black      = #000000
@@ -81,26 +76,23 @@ offset-x = 0
 offset-y = 0
 background = ${colors.background}
 foreground = ${colors.foreground}
-radius = 3
-line-size = 2
+radius = 0
+line-size = 1
 line-color = #f00
 padding-left = 1
 padding-right = 1
 
-font-0 = Fantasque Sans Mono:style=Regular:pixelsize=12;2
-font-1 = Ubuntu Nerd Font:pixelsize=12;2
+font-0 = Space Mono:style=Regular:pixelsize=12;1
+font-1 = Ubuntu Nerd Font:pixelsize=13;2
 
 ;=== MODULES ============================================
-module-margin-left = 1
-module-margin-right = 1
-module-padding = 5
-;modules-left = cpu memory
-;modules-center = i3
-;modules-right = keyboard battery date
+module-margin-left = 0
+module-margin-right = 2
+module-padding = 0
 modules-left = i3
-modules-center =  title
+modules-center = 
 modules-right = cpu memory keyboard battery date
-separator =
+separator = 
 locale =
 
 ;=== SYSTEM TRAY CONFIGURATION ================================
@@ -129,7 +121,8 @@ date-alt = %A, %d %B %Y
 time-alt = %H:%M:%S
 format = <label>
 format-background = ${colors.background}
-format-foreground = ${colors.foreground}
+format-foreground = ${colors.magenta}
+;format-underline = ${colors.magenta}
 label = %date% %time%
 label-font = 1
 
@@ -156,48 +149,52 @@ ws-icon-7 = 8;
 ws-icon-default = 
 
 label-mode = %mode%
-label-mode-padding = 2
+label-mode-padding = 1
 label-mode-background = #e60053
 
 label-focused = %icon%
 label-focused-foreground = ${colors.yellow}
 label-focused-background = ${colors.background}
-label-focused-underline = ${colors.yellow}
-label-focused-padding = 3
+;label-focused-underline = ${colors.yellow}
+label-focused-padding = 1
 
 label-unfocused = %icon%
 label-unfocused-foreground = ${colors.white}
 label-unfocused-background = ${colors.background}
-label-unfocused-padding = 3
+label-unfocused-padding = 1
 
 label-visible = %icon%
-label-visible-underline = #555555
-label-visible-padding = 3
+;label-visible-underline = #555555
+label-visible-padding = 1
 
 label-urgent = %icon%
 label-urgent-foreground = ${colors.red}
 label-urgent-background = ${colors.black}
-label-urgent-padding = 3
+label-urgent-padding = 1
 
 ;=======================================================
 [module/memory]
 type = internal/memory
 interval = 1
-format =  <label>
+format = <label>
 format-background = ${colors.background}
 format-foreground = ${colors.red}
 label = %percentage_used%% / %gb_used%
 label-foreground = ${colors.foreground}
+;label-underline = ${colors.red}
+label-font = 1
 
 ;======================================================
 [module/cpu]
 type = internal/cpu
 interval = 1
-format =  <label>
+format = <label>
 format-background = ${colors.background}
 format-foreground = ${colors.green}
 label = %percentage%%
 label-foreground = ${colors.foreground}
+;label-underline = ${colors.green}
+label-font = 1
 
 ;======================================================
 [module/keyboard]
@@ -209,10 +206,13 @@ format-spacing = 0
 label-layout = %name%
 label-layout-background = ${colors.background}
 label-layout-foreground = ${colors.cyan}
+;label-layout-underline = ${colors.blue}
 label-indicator = %name%
 label-indicator-padding = 2
 label-indicator-background = ${colors.background}
 label-indicator-foreground = ${colors.magenta}
+label-layout-font = 1
+label-indicator-font = 1
 
 ;======================================================
 [module/battery]
@@ -224,13 +224,20 @@ adapter = ACAD
 label-charging = %percentage%%
 label-charging-background = ${colors.background}
 label-charging-foreground = ${colors.green}
+;label-charging-underline = ${colors.green}
+label-charging-font = 1
+
+format-charging = <animation-charging> <label-charging>
+;format-charging-underline = ${colors.green}
 
 label-discharging = %percentage%%
 label-discharging-background = ${colors.background}
 label-discharging-foreground = ${colors.yellow}
+;label-discharging-underline = ${colors.yellow}
+label-discharging-font = 1
 
-format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
+;format-discharging-underline = ${colors.yellow}
 
 poll-interval = 5
 time-format = %H:%M
@@ -251,3 +258,16 @@ animation-charging-framerate = 750
 
 
 ;======================================================
+[module/title]
+type = internal/xwindow
+format = <label>
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-padding = 4
+Default: %title%
+label = %title%
+;label-underline = ${colors.foreground}
+label-maxlen = 50
+label-empty = Nil
+label-empty-foreground = ${colors.foreground}
+label-font = 1

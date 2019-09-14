@@ -11,7 +11,7 @@ rofi.lines:                          10
 rofi.columns:                        2
 
 "Font to use" Set from: Default
-rofi.font:                           inconsolata 14
+rofi.font:                           Futura LT 14
 
 "Border width" Set from: Default
 rofi.bw:                             1

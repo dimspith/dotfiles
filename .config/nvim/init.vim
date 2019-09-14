@@ -17,8 +17,8 @@
 " ->      Package manager      shellcheck     (ALE Bash/Shell linting)
 " ->      Stack                apply-refact   (ALE hlint refactoring: stack --resolver=nightly install apply-refact)
 
-" ==== PLUGIN SETTINGS ====
-" Lightline:
+"==== PLUGIN SETTINGS ====
+"Lightline:
 
 let g:lightline = {
       \ 'colorscheme': 'deus',
@@ -29,14 +29,14 @@ let g:lightline = {
       \ }
 
 """"""""""""""""""""""""""""""""""""""""""
-" ALE:
-
-" Fix files with F8
+"ALE:
+"Fix files with F8
 nmap <F8> :ALEFix<cr>
 
+"Use ale as a completion engine
 let g:ale_completion_enabled = 1
 
-" Fixers
+"Fixers
 let g:ale_fixers = {
 \   'haskell':  ['hlint'],
 \   'rust':     ['rustc'],
@@ -50,26 +50,42 @@ let g:ale_linters = {
 \   'ruby':     ['ruby'],
 \   'awk':      ['gawk'],
 \   'haskell':  ['ghc', 'hlint'],
-\   'rust':     ['rustc'],
+\   'rust':     ['rustc']
 \}
 
 """"""""""""""""""""""""""""""""""""""""""
 
-" ==== PLUGINS ====
+"SuperTab:
+"Move down the completion list instead of up
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+""""""""""""""""""""""""""""""""""""""""""
+
+"Alduin_Colorscheme:
+"Black background
+let g:alduin_Shout_Become_Ethereal = 1
+
+"Almost black background
+"let g:alduin_Shout_Dragon_Aspect = 1
+
+""""""""""""""""""""""""""""""""""""""""""
+
+"==== PLUGINS ====
 call plug#begin('~/.config/nvim/plugged')
-     Plug 'tpope/vim-surround'    " Surround text in vim
-     Plug 'tpope/vim-repeat'      " Add repeat functionality to many actions
-     Plug 'junegunn/goyo.vim'     " Distraction free text centering
-     Plug 'itchyny/lightline.vim' " Alternative status bar
-     Plug 'dkasak/gruvbox'        " Gruvbox Colorscheme
-     Plug 'sjl/badwolf'           " Badwolf Colorscheme
-     Plug 'joshdick/onedark.vim'  " One dark (Atom) Colorscheme
-     Plug 'tpope/vim-fugitive'    " Vim git wrapper
-     Plug 'w0rp/ale'              " Code linting
-     Plug 'ervandew/supertab'     " Use Tab for autocompletion
-     Plug 'Twinside/vim-hoogle'   " Vim Hoogle query plugin
-     Plug 'godlygeek/tabular'     " Text filtering and alignment
-     Plug 'sheerun/vim-polyglot'  " Vim language support pack
+     Plug 'tpope/vim-surround'      " Surround text in vim
+     Plug 'tpope/vim-repeat'        " Add repeat functionality to many actions
+     Plug 'junegunn/goyo.vim'       " Distraction free text centering
+     Plug 'itchyny/lightline.vim'   " Alternative status bar
+     Plug 'dkasak/gruvbox'          " Gruvbox colorscheme
+     Plug 'sjl/badwolf'             " Badwolf colorscheme
+     Plug 'AlessandroYorba/Alduin'  " Alduin colorscheme
+     Plug 'tpope/vim-fugitive'      " Vim git wrapper
+     Plug 'w0rp/ale'                " Code linting
+     Plug 'ervandew/supertab'       " Use Tab for autocompletion
+     Plug 'Twinside/vim-hoogle'     " Vim Hoogle query plugin
+     Plug 'godlygeek/tabular'       " Text filtering and alignment
+     Plug 'sheerun/vim-polyglot'    " Vim language support pack
+     Plug 'jiangmiao/auto-pairs'    " Automatic pairs
 call plug#end()
 "}}}
 "          _   _   _                 
@@ -151,20 +167,17 @@ vnoremap $ g$
 nnoremap K H
 nnoremap J L
 
-" Space cancels the current command
-onoremap <space> <esc>
-
 " Shortcutting split navigation, saving a keypress:
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+noremap <A-h> <C-w>h
+noremap <A-j> <C-w>j
+noremap <A-k> <C-w>k
+noremap <A-l> <C-w>l
 
 " Save keystrokes on save/quit
 nnoremap <space>w :w<cr>
 nnoremap <space>q :q<cr>
-nnoremap <space>q! :q!<cr>
-nnoremap <space>wq :wq<cr>
+nnoremap <space>eq :q!<cr>
+nnoremap <space>ew :wq<cr>
 
 " Perform :help on the selected word
 noremap <F1> K
@@ -182,12 +195,14 @@ nnoremap <leader>fp zfip
 " Capitalize the current word in insert mode
 inoremap <c-u> <esc>viwUea 
 
-" Highlight the current text surrounded by spaces (with or without them)
-onoremap isp :<c-u>normal! T vt <cr>
-onoremap asp :<c-u>normal! F<space>vf<space><cr>
-
 " Disable highlighting
 nnoremap <space>h :noh<cr>
+
+" C-k and C-c exits insert mode correctly
+nnoremap <c-c> <esc>
+inoremap <c-c> <esc>
+vnoremap <c-c> <esc>
+onoremap <c-c> <esc>
 
 "Disable arrow keys in Normal and insert mode
 no <Up> <nop>
@@ -198,6 +213,7 @@ ino <Up> <nop>
 ino <Down> <nop>
 ino <Left> <nop>
 ino <Right> <nop>
+
 "}}}
 "              _                           _ 
 "   __ _ _   _| |_ ___   ___ _ __ ___   __| |

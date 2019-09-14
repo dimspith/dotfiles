@@ -3,28 +3,31 @@
 # | Author: Risorg |
 # ==================
 
+# VARIABLES
+set $terminal = termite
+set $mod Mod4
+
 #  ▄▄▄▄           ▄      ▄      ▀
 # █▀   ▀  ▄▄▄   ▄▄█▄▄  ▄▄█▄▄  ▄▄▄    ▄ ▄▄    ▄▄▄▄   ▄▄▄
 # ▀█▄▄▄  █▀  █    █      █      █    █▀  █  █▀ ▀█  █   ▀
 #     ▀█ █▀▀▀▀    █      █      █    █   █  █   █   ▀▀▀▄
-# ▀▄▄▄█▀ ▀█▄▄▀    ▀▄▄    ▀▄▄  ▄▄█▄▄  █   █  ▀█▄▀█  ▀▄▄▄▀
-#                                            ▄  █
-#                                             ▀▀
+#  ▀▄▄▄█▀ ▀█▄▄▀    ▀▄▄    ▀▄▄  ▄▄█▄▄  █   █  ▀█▄▀█  ▀▄▄▄▀
+#                                           ▄  █
+#                                            ▀▀
 # Shortcut: <Settings>
 
 # Desktop layout <default|stacking|tabbed>
 workspace_layout default
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 2
+new_window pixel 1
 new_float normal
 
 # Font for window titles
-font xft:Hack 12
+font xft:Source Code Pro 13
 
 # Hide borders
 hide_edge_borders none
-
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -67,48 +70,25 @@ for_window [urgent=latest] focus
 #               ▀▀                                                 ▀▀
 #                              Shortcut: <Keybindings>
 
-# Set mod key (Mod1=<Alt>, Mod4=<Super>)
-set $mod Mod4
+# ==== Window management ====
+
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y border pixel 2
+bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
 # Kill focused window
 bindsym $mod+Shift+q kill
-
-# Start dmenu launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
-
-# Application shortcuts
-bindsym $mod+Return exec --no-startup-id terminal
-bindsym $mod+Shift+e exec --no-startup-id emacs
-bindsym $mod+Ctrl+m exec pavucontrol
-bindsym $mod+F5 exec terminal -e 'mocp'
-bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
-bindsym Print exec --no-startup-id i3-scrot
-bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Shift+b exec --no-startup-id firefox
-bindsym $mod+Shift+d exec rofi -show drun
-bindsym Mod1+Tab exec rofi -show window
-bindsym $mod+Shift+f exec --no-startup-id terminal -e vifm
 
 # Change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left 30px
@@ -150,6 +130,24 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
+
+# Application shortcuts
+bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+Return exec --no-startup-id termite
+bindsym $mod+Shift+Return exec --no-startup-id alacritty
+bindsym $mod+Shift+e exec --no-startup-id emacs
+bindsym $mod+Ctrl+m exec pavucontrol
+bindsym $mod+F5 exec termite -e 'mocp'
+#bindsym $mod+t exec --no-startup-id pkill compton
+bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+bindsym Print exec --no-startup-id i3-scrot
+bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
+bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym $mod+Shift+b exec --no-startup-id firefox -ProfileManager
+bindsym $mod+Shift+d exec rofi -show drun
+bindsym $mod+Shift+f exec --no-startup-id termite -e vifm
+bindsym $mod+Shift+t exec --no-startup-id start-tor-browser
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -198,8 +196,8 @@ exec --no-startup-id xautolock -time 10 -locker glitchlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id  sh $HOME/.config/polybar/launch.sh
-exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:alt_shift_toggle"
-exec --no-startup-id setxkbmap -option ctrl:nocaps       # Make Caps Lock a Control key
+exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle"
+exec --no-startup-id setxkbmap -option ctrl:nocaps
 
 #▄     ▄               █
 #█  █  █  ▄▄▄    ▄ ▄▄  █   ▄   ▄▄▄   ▄▄▄▄    ▄▄▄    ▄▄▄    ▄▄▄    ▄▄▄
@@ -307,13 +305,12 @@ set_from_resource $term_color15    color15
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #FB6B50 #000000 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #ffffff #454948
-  client.unfocused        #2F3D44 #2F3D44 #ffffff #454948
+  client.focused          #1d1f21 #ffb300 #000000 #FDF6E3
+  client.focused_inactive #2F3D44 #795548 #ffffff #454948
+  client.unfocused        #795548 #1d1f21 #ffffff #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
   client.placeholder      #01777j #0c0c0c #ffffff #000000
-
-  client.background       #2B2C2B
+  client.background       #150B2C
 
 #   ▀     ▄▄▄▄
 # ▄▄▄    ▀   ▀█         ▄▄▄▄   ▄▄▄   ▄▄▄▄    ▄▄▄
@@ -325,8 +322,8 @@ set_from_resource $term_color15    color15
 #                Shortcut: <i3-gaps>
 
 # Set inner/outer gaps
-gaps inner 14
-gaps outer -2
+gaps inner 0
+gaps outer 0
 
 # Keybindings to increase and reduce the inner gap size
 bindsym $mod+Ctrl+minus gaps inner all minus 5
