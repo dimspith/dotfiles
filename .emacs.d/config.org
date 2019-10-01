@@ -1,0 +1,205 @@
+#+TITLE: My Emacs Configuration
+#+AUTHOR: Dimitris Spythouris
+#+OPTIONS: num:nil
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+
+* Package Management
+** Package Archives
+Initialize package.el, add MELPA to the package archives
+and initialize the packages.
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+      ("melpa" . "https://melpa.org/packages/")))
+ 
+(setq package-archive-priorities
+      '(("melpa-stable" . 20)
+       ("gnu" . 10)
+       ("melpa" . 0)))
+   
+(package-initialize)
+#+END_SRC
+
+** Default Packages
+Check if all packages defined in my-packages are installed.
+If not, install them. Refresh the package archives if needed.
+#+BEGIN_SRC emacs-lisp
+(setq my-packages
+      '(haskell-mode
+	  intero
+	  smart-tab
+	  aggressive-indent
+	  hindent
+	  neotree
+	  magit
+	  org-bullets
+	  smex
+	  telephone-line
+	  darktooth-theme
+	  solarized-theme
+	  madhat2r-theme
+	  ))
+
+(dolist (pkg my-packages)
+     (unless (package-installed-p pkg)
+	    (package-install pkg)))
+
+(when (not package-archive-contents)
+    (ignore-errors (package-refresh-contents)))
+#+END_SRC
+
+* Core Setup
+** Splash Screen
+Skip the splash screen and use a scratch buffer in org mode.
+#+BEGIN_SRC emacs-lisp
+(setq inhibit-splash-screen t
+      initial-scratch-message nil
+      initial-major-mode 'org-mode)
+#+END_SRC
+
+** Bars
+Turn off the scroll bar, menu bar and the tool bar.
+#+BEGIN_SRC emacs-lisp
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+#+END_SRC
+
+** Indentation
+Tab width is 2 and tabs are now spaces.
+#+BEGIN_SRC emacs-lisp
+(setq tab-width 2
+      indent-tabs-mode nil)
+#+END_SRC
+
+** Backup Files
+All backup files are saved in the ~/.saves directory.
+#+BEGIN_SRC emacs-lisp
+(setq backup-directory-alist `(("." . "~/.saves")))
+(setq backup-by-copying t)
+#+END_SRC
+
+** Yes/No
+When emacs asks for yes/no make it one character.
+#+BEGIN_SRC emacs-lisp
+(defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+** Theme
+The theme used.
+#+BEGIN_SRC emacs-lisp
+(load-theme 'darktooth t)
+#+END_SRC
+
+** Font
+Font used.
+#+BEGIN_SRC emacs-lisp
+(set-frame-font "DejaVu Sans Mono 11")
+#+END_SRC
+
+* Utilities
+** Smart Tab
+Uses tab for both indentation and autocompletion as most editors do.
+Enable it globally.
+#+BEGIN_SRC 
+(global-smart-tab-mode 1)
+#+END_SRC
+
+** Ido Mode
+Improved minibuffer completions.
+#+BEGIN_SRC 
+(ido-mode 1)
+#+END_SRC
+
+** Telephone Line
+Improved modeline.
+#+BEGIN_SRC emacs-lisp
+(telephone-line-mode 1)
+#+END_SRC
+
+** Electric Pair
+Auto insert matching pairs of parentheses e.t.c
+#+BEGIN_SRC emacs-lisp
+(electric-pair-mode 1)
+#+END_SRC
+
+** Org
+Agenda notes location.
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-files '("~/Documents/Nextcloud/Notes/Agenda/"))
+#+END_SRC
+*** Hooks
+Enable org bullets.
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+END_SRC
+
+** Highlight Indent Guides
+Highlight indentation with characters.
+#+BEGIN_SRC emacs-lisp
+(setq highlight-indent-guides-method 'character)
+#+END_SRC
+*** Hooks
+Enable highlight indent guides on programming buffers.
+
+** Neotree
+Enable directory arrows and all-the-icons support.
+#+BEGIN_SRC emacs-lisp
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+#+END_SRC
+
+* Programming Languages
+** C
+*** Hooks
+#+BEGIN_SRC emacs-lisp
+(add-hook 'c-mode-hook 'flycheck-mode)
+(add-hook 'c-mode-hook 'aggressive-indent-mode)
+#+END_SRC
+
+** Haskell
+Enable intero globally.
+#+BEGIN_SRC emacs-lisp
+(intero-global-mode 1)
+#+END_SRC
+*** Hooks
+Enable intero and indentation modes.
+#+BEGIN_SRC emacs-lisp
+(add-hook 'haskell-mode-hook 'intero-mode)
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+(add-hook 'haskell-mode-hook 'hindent-mode)
+#+END_SRC
+
+** HTML
+** Elm
+** Clojure
+** Java
+* Keybindings
+** Misc
+Miscellaneous keybindings that don't fit into any category.
+#+BEGIN_SRC emacs-lisp
+(require 'view)
+(global-set-key (kbd "C-v") 'View-scroll-half-page-forward)
+(global-set-key (kbd "M-v") 'View-scroll-half-page-backward)
+(global-set-key (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "C-;") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "M-o") 'other-window)
+#+END_SRC
+
+** Org
+Use the suggested keybindings from the manual.
+#+BEGIN_SRC emacs-lisp
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-switchb)
+#+END_SRC
+
+** Smex
+Enable smex on M-x.
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-x") 'smex)
+#+END_SRC
+

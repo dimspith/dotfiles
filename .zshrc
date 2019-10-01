@@ -1,84 +1,59 @@
-#===============================
-# THIS CONFIG IS USED WITH ZGEN,
-# INSTALL IT BEFORE USING IT
-#===============================
+#### ZPLUG ####
+source ~/.zplug/init.zsh
 
-#          _   _   _                 
-# ___  ___| |_| |_(_)_ __   __ _ ___ 
-#/ __|/ _ \ __| __| | '_ \ / _` / __|
-#\__ \  __/ |_| |_| | | | | (_| \__ \
-#|___/\___|\__|\__|_|_| |_|\__, |___/
-#                          |___/     
+# Plugins
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "themes/gentoo", from:oh-my-zsh, as:theme
+zplug load
 
-# Haskell ghcup
-source $HOME/.ghcup/env
+#### ZSH Options ####
+setopt correct                                                  # Auto correct mistakes
+setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
+setopt nocaseglob                                               # Case insensitive globbing
+setopt rcexpandparam                                            # Array expension with parameters
+setopt nocheckjobs                                              # Don't warn about running processes when exiting
+setopt numericglobsort                                          # Sort filenames numerically when it makes sense
+setopt nobeep                                                   # No beep
+setopt appendhistory                                            # Immediately append history instead of overwriting
+setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
+setopt autocd                                                   # if only directory path is entered, cd there.
 
-# Autojump plugin configuration
-[[ -s /home/dimitris/.autojump/etc/profile.d/autojump.sh ]] && source /home/dimitris/.autojump/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
+zstyle ':completion:*' completer _complete #_approximate         # Aproximate autocompletion
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' rehash true                              # automatically find new executables in path 
 
-# Command autocorrection
-ENABLE_CORRECTION="true"
-
-# Display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Vim Keybindings
-bindkey -e
-
-# How ofter to update zsh.
-export UPDATE_ZSH_DAYS=13
-
-#  ______ _  ___ _ __
-# |_  / _` |/ _ \ '_ \
-#  / / (_| |  __/ | | |
-# /___\__, |\___|_| |_|
-#     |___/
-
-# load zgen
-source "${HOME}/.zgen/zgen.zsh"
-
-# if the init script doesn't exist
-if ! zgen saved; then
-
-  # Enable oh-my-zsh support and plugins/themes
-  zgen oh-my-zsh
-  zgen oh-my-zsh plugins/colored-man-pages
-  zgen oh-my-zsh themes/gentoo
-
-  # External plugins
-  zgen load "zdharma/fast-syntax-highlighting"
-  zgen load "MichaelAquilina/zsh-you-should-use"
-  zgen load "wting/autojump"
-
-  # save to init script
-  zgen save
-
-fi
-
-#       _ _
-#  __ _| (_) __ _ ___  ___  __
-# / _` | | |/ _` / __|/ _ \/ __|
-#| (_| | | | (_| \__ \  __/\__ \
-# \__,_|_|_|\__,_|___/\___||___/
-#
-
+#### VARIABLES ####
+HISTFILE=~/.zhistory
+HISTSIZE=1000
+SAVEHIST=500
+WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 FANCY_TXT_FORMAT="toilet -f mono9 --rainbow"
 YTDL_MUSIC="youtube-dl --no-playlist --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3"
 YTDL_VIDEO="youtube-dl --no-playlist --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --format webm"
 YTDL_MUSIC_PLAYLIST="youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3"
-GET_CLIPBOARD="\$(xclip -o)"
+GET_CLIPBOARD="\"\$(xclip -o)\""
 
+#### Keybindings ####
+bindkey -e
+
+#### Aliases #### 
 #QOL
+alias cp="cp -i"
+alias df='df -h'
+alias free='free -m'
+alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle -option ctrl:nocaps" 
 alias v="nvim"
 alias la="ls -gGAh"
 alias ls="ls --color=always -X --group-directories-first"
 alias rm="rm -I"
 alias please="sudo"
+alias ...="cd ../../../"
+alias ....="cd ../../../../"
 
 # CONFIGS
 alias rlconf="source ~/.zshrc"
-alias rlprof="source ~/.zprofile"
+alias rlprof="source ~/.profile"
 alias vzc="nvim $HOME/.zshrc"
 alias vrc="nvim $HOME/.config/nvim/init.vim"
 alias vpol="nvim $HOME/.config/polybar/config"
@@ -96,7 +71,15 @@ alias pdf="setsid zathura"
 alias repulse="pulseaudio --kill && sleep 2 && pulseaudio --start"
 alias gitlog="git log --all --decorate --oneline --graph"
 alias bro="bro 2>/dev/null"
-alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; setxkbmap -option ctrl:nocaps"
 alias findfont="fc-list | grep"
 alias clip="xclip -selection clipboard"
 
+# Color man pages
+export LESS_TERMCAP_mb=$'\E[01;32m'
+export LESS_TERMCAP_md=$'\E[01;32m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;47;34m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;36m'
+export LESS=-r

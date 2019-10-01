@@ -13,7 +13,7 @@
 set nu relativenumber " Enable line (+ relative) numbers
 set background=dark " Set the background theme to dark
 syntax enable " Enable syntax highlighting
-colorscheme desert " Set the colorscheme
+colorscheme defaul " Set the colorscheme
 set autoindent smartindent cindent " Set code autoindentation
 set tabstop=4 expandtab smarttab shiftwidth=4 " One TAB appears to be 4 spaces
 set splitbelow splitright " Splits open at the bottom and right

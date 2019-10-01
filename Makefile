@@ -23,8 +23,10 @@ replace: clean remotebackup
 	@echo "Removing neovim plugins..."
 	@rm -rf .config/nvim/plugged/*
 	@echo "Replacing emacs config..."
-	@rm -rf .emacs.d
-	@cp -rf ~/.emacs.d .emacs.d
+	@rm -rf .emacs
+	@cp -rf ~/.emacs .emacs
+	@rm -rf .emacs.d/*
+	@cp -rf ~/.emacs.d/config.org .emacs.d
 	@echo "Replacing alacritty config..."
 	@cp -rf ~/.config/alacritty/alacritty.yml .config/alacritty/alacritty.yml
 	@echo "All done!"
