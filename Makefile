@@ -10,8 +10,6 @@ replace: clean remotebackup
 	@cp -rf ~/.config/i3/config .config/i3/config
 	@echo "Replacing zsh config..."
 	@cp -rf ~/.zshrc .zshrc
-	@echo "Replacing polybar config..."
-	@cp -rf ~/.config/polybar/config .config/polybar/config
 	@echo "Replacing rofi config..."
 	@cp -rf ~/.config/rofi/config .config/rofi/config
 	@echo "Replacing tmux config..."
@@ -29,4 +27,6 @@ replace: clean remotebackup
 	@cp -rf ~/.emacs.d/config.org .emacs.d
 	@echo "Replacing alacritty config..."
 	@cp -rf ~/.config/alacritty/alacritty.yml .config/alacritty/alacritty.yml
+	@echo "Replacing polybar config..."
+	@cp -rf ~/.config/polybar/config .config/polybar/config
 	@echo "All done!"
