@@ -23,7 +23,7 @@ MELPA gets priority in package searches.
 
 ** Default Packages
 Check if all packages defined in my-packages are installed.
-If not, install them.
+If not, install them. Ensure they exist in the load path.
 #+BEGIN_SRC emacs-lisp
 (setq my-packages
        '(
@@ -44,6 +44,12 @@ If not, install them.
 	treemacs-magit
 	doom-modeline
 	highlight-indent-guides
+	focus
+	which-key
+
+	;; WEB DEV
+	emmet-mode
+	impatient-mode
 
 	;; GIT
 	magit
@@ -51,20 +57,25 @@ If not, install them.
 	;; THEMES
 	darkokai-theme
 	ujelly-theme
+	atom-one-dark-theme
 	))
 	  
 (dolist (pkg my-packages)
      (unless (package-installed-p pkg)
 	    (package-install pkg)))
+
+;; MANUALLY INSTALLED / REQUIRED
+(require 'view)
+(require 'smart-tab)
 #+END_SRC
 
 * Core Setup
 ** Splash Screen
-Skip the splash screen and use a scratch buffer in org mode.
+Skip the splash screen and use a scratch buffer in lisp interaction mode.
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-splash-screen t
       initial-scratch-message nil
-      initial-major-mode 'org-mode)
+      initial-major-mode 'lisp-interaction-mode)
 #+END_SRC
 
 ** Bars
@@ -99,28 +110,31 @@ When emacs asks for yes/no make it one character.
 
 The theme used.
 #+BEGIN_SRC emacs-lisp
-(load-theme 'ujelly t)
+;;(load-theme 'darkokai t)
+(load-theme 'atom-one-dark t)
 #+END_SRC
 
 ** Font
 
 Font used.
 #+BEGIN_SRC emacs-lisp
-;;(set-frame-font "Source Code Pro 13")
-(set-frame-font "Input Mono Narrow 11")
+(set-frame-font "Mononoki 12")
+;;(set-frame-font "Iosevka Term SS05 11")
+;;(set-frame-font "PT Mono 11")
+;;(set-frame-font "Dejavu Sans Mono 11")
 #+END_SRC
 
 * Keybindings
 ** Misc
 Miscellaneous keybindings that don't fit into any category.
 #+BEGIN_SRC emacs-lisp
-(require 'view)
 (global-set-key (kbd "C-v") 'View-scroll-half-page-forward)
 (global-set-key (kbd "M-v") 'View-scroll-half-page-backward)
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "<f5>") 'compile)
 #+END_SRC
 
 ** Org
@@ -166,6 +180,11 @@ Customizations.
 (setq ivy-count-format "(%d/%d) ")
 #+END_SRC
 
+** Which-key
+Enable which-key globally.
+#+BEGIN_SRC emacs-lisp
+(which-key-mode t)
+#+END_SRC
 ** Electric Pair
 Auto insert matching pairs of parentheses e.t.c
 #+BEGIN_SRC emacs-lisp
@@ -195,6 +214,13 @@ Enable org bullets.
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 #+END_SRC
 
+** Emmet Mode
+*** Hooks
+Enable emmet on markup and css buffers.
+#+BEGIN_SRC emacs-lisp
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+#+END_SRC
 ** Highlight Indent Guides
 Highlight indentation with characters.
 #+BEGIN_SRC emacs-lisp
@@ -206,6 +232,13 @@ Enable highlight indent guides on programming buffers.
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 #+END_SRC
 
+** Flyckeck
+*** Hooks
+Add ecj to the java mode.
+#+BEGIN_SRC emacs-lisp
+(add-hook 'java-mode-hook
+          (lambda () (setq flycheck-java-ecj-jar-path "/path/to/ecj-4.2.jar")))
+#+END_SRC
 ** Treemacs
 Enable various features for treemacs including git support and file tracking.
 #+BEGIN_SRC emacs-lisp
@@ -214,7 +247,7 @@ Enable various features for treemacs including git support and file tracking.
 (add-hook 'treemacs-mode 'treemacs-git-mode 'deferred)
 ;;(treemacs-git-mode 'deferred)
 #+END_SRC
-    
+
 ** Doom Modeline
 Improved modeline.
 #+BEGIN_SRC emacs-lisp
@@ -229,6 +262,12 @@ Improved modeline.
 (add-hook 'c-mode-hook 'aggressive-indent-mode)
 #+END_SRC
 
+** Nim
+*** Hooks
+Nim suggest mode on nim buffers.
+#+BEGIN_SRC emacs-lisp
+(add-hook 'nim-mode-hook 'nimsuggest-mode)
+#+END_SRC
 ** Haskell
 Enable intero globally.
 #+BEGIN_SRC emacs-lisp
@@ -242,6 +281,35 @@ Enable intero and indentation modes.
 (add-hook 'haskell-mode-hook 'hindent-mode)
 #+END_SRC
 
+** Emacs Lisp
+*** Hooks
+#+BEGIN_SRC emacs-lisp
+(add-hook 'emacs-lisp-mode-hook 'aggressive-indent-mode)
+#+END_SRC
+
 ** HTML
-** Elm
+*** Hooks
+#+BEGIN_SRC emacs-lisp
+(add-hook 'html-mode-hook 'aggressive-indent-mode)
+#+END_SRC
+** Java
+*** Hooks
+Enable eclim.
+#+BEGIN_SRC emacs-lisp
+(defun my-java-mode-hook ()
+    (eclim-mode t))
+#+END_SRC
+** CSS
+*** Hooks
+#+BEGIN_SRC 
+(add-hook 'css-mode-hook 'aggressive-indent-mode)
+#+END_SRC
+
+** Javascript
+*** Hooks
+Add js2-mode to javascript buffers and enable eslint with flycheck.
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-hook 'js-mode 'flycheck-mode)
+#+END_SRC
 ** Clojure

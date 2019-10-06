@@ -11,7 +11,7 @@ set $terminal termite
 set $alt_terminal alacritty
 set $browser firefox
 set $editor nvim
-set $background_setter feh --bg-fill ~/bg.png
+set $background_setter ~/.fehbg
 
 # Refresh i3status
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -48,13 +48,14 @@ bar {
     }
 
 # New windows have a 2 pixel border
-new_window pixel 2
+new_window pixel 1
 new_float normal
 
 # Open specific applications in floating mode
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="Pavucontrol"] floating enable
 for_window [class="PhotoFlare"] floating enable
+for_window [class="Gcolor3"] floating enable
 
 # Hide borders when there is only 1 window
 hide_edge_borders smart
@@ -62,12 +63,11 @@ hide_edge_borders smart
 
 # Color configuration
 # class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused          #4c7899 #ffffff #000000 #2e9ef4   #ffffff
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.unfocused        #333333 #283239 #ffffff #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-
 client.background       #ffffff
 
 
