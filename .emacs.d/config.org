@@ -1,7 +1,8 @@
 #+TITLE: My Emacs Configuration
 #+AUTHOR: Dimitris Spythouris
+#+STARTUP: overview
 #+OPTIONS: num:nil
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+# #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 
 * Package Management
 ** Package Archives
@@ -11,11 +12,6 @@ MELPA gets priority in package searches.
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
-
-(setq package-archive-priorities
-      '(("melpa-stable" . 20)
-        ("gnu" . 10)
-        ("melpa" . 0)))
 
 (when (not package-archive-contents)
     (ignore-errors (package-refresh-contents)))
@@ -27,37 +23,32 @@ If not, install them. Ensure they exist in the load path.
 #+BEGIN_SRC emacs-lisp
 (setq my-packages
        '(
-        ;; HASKELL
-        intero
-	haskell-mode
-	hindent
-	
-	;; QOL
-	ivy
+        ivy
 	swiper
 	counsel
-	smart-tab
 	aggressive-indent
 	org-bullets
 	htmlize
 	treemacs
 	treemacs-magit
 	doom-modeline
-	highlight-indent-guides
-	focus
 	which-key
-
-	;; WEB DEV
+	iedit
+	quickrun
 	emmet-mode
 	impatient-mode
-
-	;; GIT
 	magit
+
+        intero
+	haskell-mode
+	hindent
+
+	nim-mode
+	flycheck-nim
 	
-	;; THEMES
 	darkokai-theme
-	ujelly-theme
-	atom-one-dark-theme
+	kaolin-themes
+	gruber-darker-theme
 	))
 	  
 (dolist (pkg my-packages)
@@ -66,7 +57,9 @@ If not, install them. Ensure they exist in the load path.
 
 ;; MANUALLY INSTALLED / REQUIRED
 (require 'view)
-(require 'smart-tab)
+(require 'iedit)
+(require 'quickrun)
+(require 'flycheck-nim)
 #+END_SRC
 
 * Core Setup
@@ -75,7 +68,7 @@ Skip the splash screen and use a scratch buffer in lisp interaction mode.
 #+BEGIN_SRC emacs-lisp
 (setq inhibit-splash-screen t
       initial-scratch-message nil
-      initial-major-mode 'lisp-interaction-mode)
+      initial-major-mode 'emacs-lisp-mode)
 #+END_SRC
 
 ** Bars
@@ -111,72 +104,34 @@ When emacs asks for yes/no make it one character.
 The theme used.
 #+BEGIN_SRC emacs-lisp
 ;;(load-theme 'darkokai t)
-(load-theme 'atom-one-dark t)
+;;(load-theme 'kaolin-valley-dark t)
+(load-theme 'kaolin-galaxy t)
+;;(load-theme 'kaolin-eclipse t)
+;;(load-theme 'kaolin-bubblegum t)
+;;(load-theme 'gruber-darker t)
 #+END_SRC
 
 ** Font
 
 Font used.
 #+BEGIN_SRC emacs-lisp
+(add-to-list 'default-frame-alist
+             '(font . "Mononoki-12"))
 (set-frame-font "Mononoki 12")
-;;(set-frame-font "Iosevka Term SS05 11")
-;;(set-frame-font "PT Mono 11")
 ;;(set-frame-font "Dejavu Sans Mono 11")
 #+END_SRC
 
-* Keybindings
-** Misc
-Miscellaneous keybindings that don't fit into any category.
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-v") 'View-scroll-half-page-forward)
-(global-set-key (kbd "M-v") 'View-scroll-half-page-backward)
-(global-set-key (kbd "RET") 'newline-and-indent)
-(global-set-key (kbd "C-;") 'comment-or-uncomment-region)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "<f5>") 'compile)
-#+END_SRC
-
-** Org
-Use the suggested keybindings from the manual.
-#+BEGIN_SRC emacs-lisp
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cb" 'org-switchb)
-#+END_SRC
-
-** Magit
-Set git-staus to C-x g
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x g") 'magit-status)
-#+END_SRC
-
-** Ivy
-Swiper and Counsel bindings for find commands.
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-s") 'swiper)
-(global-set-key (kbd "C-x l") 'counsel-locate)
-#+END_SRC
-
 * Utilities
-** Smart Tab
-Uses tab for both indentation and autocompletion as most editors do.
-Enable it globally.
-#+BEGIN_SRC emacs-lisp
-(global-smart-tab-mode 1)
-#+END_SRC
-
 ** Ivy
-Enable Ivy and Counsel.
+Enable Ivy.
 #+BEGIN_SRC emacs-lisp
 (ivy-mode 1)
-(counsel-mode 1)
 #+END_SRC
 
 Customizations.
 #+BEGIN_SRC 
 (setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
 (setq ivy-count-format "(%d/%d) ")
 #+END_SRC
 
@@ -185,10 +140,18 @@ Enable which-key globally.
 #+BEGIN_SRC emacs-lisp
 (which-key-mode t)
 #+END_SRC
+
 ** Electric Pair
 Auto insert matching pairs of parentheses e.t.c
 #+BEGIN_SRC emacs-lisp
 (electric-pair-mode 1)
+#+END_SRC
+
+** Quickrun
+#+END_SRC
+Haskell quick run configuration.
+#+BEGIN_SRC emacs-lisp
+;;(quickrun-add-command "")
 #+END_SRC
 
 ** Org
@@ -214,6 +177,12 @@ Enable org bullets.
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 #+END_SRC
 
+** eshell
+*** Hooks
+#+BEGIN_SRC emacs-lisp
+(add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
+#+END_SRC
+
 ** Emmet Mode
 *** Hooks
 Enable emmet on markup and css buffers.
@@ -221,24 +190,21 @@ Enable emmet on markup and css buffers.
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 #+END_SRC
-** Highlight Indent Guides
-Highlight indentation with characters.
+
+** Company-mode
+Suggestions appear on the first character typed.
+No delay for suggestions.
+Wrap around the list when hitting the end.
+Use the tab key for navigation.
 #+BEGIN_SRC emacs-lisp
-(setq highlight-indent-guides-method 'character)
-#+END_SRC
-*** Hooks
-Enable highlight indent guides on programming buffers.
-#+BEGIN_SRC emacs-lisp
-(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 1)
+(setq company-selection-wrap-around t)
+(company-tng-configure-default)
 #+END_SRC
 
-** Flyckeck
+** Flycheck
 *** Hooks
-Add ecj to the java mode.
-#+BEGIN_SRC emacs-lisp
-(add-hook 'java-mode-hook
-          (lambda () (setq flycheck-java-ecj-jar-path "/path/to/ecj-4.2.jar")))
-#+END_SRC
 ** Treemacs
 Enable various features for treemacs including git support and file tracking.
 #+BEGIN_SRC emacs-lisp
@@ -254,6 +220,56 @@ Improved modeline.
 (doom-modeline-mode 1)
 #+END_SRC
 
+* Keybindings
+** Misc
+Miscellaneous keybindings that don't fit into any category.
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-v") 'View-scroll-half-page-forward)
+(global-set-key (kbd "M-v") 'View-scroll-half-page-backward)
+
+(global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
+
+(global-set-key (kbd "RET") 'newline-and-indent)
+
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "M-o") 'other-window)
+
+(global-set-key (kbd "<f5>") 'compile)
+
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+#+END_SRC
+
+** Org
+Use the suggested keybindings from the manual.
+#+BEGIN_SRC emacs-lisp
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-switchb)
+#+END_SRC
+
+** Magit
+Set git-staus to C-x g
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-x g") 'magit-status)
+#+END_SRC
+
+** Ivy
+Swiper and Counsel bindings for find commands.
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "\C-s") 'swiper)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+#+END_SRC
+
+** Quickrun
+Quickrun-shell on F6
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "<f6>") 'quickrun-shell)
+#+END_SRC
+
 * Programming Languages
 ** C
 *** Hooks
@@ -267,7 +283,10 @@ Improved modeline.
 Nim suggest mode on nim buffers.
 #+BEGIN_SRC emacs-lisp
 (add-hook 'nim-mode-hook 'nimsuggest-mode)
+(add-hook 'nim-mode-hook 'flycheck-mode)
+(add-hook 'nim-mode-hook 'company-mode)
 #+END_SRC
+
 ** Haskell
 Enable intero globally.
 #+BEGIN_SRC emacs-lisp
@@ -292,24 +311,20 @@ Enable intero and indentation modes.
 #+BEGIN_SRC emacs-lisp
 (add-hook 'html-mode-hook 'aggressive-indent-mode)
 #+END_SRC
-** Java
-*** Hooks
-Enable eclim.
-#+BEGIN_SRC emacs-lisp
-(defun my-java-mode-hook ()
-    (eclim-mode t))
-#+END_SRC
+
 ** CSS
 *** Hooks
-#+BEGIN_SRC 
+#+BEGIN_SRC emacs-lisp
 (add-hook 'css-mode-hook 'aggressive-indent-mode)
+(add-hook 'css-mode-hook 'company-mode)
 #+END_SRC
 
 ** Javascript
 *** Hooks
 Add js2-mode to javascript buffers and enable eslint with flycheck.
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+;;(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-hook 'js-mode 'flycheck-mode)
 #+END_SRC
-** Clojure
+
+
