@@ -7,8 +7,8 @@
 # ==========
 # Default Applications
 set $mod Mod4
-set $terminal termite
-set $alt_terminal alacritty
+set $terminal alacritty
+set $alt_terminal termite
 set $browser firefox
 set $editor nvim
 set $background_setter ~/.fehbg
@@ -187,10 +187,10 @@ bindsym $mod+r mode "resize"
 mode "resize" {
 
 	 	# Resize windows with hjkl
-        bindsym h resize shrink width 30 px or 30 ppt
-        bindsym j resize grow height 30 px or 30 ppt
-        bindsym k resize shrink height 30 px or 30 ppt
-        bindsym l resize grow width 30 px or 30 ppt
+        bindsym h resize shrink width 30 px
+        bindsym j resize grow height 30 px
+        bindsym k resize shrink height 30 px
+        bindsym l resize grow width 30 px
 		
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"

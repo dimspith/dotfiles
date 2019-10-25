@@ -4,6 +4,7 @@
 #+OPTIONS: num:nil
 # #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 
+* External dependencies
 * Package Management
 ** Package Archives
 Initialize package.el, add MELPA to the package archives and initialize the package lists.
@@ -23,6 +24,12 @@ If not, install them. Ensure they exist in the load path.
 #+BEGIN_SRC emacs-lisp
 (setq my-packages
        '(
+	emmet-mode        
+	nim-mode
+	impatient-mode
+	haskell-mode
+	yaml-mode
+
         ivy
 	swiper
 	counsel
@@ -35,20 +42,13 @@ If not, install them. Ensure they exist in the load path.
 	which-key
 	iedit
 	quickrun
-	emmet-mode
-	impatient-mode
 	magit
-
         intero
-	haskell-mode
 	hindent
-
-	nim-mode
 	flycheck-nim
-	
-	darkokai-theme
+ 
+	badwolf-theme
 	kaolin-themes
-	gruber-darker-theme
 	))
 	  
 (dolist (pkg my-packages)
@@ -103,12 +103,10 @@ When emacs asks for yes/no make it one character.
 
 The theme used.
 #+BEGIN_SRC emacs-lisp
-;;(load-theme 'darkokai t)
-;;(load-theme 'kaolin-valley-dark t)
-(load-theme 'kaolin-galaxy t)
+(load-theme 'badwolf t)
 ;;(load-theme 'kaolin-eclipse t)
+;;(load-theme 'kaolin-aurora t)
 ;;(load-theme 'kaolin-bubblegum t)
-;;(load-theme 'gruber-darker t)
 #+END_SRC
 
 ** Font
@@ -275,6 +273,7 @@ Quickrun-shell on F6
 *** Hooks
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c-mode-hook 'flycheck-mode)
+(add-hook 'c-mode-hook 'company-mode)
 (add-hook 'c-mode-hook 'aggressive-indent-mode)
 #+END_SRC
 

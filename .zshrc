@@ -50,6 +50,7 @@ alias rm="rm -I"
 alias please="sudo"
 alias ...="cd ../../../"
 alias ....="cd ../../../../"
+alias ll="ls -l"
 
 # CONFIGS
 alias rlconf="source ~/.zshrc"
@@ -62,6 +63,9 @@ alias vrf="nvim $HOME/.config/rofi/config"
 alias vtm="nvim $HOME/.config/termite/config"
 alias val="nvim $HOME/.config/alacritty/alacritty.yml"
 
+# PROGRAMMING
+alias gitlog="git log --all --decorate --oneline --graph"
+
 # MISCELLANEOUS
 alias youtube="$FANCY_TXT_FORMAT MusicDL;$YTDL_MUSIC $GET_CLIPBOARD"
 alias youtubev="$FANCY_TXT_FORMAT VideoDL; $YTDL_VIDEO $GET_CLIPBOARD"
@@ -69,7 +73,6 @@ alias youtubepl="$FANCY_TXT_FORMAT VideoDL; $YTDL_MUSIC_PLAYLIST $GET_CLIPBOARD"
 alias open="setsid xdg-open"
 alias pdf="setsid zathura"
 alias repulse="pulseaudio --kill && sleep 2 && pulseaudio --start"
-alias gitlog="git log --all --decorate --oneline --graph"
 alias bro="bro 2>/dev/null"
 alias findfont="fc-list | grep"
 alias clip="xclip -selection clipboard"
