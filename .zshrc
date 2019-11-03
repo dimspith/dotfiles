@@ -44,13 +44,13 @@ alias df='df -h'
 alias free='free -m'
 alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle -option ctrl:nocaps" 
 alias v="nvim"
-alias la="ls -gGAh"
-alias ls="ls --color=always -X --group-directories-first"
+alias la="exa -gGlh"
+alias ls="exa --color=always --group-directories-first"
 alias rm="rm -I"
 alias please="sudo"
 alias ...="cd ../../../"
 alias ....="cd ../../../../"
-alias ll="ls -l"
+alias ll="exa -l"
 
 # CONFIGS
 alias rlconf="source ~/.zshrc"

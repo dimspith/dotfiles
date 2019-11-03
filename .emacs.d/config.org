@@ -2,9 +2,15 @@
 #+AUTHOR: Dimitris Spythouris
 #+STARTUP: overview
 #+OPTIONS: num:nil
-# #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 
 * External dependencies
+** Rust
+   - Rust source code at ~/Documents/git_projects/rust/src
+   - Rustfmt for code formatting
+     - cargo install rustfmt
+   - Racer for code completion and navigation
+     - cargo install racer
 * Package Management
 ** Package Archives
 Initialize package.el, add MELPA to the package archives and initialize the package lists.
@@ -25,30 +31,36 @@ If not, install them. Ensure they exist in the load path.
 (setq my-packages
        '(
 	emmet-mode        
-	nim-mode
 	impatient-mode
 	haskell-mode
 	yaml-mode
+	perl6-mode
+	rust-mode
 
-        ivy
-	swiper
+	flycheck-perl6
+	flycheck-rust
+
 	counsel
+	swiper
+	ivy
 	aggressive-indent
+	iedit
+	quickrun
+
+	which-key
 	org-bullets
 	htmlize
 	treemacs
 	treemacs-magit
-	doom-modeline
-	which-key
-	iedit
-	quickrun
 	magit
         intero
 	hindent
-	flycheck-nim
- 
+	racer
+
+ 	doom-modeline
 	badwolf-theme
 	kaolin-themes
+	solarized-theme
 	))
 	  
 (dolist (pkg my-packages)
@@ -59,7 +71,8 @@ If not, install them. Ensure they exist in the load path.
 (require 'view)
 (require 'iedit)
 (require 'quickrun)
-(require 'flycheck-nim)
+(require 'flycheck-perl6)
+(require 'flycheck-rust)
 #+END_SRC
 
 * Core Setup
@@ -113,10 +126,10 @@ The theme used.
 
 Font used.
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'default-frame-alist
-             '(font . "Mononoki-12"))
-(set-frame-font "Mononoki 12")
-;;(set-frame-font "Dejavu Sans Mono 11")
+;;(set-frame-font "Mononoki 12")
+;;(add-to-list 'default-frame-alist '(font . "Mononoki-12"))
+(set-frame-font "Iosevka 12")
+(add-to-list 'default-frame-alist '(font . "Iosevka Term SS05-12"))
 #+END_SRC
 
 * Utilities
@@ -277,15 +290,6 @@ Quickrun-shell on F6
 (add-hook 'c-mode-hook 'aggressive-indent-mode)
 #+END_SRC
 
-** Nim
-*** Hooks
-Nim suggest mode on nim buffers.
-#+BEGIN_SRC emacs-lisp
-(add-hook 'nim-mode-hook 'nimsuggest-mode)
-(add-hook 'nim-mode-hook 'flycheck-mode)
-(add-hook 'nim-mode-hook 'company-mode)
-#+END_SRC
-
 ** Haskell
 Enable intero globally.
 #+BEGIN_SRC emacs-lisp
@@ -299,6 +303,31 @@ Enable intero and indentation modes.
 (add-hook 'haskell-mode-hook 'hindent-mode)
 #+END_SRC
 
+** Perl6
+*** Hooks
+#+BEGIN_SRC 
+(add-hook 'perl6-mode-hook 'flycheck-mode)'    
+#+END_SRC
+** Rust
+Configure racer path and link rust source code
+#+BEGIN_SRC emacs-lisp
+(setq racer-cmd "~/.cargo/bin/racer")
+(setq racer-rust-src-path "~/Documents/git_projects/rust/src")
+#+END_SRC
+*** Hooks
+Add flycheck, autocompletion and documentation support.
+C-c <tab> Indents the whole buffer.
+#+BEGIN_SRC emacs-lisp
+(add-hook 'rust-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
+
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+
+#+END_SRC
 ** Emacs Lisp
 *** Hooks
 #+BEGIN_SRC emacs-lisp
