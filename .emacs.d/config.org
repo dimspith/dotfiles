@@ -2,7 +2,7 @@
 #+AUTHOR: Dimitris Spythouris
 #+STARTUP: overview
 #+OPTIONS: num:nil
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+# # #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 
 * External dependencies
 ** Rust
@@ -11,6 +11,10 @@
      - cargo install rustfmt
    - Racer for code completion and navigation
      - cargo install racer
+** LSP
+*** Javascript
+   - npm i -g javascript-typescript-langserver (lsp completion)
+   - npm i -g jshint (flycheck linting)
 * Package Management
 ** Package Archives
 Initialize package.el, add MELPA to the package archives and initialize the package lists.
@@ -30,6 +34,14 @@ If not, install them. Ensure they exist in the load path.
 #+BEGIN_SRC emacs-lisp
 (setq my-packages
        '(
+        use-package
+	counsel
+	ivy
+	swiper
+	aggressive-indent
+	iedit
+	quickrun
+
 	emmet-mode        
 	impatient-mode
 	haskell-mode
@@ -40,13 +52,7 @@ If not, install them. Ensure they exist in the load path.
 	flycheck-perl6
 	flycheck-rust
 
-	counsel
-	swiper
-	ivy
-	aggressive-indent
-	iedit
-	quickrun
-
+	yasnippet
 	which-key
 	org-bullets
 	htmlize
@@ -56,6 +62,11 @@ If not, install them. Ensure they exist in the load path.
         intero
 	hindent
 	racer
+
+	lsp-mode
+	lsp-ivy
+	company-lsp
+	lsp-ui
 
  	doom-modeline
 	badwolf-theme
@@ -68,11 +79,19 @@ If not, install them. Ensure they exist in the load path.
 	    (package-install pkg)))
 
 ;; MANUALLY INSTALLED / REQUIRED
+(eval-when-compile (require 'use-package))
 (require 'view)
 (require 'iedit)
 (require 'quickrun)
+
+(require 'lsp-mode)
+(require 'lsp-ui)
+(require 'company-lsp)
+(require 'lsp-ivy)
+
 (require 'flycheck-perl6)
 (require 'flycheck-rust)
+(require 'company)
 #+END_SRC
 
 * Core Setup
@@ -97,6 +116,7 @@ Tab width is 2 and tabs are now spaces.
 #+BEGIN_SRC emacs-lisp
 (setq tab-width 2
       indent-tabs-mode nil)
+(setq-default tab-width 2)
 #+END_SRC
 
 ** Backup Files
@@ -116,9 +136,9 @@ When emacs asks for yes/no make it one character.
 
 The theme used.
 #+BEGIN_SRC emacs-lisp
-(load-theme 'badwolf t)
+;;(load-theme 'badwolf t)
 ;;(load-theme 'kaolin-eclipse t)
-;;(load-theme 'kaolin-aurora t)
+(load-theme 'kaolin-aurora t)
 ;;(load-theme 'kaolin-bubblegum t)
 #+END_SRC
 
@@ -158,6 +178,11 @@ Auto insert matching pairs of parentheses e.t.c
 (electric-pair-mode 1)
 #+END_SRC
 
+** LSP
+*** Hooks
+#+BEGIN_SRC emacs-lisp
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+#+END_SRC
 ** Quickrun
 #+END_SRC
 Haskell quick run configuration.
@@ -212,6 +237,7 @@ Use the tab key for navigation.
 (setq company-minimum-prefix-length 1)
 (setq company-selection-wrap-around t)
 (company-tng-configure-default)
+(push 'company-lsp company-backends)
 #+END_SRC
 
 ** Flycheck
@@ -271,8 +297,17 @@ Set git-staus to C-x g
 ** Ivy
 Swiper and Counsel bindings for find commands.
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "\C-s") 'swiper)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 #+END_SRC
 
 ** Quickrun
@@ -283,6 +318,11 @@ Quickrun-shell on F6
 
 * Programming Languages
 ** C
+Tab = 4 spaces
+#+BEGIN_SRC emacs-lisp
+(setq-default c-basic-offset 4)
+#+END_SRC
+
 *** Hooks
 #+BEGIN_SRC emacs-lisp
 (add-hook 'c-mode-hook 'flycheck-mode)
@@ -351,8 +391,9 @@ C-c <tab> Indents the whole buffer.
 *** Hooks
 Add js2-mode to javascript buffers and enable eslint with flycheck.
 #+BEGIN_SRC emacs-lisp
-;;(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-hook 'js-mode 'flycheck-mode)
+(add-hook 'js-mode-hook 'company-mode)
+(add-hook 'js-mode-hook 'flycheck-mode)
+(add-hook 'js-mode-hook #'lsp)
 #+END_SRC
 
 
