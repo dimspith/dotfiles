@@ -2,104 +2,98 @@
 #+AUTHOR: Dimitris Spythouris
 #+STARTUP: overview
 #+OPTIONS: num:nil
-# #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+# # #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 
 * External dependencies
 ** Rust
-	 - Rust source code at ~/Documents/git_projects/rust/src
-	 - Rustfmt for code formatting
-		 - cargo install rustfmt
-	 - Racer for code completion and navigation
-		 - cargo install racer
+   - Rust source code at ~/Documents/git_projects/rust/src
+   - Rustfmt for code formatting
+     - cargo install rustfmt
+   - Racer for code completion and navigation
+     - cargo install racer
 ** LSP
 *** Javascript
-	 - npm i -g javascript-typescript-langserver (lsp completion)
-	 - npm i -g jshint (flycheck linting)
+    - npm i -g javascript-typescript-langserver (lsp completion)
+    - npm i -g jshint (flycheck linting)
 ** Counsel
-	 - the_silver_searcher (counsel-ag)
+   - the_silver_searcher (counsel-ag)
 * Package Management
 ** Package Archives
-	 Initialize package.el, add MELPA to the package archives and initialize the package lists.
-MELPA gets priority in package searches.
+   Initialize package.el, add MELPA to the package archives and initialize the package lists.
+   MELPA gets priority in package searches.
 #+BEGIN_SRC emacs-lisp
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
 (when (not package-archive-contents)
-		(ignore-errors (package-refresh-contents)))
+    (ignore-errors (package-refresh-contents)))
 #+END_SRC
 
 ** Default Packages
-Check if all packages defined in my-packages are installed.
-If not, install them. Ensure they exist in the load path.
+   Check if all packages defined in my-packages are installed.
+   If not, install them. Ensure they exist in the load path.
 #+BEGIN_SRC emacs-lisp
 (setq my-packages
-	'(
-	use-package
-	counsel
-	ivy
-	swiper
-	aggressive-indent
-	iedit
-	quickrun
+  '(
+  use-package
+  counsel
+  ivy
+  swiper
+  aggressive-indent
+  iedit
+  quickrun
 
-	emmet-mode
-	impatient-mode
-	haskell-mode
-	yaml-mode
-	perl6-mode
-	rust-mode
+  emmet-mode
+  impatient-mode
+  haskell-mode
+  yaml-mode
+  perl6-mode
+  rust-mode
 
-	yasnippet
-	which-key
-	org-bullets
-	htmlize
-	treemacs
-	treemacs-magit
-	magit
-	hindent
+  yasnippet
+  which-key
+  org-bullets
+  htmlize
+  treemacs
+  treemacs-magit
+  magit
+  hindent
 
-	lsp-mode
-	lsp-ui
-	lsp-ivy
-	company-lsp
+  lsp-mode
+  lsp-ui
+  lsp-ivy
+  company-lsp
 
-	doom-modeline
-	badwolf-theme
-	kaolin-themes
-	solarized-theme
-	))
+  doom-modeline
+  badwolf-theme
+  dracula-theme
+  gruber-darker-theme
+  ))
 
 (dolist (pkg my-packages)
-		 (unless (package-installed-p pkg)
-			(package-install pkg)))
+     (unless (package-installed-p pkg)
+      (package-install pkg)))
 
 ;; MANUALLY INSTALLED / REQUIRED
 (eval-when-compile (require 'use-package))
 (require 'view)
-;;(require 'iedit)
-;;(require 'quickrun)
-
 (require 'lsp-mode)
-;;(require 'lsp-ui)
-;;(require 'company-lsp)
-;;(require 'lsp-ivy)
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
 #+END_SRC
 
 * Core Setup
 ** Splash Screen
-Skip the splash screen and use a scratch buffer in lisp interaction mode.
+   Skip the splash screen and use a scratch buffer in lisp interaction mode.
 #+BEGIN_SRC emacs-lisp
-(setq inhibit-splash-screen t
-			initial-scratch-message nil
-			initial-major-mode 'emacs-lisp-mode)
+   (setq inhibit-splash-screen t
+     initial-scratch-message nil
+     initial-major-mode 'emacs-lisp-mode)
 #+END_SRC
 
 ** Bars
-Turn off the scroll bar, menu bar and the tool bar.
+   Turn off the scroll bar, menu bar and the tool bar.
 #+BEGIN_SRC emacs-lisp
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
@@ -107,44 +101,42 @@ Turn off the scroll bar, menu bar and the tool bar.
 #+END_SRC
 
 ** Indentation
-Tab width is 2 and tabs are now spaces.
+   Tab width is 2 and tabs are now spaces.
 #+BEGIN_SRC emacs-lisp
 (setq tab-width 2
-			indent-tabs-mode nil)
+      indent-tabs-mode nil)
 (setq-default tab-width 2)
 #+END_SRC
 
 ** Backup Files
-All backup files are saved in the ~/.emacs.d/saves directory.
+   All backup files are saved in the ~/.emacs.d/saves directory.
 #+BEGIN_SRC emacs-lisp
-	(setq backup-directory-alist '(("." . "~/.emacs.d/saves"))
-		backup-by-copying t
-		version-control t
-		delete-old-versions t
-		kept-new-versions 20
-		kept-old-versions 5
-		)
+  (setq backup-directory-alist '(("." . "~/.emacs.d/saves"))
+    backup-by-copying t
+    version-control t
+    delete-old-versions t
+    kept-new-versions 20
+    kept-old-versions 5
+    )
 #+END_SRC
 
 ** Yes/No
-When emacs asks for yes/no make it one character.
+   When emacs asks for yes/no make it one character.
 #+BEGIN_SRC emacs-lisp
 (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 
 ** Theme
-
-The theme used.
+   The theme used.
 #+BEGIN_SRC emacs-lisp
-;;(load-theme 'badwolf t)
-;;(load-theme 'kaolin-eclipse t)
-(load-theme 'kaolin-aurora t)
-;;(load-theme 'kaolin-bubblegum t)
+   ;;(load-theme 'badwolf t)
+   ;;(load-theme 'dracula t)
+   (load-theme 'gruber-darker t)
 #+END_SRC
 
 ** Font
 
-Font used.
+   Font used.
 #+BEGIN_SRC emacs-lisp
 ;;(set-frame-font "Mononoki 12")
 ;;(add-to-list 'default-frame-alist '(font . "Mononoki-12"))
@@ -153,7 +145,7 @@ Font used.
 #+END_SRC
 
 ** Essential keybindings
-Miscellaneous global keybindings
+   Miscellaneous global keybindings
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-v") 'View-scroll-half-page-forward)
 (global-set-key (kbd "M-v") 'View-scroll-half-page-backward)
@@ -171,17 +163,18 @@ Miscellaneous global keybindings
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(global-set-key (kbd "C-c <tab>") 'iwb)
 #+END_SRC
 
 ** Org-mode
-Basic org-mode keybindings
+   Basic org-mode keybindings
 #+BEGIN_SRC emacs-lisp
 (use-package org
-	:bind (("\C-cl" . org-store-link)
-	       ("\C-ca" . org-agenda)
-				 ("\C-cc" . org-capture) 
-				 ("\C-cb" . org-switchb)
-	))
+  :bind (("\C-cl" . org-store-link)
+         ("\C-ca" . org-agenda)
+         ("\C-cc" . org-capture)
+         ("\C-cb" . org-switchb)
+  ))
 #+END_SRC
 
 ** Electric pairs
@@ -191,79 +184,79 @@ Basic org-mode keybindings
 
 * External Package Settings
 ** Ivy, Counsel, Swiper
-Enable ivy globally (replacement for ido).
-Tweak the minibuffer functionality and remove the ^ in filters
+   Enable ivy globally (replacement for ido).
+   Tweak the minibuffer functionality and remove the ^ in filters
 #+BEGIN_SRC emacs-lisp
 (use-package ivy
-	:diminish ivy-mode
-	:ensure t
-	:bind (("C-c C-r" . ivy-resume))
-	:config
-		(ivy-mode t)
-		(setq ivy-use-virtual-buffers t)
-		(setq enable-recursive-minibuffers t)
-		(setq ivy-count-format "(%d/%d) ")
-		(setq ivy-initial-inputs-alist nil)
-	)
+  :diminish ivy-mode
+  :demand
+  :ensure t
+  :bind (("C-c C-r" . ivy-resume))
+  :config
+    (ivy-mode t)
+    (setq ivy-initial-inputs-alist nil)
+    (setq ivy-use-virtual-buffers t)
+    (setq enable-recursive-minibuffers t)
+    (setq ivy-count-format "(%d/%d) ")
+  )
 #+END_SRC
 
-Enable swiper (enhanced isearch for ivy) and assign C-s to search
+   Enable swiper (enhanced isearch for ivy) and assign C-s to search
 #+BEGIN_SRC emacs-lisp
 (use-package swiper
-	:ensure t
-	:bind (("C-s" . swiper))
+  :ensure t
+  :bind (("C-s" . swiper))
 )
 #+END_SRC
 
-Counsel is a collection of ivy enhanced base commands
-Bind some keys to common commands
+   Counsel is a collection of ivy enhanced base commands
+   Bind some keys to common commands
 #+BEGIN_SRC emacs-lisp
 (use-package counsel
-	:ensure t
-	:bind (("M-x" . counsel-M-x)
-				 ("C-x C-f" . counsel-find-file)
-				 ("<f2> u" . counsel-unicode-char)
-				 ("C-c g" . counsel-git)
-				 ("C-c j" . counsel-git-grep)
-				 ("C-c k" . counsel-ag)
-				 ("C-x l" . counsel-locate)
-				 ("C-c i" . counsel-imenu))
+  :ensure t
+  :demand
+  :bind (("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
+         ("<f2> u" . counsel-unicode-char)
+         ("C-c g" . counsel-git)
+         ("C-c j" . counsel-git-grep)
+         ("C-c k" . counsel-ag)
+         ("C-x l" . counsel-locate)
+         ("C-c i" . counsel-imenu))
 )
 #+END_SRC
 
 ** Company
-Enable company globally with various settings
-Add company backends
+   Enable company with various settings
+   Add company backends
 #+BEGIN_SRC emacs-lisp
 (use-package company
   :ensure t
-	:diminish
-	:config
-	 (add-hook 'after-init-hook 'global-company-mode)
-	 (setq company-idle-delay 0)
-	 (setq company-minimum-prefix-length 1)
-	 (setq company-selection-wrap-around t)
-	 (setq company-dabbrev-downcase nil)
-	 (company-tng-configure-default)
+  :diminish
+  :config
+   (setq company-idle-delay 0)
+   (setq company-minimum-prefix-length 1)
+   (setq company-selection-wrap-around t)
+   (setq company-dabbrev-downcase nil)
+   (company-tng-configure-default)
 )
 
 (use-package company-lsp
   :ensure t
-	:config
-	(add-to-list 'company-backends 'company-lsp)
+  :config
+  (add-to-list 'company-backends 'company-lsp)
 )
-
 #+END_SRC
 
 ** Flycheck
-Enable flycheck globally and add M-p, M-n for error navigation
+   Enable flycheck globally and add M-p, M-n for error navigation
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
   :ensure t
-	:bind (("M-p" . flycheck-previous-error)
-	       ("M-n" . flycheck-next-error))
-	:config
-	(add-hook 'after-init-hook 'global-flycheck-mode)
+  :bind (("M-p" . flycheck-previous-error)
+         ("M-n" . flycheck-next-error))
+  :config
+  (add-hook 'after-init-hook 'global-flycheck-mode)
 )
 #+END_SRC
 
@@ -271,25 +264,25 @@ Enable flycheck globally and add M-p, M-n for error navigation
 #+BEGIN_SRC emacs-lisp
 (use-package treemacs
   :ensure t
-	:hook ((treemacs-mode . treemacs-follow-mode)
-	       (treemacs-mode . treemacs-filewatch-mode)
-				 (treemacs-mode . treemacs-git-mode))
+  :hook ((treemacs-mode . treemacs-follow-mode)
+         (treemacs-mode . treemacs-filewatch-mode)
+         (treemacs-mode . treemacs-git-mode))
 )
 #+END_SRC
 
 ** Which-key
-Which-key is a keybinding preview utility to show all subsequent keys when waiting for commands.
+   Which-key is a keybinding preview utility to show all subsequent keys when waiting for commands.
 #+BEGIN_SRC emacs-lisp
 (use-package which-key
   :ensure t
-	:diminish which-key-mode
-	:config
-  	(which-key-mode t)
+  :diminish which-key-mode
+  :config
+    (which-key-mode t)
 )
 #+END_SRC
 
 ** Org-bullets
-Add org-bullets to org-mode and improve the bullet display
+   Add org-bullets to org-mode and improve the bullet display
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :ensure t
@@ -299,33 +292,41 @@ Add org-bullets to org-mode and improve the bullet display
 )
 #+END_SRC
 
+** Iedit
+#+BEGIN_SRC emacs-lisp
+(use-package iedit
+  :ensure t
+	:bind ("C-;" . iedit-mode)
+)
+#+END_SRC
+
 ** Magit
-Magit is an interface to git
-Access it with C-x g
+   Magit is an interface to git
+   Access it with C-x g
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t
-	:bind ("C-x g". magit-status)
+  :bind ("C-x g". magit-status)
 )
 #+END_SRC
 
 ** Quickrun
-Quickrun provides utilities to quickly compile and execute programs
-F6 runs a program in eshell
+   Quickrun provides utilities to quickly compile and execute programs
+   F6 runs a program in eshell
 #+BEGIN_SRC emacs-lisp
 (use-package quickrun
   :ensure t
-	:bind ("<f6>" . quickrun-shell)
+  :bind ("<f6>" . quickrun-shell)
 )
 #+END_SRC
 
 ** LSP
-Emacs Language Server Protocol support
-Enable it on certain languages along with most of it's addons
+   Emacs Language Server Protocol support
+   Enable it on certain languages along with most of it's addons
 #+BEGIN_SRC emacs-lisp
 (use-package lsp-mode
   :hook ((c-mode . lsp)
-	       (rust-mode . lsp))
+         (rust-mode . lsp))
   :commands lsp
 )
 
@@ -336,29 +337,29 @@ Enable it on certain languages along with most of it's addons
 #+END_SRC
 
 ** Emmet
-Offers snippets for html and css
+   Offers snippets for html and css
 #+BEGIN_SRC emacs-lisp
 (use-package emmet-mode
   :ensure t
-	:hook ((sgml-mode . emmet-mode)
-	       (css-mode . emmet-mode))
+  :hook ((sgml-mode . emmet-mode)
+         (css-mode . emmet-mode))
 )
 #+END_SRC
 
 ** Doom Modeline
-Enable doom modeline
+   Enable doom modeline
 #+BEGIN_SRC emacs-lisp
 (use-package doom-modeline
   :diminish doom-modeline-mode
   :ensure t
-	:config
-	(doom-modeline-mode t)
+  :config
+  (doom-modeline-mode t)
 )
 #+END_SRC
 
 * Programming Language Settings
 ** C
-Tab = 4 spaces, bsd indentation style
+   Tab = 4 spaces, bsd indentation style
 #+BEGIN_SRC emacs-lisp
 (setq-default c-basic-offset 4)
 (setq-default c-default-style "bsd")
@@ -373,23 +374,23 @@ Tab = 4 spaces, bsd indentation style
 #+END_SRC
 
 ** Haskell
-Various settings.
+   Various settings.
 #+BEGIN_SRC emacs-lisp
-	(define-key haskell-mode-map (kbd "<f8>") 'haskell-navigate-imports)
-	(define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
-	(define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile)
-	(define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-	(define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
-	(define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-	(define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-	(define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+  (define-key haskell-mode-map (kbd "<f8>") 'haskell-navigate-imports)
+  (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
+  (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile)
+  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+  (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+  (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+  (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+  (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
 
-	(setq haskell-interactive-popup-errors nil)
-	(setq haskell-process-suggest-remove-import-lines t)
-	(setq haskell-process-auto-import-loaded-modules t)
-	(setq haskell-process-log t)
-	(setq haskell-compile-cabal-build-command "stack build")
-	(setq haskell-process-suggest-hoogle-imports t)
+  (setq haskell-interactive-popup-errors nil)
+  (setq haskell-process-suggest-remove-import-lines t)
+  (setq haskell-process-auto-import-loaded-modules t)
+  (setq haskell-process-log t)
+  (setq haskell-compile-cabal-build-command "stack build")
+  (setq haskell-process-suggest-hoogle-imports t)
 #+END_SRC
 
 *** Hooks
@@ -402,22 +403,22 @@ Various settings.
 (add-hook 'haskell-mode-hook 'hindent-mode)
 
 (add-hook 'haskell-mode-hook
-					(lambda ()
-						(set (make-local-variable 'company-backends)
-								 (append '((company-capf company-dabbrev-code))
-												 company-backends))
-						(setq flymake-no-changes-timeout nil)
-						(setq flymake-start-syntax-check-on-newline nil)
-						(setq flycheck-check-syntax-automatically '(save mode-enabled))))
+          (lambda ()
+            (set (make-local-variable 'company-backends)
+                 (append '((company-capf company-dabbrev-code))
+                         company-backends))
+            (setq flymake-no-changes-timeout nil)
+            (setq flymake-start-syntax-check-on-newline nil)
+            (setq flycheck-check-syntax-automatically '(save mode-enabled))))
 #+END_SRC
 
 ** Rust
 *** Hooks
-C-c <tab> Indents the whole buffer.
+    C-c <tab> Indents the whole buffer.
 #+BEGIN_SRC emacs-lisp
 (add-hook 'rust-mode-hook
-					(lambda ()
-						(local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
+          (lambda ()
+            (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
 #+END_SRC
 
 ** HTML
@@ -435,7 +436,7 @@ C-c <tab> Indents the whole buffer.
 
 ** Javascript
 *** Hooks
-Add js2-mode to javascript buffers and enable eslint with flycheck.
+    Add js2-mode to javascript buffers and enable eslint with flycheck.
 #+BEGIN_SRC emacs-lisp
 (add-hook 'js-mode-hook 'company-mode)
 (add-hook 'js-mode-hook 'flycheck-mode)
@@ -443,4 +444,15 @@ Add js2-mode to javascript buffers and enable eslint with flycheck.
 #+END_SRC
 
 
-p
+    p
+* My functions
+  Indent the whole buffer
+#+BEGIN_SRC emacs-lisp
+(defun iwb ()
+  "indent whole buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max))
+)
+#+END_SRC
