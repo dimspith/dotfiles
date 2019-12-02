@@ -2,21 +2,14 @@
 #+AUTHOR: Dimitris Spythouris
 #+STARTUP: overview
 #+OPTIONS: num:nil
-# # #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 
 * External dependencies
-** Rust
-   - Rust source code at ~/Documents/git_projects/rust/src
-   - Rustfmt for code formatting
-     - cargo install rustfmt
-   - Racer for code completion and navigation
-     - cargo install racer
 ** LSP
 *** Javascript
     - npm i -g javascript-typescript-langserver (lsp completion)
     - npm i -g jshint (flycheck linting)
 ** Counsel
-   - the_silver_searcher (counsel-ag)
+   - fzf (counsel-fzf)
 * Package Management
 ** Package Archives
    Initialize package.el, add MELPA to the package archives and initialize the package lists.
@@ -46,17 +39,19 @@
 
   emmet-mode
   impatient-mode
-  haskell-mode
   yaml-mode
-  perl6-mode
-  rust-mode
+
+  haskell-mode
+  elixir-mode
 
   yasnippet
   which-key
-  org-bullets
   htmlize
+  projectile
   treemacs
   treemacs-magit
+  treemacs-icons-dired
+  treemacs-projectile
   magit
   hindent
 
@@ -65,10 +60,12 @@
   lsp-ivy
   company-lsp
 
-  doom-modeline
+  moody
+  minions
   badwolf-theme
-  dracula-theme
+  spacemacs-theme
   gruber-darker-theme
+	color-theme-sanityinc-tomorrow
   ))
 
 (dolist (pkg my-packages)
@@ -84,6 +81,11 @@
 #+END_SRC
 
 * Core Setup
+** Starting Directory
+Configure emacs to start in the home directory
+#+BEGIN_SRC emacs-lisp
+(setq default-directory "~/")
+#+END_SRC
 ** Splash Screen
    Skip the splash screen and use a scratch buffer in lisp interaction mode.
 #+BEGIN_SRC emacs-lisp
@@ -103,8 +105,7 @@
 ** Indentation
    Tab width is 2 and tabs are now spaces.
 #+BEGIN_SRC emacs-lisp
-(setq tab-width 2
-      indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 #+END_SRC
 
@@ -129,19 +130,27 @@
 ** Theme
    The theme used.
 #+BEGIN_SRC emacs-lisp
-   ;;(load-theme 'badwolf t)
-   ;;(load-theme 'dracula t)
-   (load-theme 'gruber-darker t)
+   (load-theme 'badwolf t)
+   ;;(load-theme 'gruber-darker t)
+	 ;;(load-theme 'sanityinc-tomorrow-night t)
 #+END_SRC
 
 ** Font
 
    Font used.
 #+BEGIN_SRC emacs-lisp
-;;(set-frame-font "Mononoki 12")
-;;(add-to-list 'default-frame-alist '(font . "Mononoki-12"))
-(set-frame-font "Iosevka 12")
-(add-to-list 'default-frame-alist '(font . "Iosevka Term SS05-12"))
+(add-to-list 'default-frame-alist '(font . "Cascadia Code 11"))
+(set-face-attribute 'default nil
+                    :family "Cascadia Code"
+                    :height 110
+                    :weight 'normal
+                    :width  'normal)
+;;(add-to-list 'default-frame-alist '(font . "RobotoMono 11"))
+;;(set-face-attribute 'default nil
+;;                    :family "RobotoMono"
+;;                    :height 110
+;;                    :weight 'normal
+;;                    :width  'normal)
 #+END_SRC
 
 ** Essential keybindings
@@ -158,6 +167,7 @@
 (global-set-key (kbd "M-o") 'other-window)
 
 (global-set-key (kbd "<f5>") 'compile)
+(global-set-key (kbd "<C-f9>") 'set-frame-font)
 
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
@@ -184,6 +194,7 @@
 
 * External Package Settings
 ** Ivy, Counsel, Swiper
+
    Enable ivy globally (replacement for ido).
    Tweak the minibuffer functionality and remove the ^ in filters
 #+BEGIN_SRC emacs-lisp
@@ -220,16 +231,35 @@
          ("<f2> u" . counsel-unicode-char)
          ("C-c g" . counsel-git)
          ("C-c j" . counsel-git-grep)
-         ("C-c k" . counsel-ag)
+         ("C-c k" . counsel-fzf)
          ("C-x l" . counsel-locate)
-         ("C-c i" . counsel-imenu))
+         ("C-c i" . counsel-imenu)
+				 ("<f9>" . counsel-load-theme)
+				 ("<f1> x" . counsel-descbinds))
 )
+#+END_SRC
+
+** Yasnippet
+#+BEGIN_SRC emacs-lisp
+
+  (use-package yasnippet
+      :ensure t
+      :diminish yas-minor-mode
+      :config
+      (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+      (yas-global-mode)
+      (global-set-key (kbd "C-M-/") 'company-yasnippet)
+)
+
+(yas-snippet-dirs)
+
 #+END_SRC
 
 ** Company
    Enable company with various settings
    Add company backends
-#+BEGIN_SRC emacs-lisp
+	 #+BEGIN_SRC emacs-lisp
+
 (use-package company
   :ensure t
   :diminish
@@ -246,6 +276,19 @@
   :config
   (add-to-list 'company-backends 'company-lsp)
 )
+
+#+END_SRC
+
+** Projectile
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :ensure t
+  :config
+  (setq projectile-completion-system 'ivy)
+  (setq projectile-tags-backend 'etags-select)
+  (add-to-list 'projectile-globally-ignored-modes "org-mode")
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
 #+END_SRC
 
 ** Flycheck
@@ -264,10 +307,81 @@
 #+BEGIN_SRC emacs-lisp
 (use-package treemacs
   :ensure t
-  :hook ((treemacs-mode . treemacs-follow-mode)
-         (treemacs-mode . treemacs-filewatch-mode)
-         (treemacs-mode . treemacs-git-mode))
-)
+  :defer t
+  :init
+  (with-eval-after-load 'winum
+    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+  :config
+  (progn
+    (setq treemacs-collapse-dirs                 (if treemacs-python-executable 3 0)
+          treemacs-deferred-git-apply-delay      0.5
+          treemacs-display-in-side-window        t
+          treemacs-eldoc-display                 t
+          treemacs-file-event-delay              5000
+          treemacs-file-follow-delay             0.2
+          treemacs-follow-after-init             t
+          treemacs-git-command-pipe              ""
+          treemacs-goto-tag-strategy             'refetch-index
+          treemacs-indentation                   2
+          treemacs-indentation-string            " "
+          treemacs-is-never-other-window         nil
+          treemacs-max-git-entries               5000
+          treemacs-missing-project-action        'ask
+          treemacs-no-png-images                 nil
+          treemacs-no-delete-other-windows       t
+          treemacs-project-follow-cleanup        nil
+          treemacs-persist-file                  (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
+          treemacs-position                      'left
+          treemacs-recenter-distance             0.1
+          treemacs-recenter-after-file-follow    nil
+          treemacs-recenter-after-tag-follow     nil
+          treemacs-recenter-after-project-jump   'always
+          treemacs-recenter-after-project-expand 'on-distance
+          treemacs-show-cursor                   nil
+          treemacs-show-hidden-files             t
+          treemacs-silent-filewatch              nil
+          treemacs-silent-refresh                nil
+          treemacs-sorting                       'alphabetic-desc
+          treemacs-space-between-root-nodes      t
+          treemacs-tag-follow-cleanup            t
+          treemacs-tag-follow-delay              1.5
+          treemacs-width                         30)
+
+    ;; The default width and height of the icons is 22 pixels. If you are
+    ;; using a Hi-DPI display, uncomment this to double the icon size.
+    ;;(treemacs-resize-icons 44)
+
+    (treemacs-follow-mode t)
+    (treemacs-filewatch-mode t)
+    (treemacs-fringe-indicator-mode t)
+    (pcase (cons (not (null (executable-find "git")))
+                 (not (null treemacs-python-executable)))
+      (`(t . t)
+       (treemacs-git-mode 'deferred))
+      (`(t . _)
+       (treemacs-git-mode 'simple))))
+  :bind
+  (:map global-map
+        ("M-0"       . treemacs-select-window)
+        ("C-x t 1"   . treemacs-delete-other-windows)
+        ("C-x t t"   . treemacs)
+        ("C-x t B"   . treemacs-bookmark)
+        ("C-x t C-t" . treemacs-find-file)
+        ("C-x t M-t" . treemacs-find-tag)))
+
+(use-package treemacs-projectile
+  :after treemacs projectile
+  :ensure t)
+
+(use-package treemacs-icons-dired
+  :after treemacs dired
+  :ensure t
+  :config (treemacs-icons-dired-mode))
+
+(use-package treemacs-magit
+  :after treemacs magit
+  :ensure t)
+
 #+END_SRC
 
 ** Which-key
@@ -278,17 +392,6 @@
   :diminish which-key-mode
   :config
     (which-key-mode t)
-)
-#+END_SRC
-
-** Org-bullets
-   Add org-bullets to org-mode and improve the bullet display
-#+BEGIN_SRC emacs-lisp
-  (use-package org-bullets
-    :ensure t
-    :config
-    (setq org-bullets-bullet-list '("⦿"))
-    (add-hook 'org-mode-hook 'org-bullets-mode)
 )
 #+END_SRC
 
@@ -346,15 +449,18 @@
 )
 #+END_SRC
 
-** Doom Modeline
+** Moody + Minions (Modeline)
    Enable doom modeline
 #+BEGIN_SRC emacs-lisp
-(use-package doom-modeline
-  :diminish doom-modeline-mode
-  :ensure t
+(use-package moody
   :config
-  (doom-modeline-mode t)
-)
+  (column-number-mode t)
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
+
+(use-package minions
+  :config (minions-mode t))
 #+END_SRC
 
 * Programming Language Settings
@@ -398,9 +504,9 @@
 
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-(add-hook 'haskell-mode-hook 'flycheck-mode)
+;;(add-hook 'haskell-mode-hook 'flycheck-mode)
 (add-hook 'haskell-mode-hook 'company-mode)
-(add-hook 'haskell-mode-hook 'hindent-mode)
+(add-hook 'haskell-mode~-hook 'hindent-mode)
 
 (add-hook 'haskell-mode-hook
           (lambda ()
@@ -456,3 +562,4 @@
   (untabify (point-min) (point-max))
 )
 #+END_SRC
+
