@@ -36,10 +36,13 @@
   aggressive-indent
   iedit
   quickrun
+  alchemist
+  eredis
 
   emmet-mode
   impatient-mode
   yaml-mode
+  org-bullets
 
   haskell-mode
   elixir-mode
@@ -62,10 +65,9 @@
 
   moody
   minions
-  badwolf-theme
   spacemacs-theme
   gruber-darker-theme
-	color-theme-sanityinc-tomorrow
+  base16-themes
   ))
 
 (dolist (pkg my-packages)
@@ -86,6 +88,7 @@ Configure emacs to start in the home directory
 #+BEGIN_SRC emacs-lisp
 (setq default-directory "~/")
 #+END_SRC
+
 ** Splash Screen
    Skip the splash screen and use a scratch buffer in lisp interaction mode.
 #+BEGIN_SRC emacs-lisp
@@ -130,27 +133,17 @@ Configure emacs to start in the home directory
 ** Theme
    The theme used.
 #+BEGIN_SRC emacs-lisp
-   (load-theme 'badwolf t)
-   ;;(load-theme 'gruber-darker t)
-	 ;;(load-theme 'sanityinc-tomorrow-night t)
+;;(load-theme 'spacemacs-dark t)
+(load-theme 'base16-classic-dark t)
 #+END_SRC
 
 ** Font
 
    Font used.
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'default-frame-alist '(font . "Cascadia Code 11"))
-(set-face-attribute 'default nil
-                    :family "Cascadia Code"
-                    :height 110
-                    :weight 'normal
-                    :width  'normal)
-;;(add-to-list 'default-frame-alist '(font . "RobotoMono 11"))
-;;(set-face-attribute 'default nil
-;;                    :family "RobotoMono"
-;;                    :height 110
-;;                    :weight 'normal
-;;                    :width  'normal)
+(add-to-list 'default-frame-alist '(font . "RobotoMono 11" ))
+(set-face-attribute 'default nil :family "RobotoMono 11" :height 110 :weight 'normal)
+(set-frame-font "RobotoMono 11" nil t)
 #+END_SRC
 
 ** Essential keybindings
@@ -164,6 +157,7 @@ Configure emacs to start in the home directory
 (global-set-key (kbd "RET") 'newline-and-indent)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-c e") 'eshell)
 (global-set-key (kbd "M-o") 'other-window)
 
 (global-set-key (kbd "<f5>") 'compile)
@@ -173,7 +167,6 @@ Configure emacs to start in the home directory
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
-(global-set-key (kbd "C-c <tab>") 'iwb)
 #+END_SRC
 
 ** Org-mode
@@ -246,9 +239,12 @@ Configure emacs to start in the home directory
       :ensure t
       :diminish yas-minor-mode
       :config
-      (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+      (setq yas-snippet-dirs '("~/.emacs.d/snippets"
+                               "~/.emacs.d/elpa/yasnippet-snippets-20191117.1730/snippets/"))
       (yas-global-mode)
-      (global-set-key (kbd "C-M-/") 'company-yasnippet)
+      :bind
+      ("C-M-/"    . company-yasnippet)
+      ("C-c <tab>". yas-expand)
 )
 
 (yas-snippet-dirs)
@@ -264,9 +260,11 @@ Configure emacs to start in the home directory
   :ensure t
   :diminish
   :config
-   (setq company-idle-delay 0)
+   (setq company-idle-delay 0.3)
    (setq company-minimum-prefix-length 1)
    (setq company-selection-wrap-around t)
+   (setq company-tooltip-align-annotations t)
+   (setq company-tooltip-limit 10)
    (setq company-dabbrev-downcase nil)
    (company-tng-configure-default)
 )
@@ -324,7 +322,7 @@ Configure emacs to start in the home directory
           treemacs-goto-tag-strategy             'refetch-index
           treemacs-indentation                   2
           treemacs-indentation-string            " "
-          treemacs-is-never-other-window         nil
+          treemacs-is-never-other-window         t
           treemacs-max-git-entries               5000
           treemacs-missing-project-action        'ask
           treemacs-no-png-images                 nil
@@ -368,6 +366,7 @@ Configure emacs to start in the home directory
         ("C-x t B"   . treemacs-bookmark)
         ("C-x t C-t" . treemacs-find-file)
         ("C-x t M-t" . treemacs-find-tag)))
+        
 
 (use-package treemacs-projectile
   :after treemacs projectile
@@ -413,6 +412,11 @@ Configure emacs to start in the home directory
 )
 #+END_SRC
 
+** Org Bullets
+#+BEGIN_SRC emacs-lisp
+(use-package org-bullets
+    :hook (org-mode . org-bullets-mode))
+#+END_SRC
 ** Quickrun
    Quickrun provides utilities to quickly compile and execute programs
    F6 runs a program in eshell
@@ -449,8 +453,42 @@ Configure emacs to start in the home directory
 )
 #+END_SRC
 
-** Moody + Minions (Modeline)
-   Enable doom modeline
+** Haskell-mode
+#+BEGIN_SRC emacs-lisp
+(use-package haskell-mode
+  :ensure t
+  :bind (:map haskell-mode-map
+        ("<f8>"    . haskell-navigate-imports)
+        ("C-c C-c" . haskell-compile)
+        ("C-c C-l" . haskell-process-load-or-reload)
+        ("C-`"     . haskell-interactive-bring)
+        ("C-c C-t" . haskell-process-do-type)
+        ("C-c C-i" . haskell-process-do-info)
+        ("C-c C-k" . haskell-interactive-mode-clear))
+  :config
+  (setq haskell-interactive-popup-errors nil)
+  (setq haskell-process-suggest-remove-import-lines t)
+  (setq haskell-process-auto-import-loaded-modules t)
+  (setq haskell-process-log t)
+  (setq haskell-compile-cabal-build-command "stack build")
+  (setq haskell-process-suggest-hoogle-imports t)
+  :hook
+  ((haskell-mode . haskell-indentation-mode)
+   (haskell-mode . interactive-haskell-mode)
+   (haskell-mode . company-mode)
+   (haskell-mode . hindent-mode)
+   (haskell-mode .
+          (lambda ()
+            (set (make-local-variable 'company-backends)
+                 (append '((company-capf company-dabbrev-code))
+                         company-backends))
+            (setq flymake-no-changes-timeout nil)
+            (setq flymake-start-syntax-check-on-newline nil)
+            (setq flycheck-check-syntax-automatically '(save mode-enabled))))))
+#+END_SRC
+
+** Moody + Minions
+   Enable Moody and Minions
 #+BEGIN_SRC emacs-lisp
 (use-package moody
   :config
@@ -482,49 +520,40 @@ Configure emacs to start in the home directory
 ** Haskell
    Various settings.
 #+BEGIN_SRC emacs-lisp
-  (define-key haskell-mode-map (kbd "<f8>") 'haskell-navigate-imports)
-  (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
-  (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile)
-  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-  (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
-  (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-  (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-  (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+  ;; (define-key haskell-mode-map (kbd "<f8>") 'haskell-navigate-imports)
+  ;; (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
+  ;; (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile)
+  ;; (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+  ;; (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+  ;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+  ;; (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+  ;; (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
 
-  (setq haskell-interactive-popup-errors nil)
-  (setq haskell-process-suggest-remove-import-lines t)
-  (setq haskell-process-auto-import-loaded-modules t)
-  (setq haskell-process-log t)
-  (setq haskell-compile-cabal-build-command "stack build")
-  (setq haskell-process-suggest-hoogle-imports t)
+  ;; (setq haskell-interactive-popup-errors nil)
+  ;; (setq haskell-process-suggest-remove-import-lines t)
+  ;; (setq haskell-process-auto-import-loaded-modules t)
+  ;; (setq haskell-process-log t)
+  ;; (setq haskell-compile-cabal-build-command "stack build")
+  ;; (setq haskell-process-suggest-hoogle-imports t)
 #+END_SRC
 
 *** Hooks
 #+BEGIN_SRC emacs-lisp
 
-(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-;;(add-hook 'haskell-mode-hook 'flycheck-mode)
-(add-hook 'haskell-mode-hook 'company-mode)
-(add-hook 'haskell-mode~-hook 'hindent-mode)
+  ;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+  ;; (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+  ;; ;;(add-hook 'haskell-mode-hook 'flycheck-mode)
+  ;; (add-hook 'haskell-mode-hook 'company-mode)
+  ;; (add-hook 'haskell-mode-hook 'hindent-mode)
 
-(add-hook 'haskell-mode-hook
-          (lambda ()
-            (set (make-local-variable 'company-backends)
-                 (append '((company-capf company-dabbrev-code))
-                         company-backends))
-            (setq flymake-no-changes-timeout nil)
-            (setq flymake-start-syntax-check-on-newline nil)
-            (setq flycheck-check-syntax-automatically '(save mode-enabled))))
-#+END_SRC
-
-** Rust
-*** Hooks
-    C-c <tab> Indents the whole buffer.
-#+BEGIN_SRC emacs-lisp
-(add-hook 'rust-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
+  ;; (add-hook 'haskell-mode-hook
+  ;;           (lambda ()
+  ;;             (set (make-local-variable 'company-backends)
+  ;;                  (append '((company-capf company-dabbrev-code))
+  ;;                          company-backends))
+  ;;             (setq flymake-no-changes-timeout nil)
+  ;;             (setq flymake-start-syntax-check-on-newline nil)
+  ;;             (setq flycheck-check-syntax-automatically '(save mode-enabled))))
 #+END_SRC
 
 ** HTML
