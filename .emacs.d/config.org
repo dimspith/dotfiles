@@ -33,6 +33,9 @@
   counsel
   ivy
   swiper
+  org-bullets
+  projectile
+
   aggressive-indent
   iedit
   quickrun
@@ -42,15 +45,12 @@
   emmet-mode
   impatient-mode
   yaml-mode
-  org-bullets
-
   haskell-mode
   elixir-mode
 
   yasnippet
   which-key
   htmlize
-  projectile
   treemacs
   treemacs-magit
   treemacs-icons-dired
@@ -67,7 +67,7 @@
   minions
   spacemacs-theme
   gruber-darker-theme
-  base16-themes
+  base16-theme
   ))
 
 (dolist (pkg my-packages)
@@ -89,6 +89,14 @@ Configure emacs to start in the home directory
 (setq default-directory "~/")
 #+END_SRC
 
+** Scrolling
+Smooth scrolling
+#+BEGIN_SRC emacs-lisp
+(setq mouse-wheel-scroll-amount '(3 ((shift) . 3)))
+(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-follow-mouse 't)
+(setq scroll-step 1)
+#+END_SRC
 ** Splash Screen
    Skip the splash screen and use a scratch buffer in lisp interaction mode.
 #+BEGIN_SRC emacs-lisp
@@ -294,8 +302,6 @@ Configure emacs to start in the home directory
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
   :ensure t
-  :bind (("M-p" . flycheck-previous-error)
-         ("M-n" . flycheck-next-error))
   :config
   (add-hook 'after-init-hook 'global-flycheck-mode)
 )
@@ -515,45 +521,6 @@ Configure emacs to start in the home directory
 (add-hook 'c-mode-hook 'company-mode)
 ;;(add-hook 'c-mode-hook 'aggressive-indent-mode)
 (add-hook 'c-mode-hook #'lsp)
-#+END_SRC
-
-** Haskell
-   Various settings.
-#+BEGIN_SRC emacs-lisp
-  ;; (define-key haskell-mode-map (kbd "<f8>") 'haskell-navigate-imports)
-  ;; (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
-  ;; (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile)
-  ;; (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-  ;; (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
-  ;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-  ;; (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-  ;; (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-
-  ;; (setq haskell-interactive-popup-errors nil)
-  ;; (setq haskell-process-suggest-remove-import-lines t)
-  ;; (setq haskell-process-auto-import-loaded-modules t)
-  ;; (setq haskell-process-log t)
-  ;; (setq haskell-compile-cabal-build-command "stack build")
-  ;; (setq haskell-process-suggest-hoogle-imports t)
-#+END_SRC
-
-*** Hooks
-#+BEGIN_SRC emacs-lisp
-
-  ;; (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-  ;; (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  ;; ;;(add-hook 'haskell-mode-hook 'flycheck-mode)
-  ;; (add-hook 'haskell-mode-hook 'company-mode)
-  ;; (add-hook 'haskell-mode-hook 'hindent-mode)
-
-  ;; (add-hook 'haskell-mode-hook
-  ;;           (lambda ()
-  ;;             (set (make-local-variable 'company-backends)
-  ;;                  (append '((company-capf company-dabbrev-code))
-  ;;                          company-backends))
-  ;;             (setq flymake-no-changes-timeout nil)
-  ;;             (setq flymake-start-syntax-check-on-newline nil)
-  ;;             (setq flycheck-check-syntax-automatically '(save mode-enabled))))
 #+END_SRC
 
 ** HTML
