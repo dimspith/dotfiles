@@ -149,9 +149,9 @@ Smooth scrolling
 
    Font used.
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'default-frame-alist '(font . "RobotoMono 11" ))
-(set-face-attribute 'default nil :family "RobotoMono 11" :height 110 :weight 'normal)
-(set-frame-font "RobotoMono 11" nil t)
+(add-to-list 'default-frame-alist '(font . "Cascadia Mono 11" ))
+(set-face-attribute 'default nil :family "Cascadia Mono 11" :height 110 :weight 'normal)
+(set-frame-font "Cascadia Mono 11" nil t)
 #+END_SRC
 
 ** Essential keybindings
@@ -167,6 +167,7 @@ Smooth scrolling
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-c e") 'eshell)
 (global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "C-<tab>") `indent-relative)
 
 (global-set-key (kbd "<f5>") 'compile)
 (global-set-key (kbd "<C-f9>") 'set-frame-font)
@@ -188,6 +189,18 @@ Smooth scrolling
   ))
 #+END_SRC
 
+** Hs-minor-mode
+Add easier keybindings for folding code
+#+BEGIN_SRC emacs-lisp
+(use-package hideshow
+  :ensure t
+  :bind (:map hs-minor-mode-map
+        ("C-c f H" . hs-hide-all)
+        ("C-c f S" . hs-show-all)
+        ("C-c f t" . hs-toggle-hiding)
+        ("C-c f h" . hs-hide-block)
+        ("C-c f s" . hs-show-block)))
+#+END_SRC
 ** Electric pairs
 #+BEGIN_SRC emacs-lisp
 (electric-pair-mode 1)
@@ -227,17 +240,16 @@ Smooth scrolling
 (use-package counsel
   :ensure t
   :demand
-  :bind (("M-x" . counsel-M-x)
+  :bind (("M-x"     . counsel-M-x)
          ("C-x C-f" . counsel-find-file)
-         ("<f2> u" . counsel-unicode-char)
-         ("C-c g" . counsel-git)
-         ("C-c j" . counsel-git-grep)
-         ("C-c k" . counsel-fzf)
-         ("C-x l" . counsel-locate)
-         ("C-c i" . counsel-imenu)
-				 ("<f9>" . counsel-load-theme)
-				 ("<f1> x" . counsel-descbinds))
-)
+         ("<f2> u"  . counsel-unicode-char)
+         ("C-c g g" . counsel-git)
+         ("C-c g j" . counsel-git-grep)
+         ("C-c s f" . couounsel-fzf)
+         ("C-c s l" . counsel-locate)
+         ("C-c i"   . counsel-imenu)
+				 ("<f9>"    . counsel-load-theme)
+				 ("<f1> x"  . counsel-descbinds)))
 #+END_SRC
 
 ** Yasnippet
@@ -252,8 +264,7 @@ Smooth scrolling
       (yas-global-mode)
       :bind
       ("C-M-/"    . company-yasnippet)
-      ("C-c <tab>". yas-expand)
-)
+      ("C-c <tab>". yas-expand))
 
 (yas-snippet-dirs)
 
@@ -274,14 +285,12 @@ Smooth scrolling
    (setq company-tooltip-align-annotations t)
    (setq company-tooltip-limit 10)
    (setq company-dabbrev-downcase nil)
-   (company-tng-configure-default)
-)
+   (company-tng-configure-default))
 
 (use-package company-lsp
   :ensure t
   :config
-  (add-to-list 'company-backends 'company-lsp)
-)
+  (add-to-list 'company-backends 'company-lsp))
 
 #+END_SRC
 
@@ -303,8 +312,7 @@ Smooth scrolling
 (use-package flycheck
   :ensure t
   :config
-  (add-hook 'after-init-hook 'global-flycheck-mode)
-)
+  (add-hook 'after-init-hook 'global-flycheck-mode))
 #+END_SRC
 
 ** Treemacs
@@ -396,16 +404,14 @@ Smooth scrolling
   :ensure t
   :diminish which-key-mode
   :config
-    (which-key-mode t)
-)
+    (which-key-mode t))
 #+END_SRC
 
 ** Iedit
 #+BEGIN_SRC emacs-lisp
 (use-package iedit
   :ensure t
-	:bind ("C-;" . iedit-mode)
-)
+	:bind ("C-;" . iedit-mode))
 #+END_SRC
 
 ** Magit
@@ -414,8 +420,7 @@ Smooth scrolling
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :ensure t
-  :bind ("C-x g". magit-status)
-)
+  :bind ("C-x g". magit-status))
 #+END_SRC
 
 ** Org Bullets
@@ -429,8 +434,7 @@ Smooth scrolling
 #+BEGIN_SRC emacs-lisp
 (use-package quickrun
   :ensure t
-  :bind ("<f6>" . quickrun-shell)
-)
+  :bind ("<f6>" . quickrun-shell))
 #+END_SRC
 
 ** LSP
@@ -440,8 +444,7 @@ Smooth scrolling
 (use-package lsp-mode
   :hook ((c-mode . lsp)
          (rust-mode . lsp))
-  :commands lsp
-)
+  :commands lsp)
 
 ;; optionally
 (use-package lsp-ui :commands lsp-ui-mode)
@@ -545,8 +548,6 @@ Smooth scrolling
 (add-hook 'js-mode-hook #'lsp)
 #+END_SRC
 
-
-    p
 * My functions
   Indent the whole buffer
 #+BEGIN_SRC emacs-lisp
@@ -555,7 +556,6 @@ Smooth scrolling
   (interactive)
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil)
-  (untabify (point-min) (point-max))
-)
+  (untabify (point-min) (point-max)))
 #+END_SRC
 
