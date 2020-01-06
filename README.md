@@ -1,11 +1,15 @@
-## Dotfiles for these programs:
+# Dotfiles
+
+I use [GNU/stow](https://www.gnu.org/software/stow/) to manage my dotfiles in this repo.
+
+The list of programs these dotfiles are for, are listed below:
+
+* alacritty
 * zsh
 * i3
-* tmux
+* dunst
 * nvim
-* vim
+* newsboat
 * polybar
-* emacs
 * rofi
-* alacritty
-* rofi
+* zathura
