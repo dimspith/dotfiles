@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/dimitris/Documents/GitProjects/dotfiles'
-let g:netrw_dirhist_2='/home/dimitris/.config/zathura'
-let g:netrw_dirhist_3='/home/dimitris/Desktop/Programming/Haskell'
-let g:netrw_dirhist_4='/home/dimitris/Desktop/Programming/Haskell/Book'
