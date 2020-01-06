@@ -78,6 +78,12 @@ alias uninstall="pacman -Rsn"
 alias mexec="chmod +x"
 alias dot="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 
+# Replace a symlink with the file it's pointing to
+removelink() {
+  [ -L "$1" ] && cp --remove-destination "$(readlink "$1")" "$1"
+}
+
+
 # CONFIGS
 alias rlconf="source ~/.zshrc"
 alias rlprof="source ~/.zprofile"
