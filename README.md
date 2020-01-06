@@ -2,6 +2,12 @@
 
 I use [GNU/stow](https://www.gnu.org/software/stow/) to manage my dotfiles in this repo.
 
+To use it, clone this repo in `~/.dotfiles` with:
+
+```console
+git clone https://gitlab.com/dimitrissp/dotfiles.git ~/.dotfiles
+```
+
 The list of programs these dotfiles are for, is below:
 
 * alacritty
