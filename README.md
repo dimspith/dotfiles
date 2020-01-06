@@ -13,3 +13,10 @@ The list of programs these dotfiles are for, is below:
 * polybar
 * rofi
 * zathura
+
+Additional dotfiles outside this repo:
+
+* [XMonad](https://gitlab.com/dimitrissp/xmonad-configuration)
+* [Emacs](https://gitlab.com/dimitrissp/emacs-configuration)
+
+The rest can be installed by calling `stow <folder>` or just `stow *` to install everything.
