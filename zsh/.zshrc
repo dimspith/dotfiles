@@ -73,10 +73,12 @@ alias lal="la -l"
 alias ll="ls -1"
 alias rm="rm -I"
 alias please="sudo"
-alias install="pacman -S"
-alias uninstall="pacman -Rsn"
+alias inst="pacman -S"
+alias uninst="pacman -Rsn"
+alias search="pacman -Ss"
 alias mexec="chmod +x"
 alias dot="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
+alias purge="rm -rf"
 
 # Replace a symlink with the file it's pointing to
 removelink() {
