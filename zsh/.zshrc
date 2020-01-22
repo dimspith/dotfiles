@@ -12,7 +12,7 @@ promptinit
 
 bindkey -e
 
-PROMPT='%(?.%F{green}(^ω^.%B%F{red}(>人<)) %B%F{yellow}%n@%m%f%F{blue}%B -> %2~ %f'
+PROMPT='%(?.%F{green}[].%B%F{red}[])%F{magenta}[%2~]%F{yellow}%#>%f '
 
 # Complete in menu style with root detection
 zstyle ':completion:*' menu select
@@ -66,24 +66,33 @@ YTDL_MUSIC_PLAYLIST="youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title
 GET_CLIPBOARD="\$(xclip -o)"
 
 #QOL
-alias v="kak"
+alias v="nvim"
 alias ls="exa --group-directories-first --color always"
 alias la="ls -a"
 alias lal="la -l"
 alias ll="ls -1"
 alias rm="rm -I"
-alias please="sudo"
 alias inst="pacman -S"
-alias uninst="pacman -Rsn"
-alias search="pacman -Ss"
 alias mexec="chmod +x"
-alias dot="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 alias purge="rm -rf"
 
-# Replace a symlink with the file it's pointing to
-removelink() {
-  [ -L "$1" ] && cp --remove-destination "$(readlink "$1")" "$1"
-}
+alias g="git"
+alias gb="git branch -a"
+alias gc="git checkout"
+alias gcb="git checkout -b"
+alias gdbr="git branch -d"
+alias gd="git diff"
+alias gac="git add -A && git commit -m "
+alias glog="git log --all --decorate --oneline --graph"
+alias gls="git log --stat"
+alias gr="git remote"
+alias grv="git remote -v"
+alias gss="git status -u -s"
+
+alias open="setsid xdg-open"
+alias pdf="setsid zathura"
+alias grepc="grep --color=auto"
+alias grep="grep -i"
 
 
 # CONFIGS
@@ -101,15 +110,25 @@ alias val="nvim $HOME/.config/alacritty/alacritty.yml"
 alias youtube="$FANCY_TXT_FORMAT MusicDL;$YTDL_MUSIC $GET_CLIPBOARD"
 alias youtubev="$FANCY_TXT_FORMAT VideoDL; $YTDL_VIDEO $GET_CLIPBOARD"
 alias youtubepl="$FANCY_TXT_FORMAT VideoDL; $YTDL_MUSIC_PLAYLIST $GET_CLIPBOARD"
-alias open="setsid xdg-open"
-alias pdf="setsid zathura"
-alias repulse="pulseaudio --kill && sleep 2 && pulseaudio --start"
-alias gitlog="git log --all --decorate --oneline --graph"
 alias bro="bro 2>/dev/null"
 alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; setxkbmap -option ctrl:nocaps"
-alias findfont="fc-list | grep"
 alias clip="xclip -selection clipboard"
 
 #Inits
 alias itray="stalonetray -c ~/.xmonad/stalonetrayrc &;disown"
 alias ipicom="picom --config ~/.xmonad/picom.conf -b"
+alias rlmacs="pkill emacs && emacs --daemon"
+
+#====================
+# FUNCTIONS
+#====================
+# Replace a symlink with the file it's pointing to
+removelink() {
+  [ -L "$1" ] && cp --remove-destination "$(readlink "$1")" "$1"
+}
+
+# Find a font using fc-list
+findfont() {
+    fc-list | grep --color=never "$1" | awk -F "/" '{print $NF}'
+}
+
