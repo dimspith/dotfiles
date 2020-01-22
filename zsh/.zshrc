@@ -12,7 +12,7 @@ promptinit
 
 bindkey -e
 
-PROMPT='%(?.%F{green}(^ω^.%B%F{red}(>人<)) %B%F{yellow}%n@%m%f%F{blue}%B -> %2~ %f'
+PROMPT='%(?.%F{green}[].%B%F{red}[])%F{magenta}[%2~]%F{yellow}%#>%f '
 
 # Complete in menu style with root detection
 zstyle ':completion:*' menu select
