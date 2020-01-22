@@ -89,15 +89,10 @@ alias gr="git remote"
 alias grv="git remote -v"
 alias gss="git status -u -s"
 
-alias findfont="fc-list | grep"
 alias open="setsid xdg-open"
 alias pdf="setsid zathura"
 alias grep="grep --color=auto"
 
-# Replace a symlink with the file it's pointing to
-removelink() {
-  [ -L "$1" ] && cp --remove-destination "$(readlink "$1")" "$1"
-}
 
 # CONFIGS
 alias rlconf="source ~/.zshrc"
@@ -122,3 +117,17 @@ alias clip="xclip -selection clipboard"
 alias itray="stalonetray -c ~/.xmonad/stalonetrayrc &;disown"
 alias ipicom="picom --config ~/.xmonad/picom.conf -b"
 alias rlmacs="pkill emacs && emacs --daemon"
+
+#====================
+# FUNCTIONS
+#====================
+# Replace a symlink with the file it's pointing to
+removelink() {
+  [ -L "$1" ] && cp --remove-destination "$(readlink "$1")" "$1"
+}
+
+# Find a font using fc-list
+findfont() {
+    fc-list | grep --color=never "$1" | awk -F "/" '{print $NF}'
+}
+
