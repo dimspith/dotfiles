@@ -91,7 +91,8 @@ alias gss="git status -u -s"
 
 alias open="setsid xdg-open"
 alias pdf="setsid zathura"
-alias grep="grep --color=auto"
+alias grepc="grep --color=auto"
+alias grep="grep -i"
 
 
 # CONFIGS
