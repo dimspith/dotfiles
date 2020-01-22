@@ -72,19 +72,32 @@ alias la="ls -a"
 alias lal="la -l"
 alias ll="ls -1"
 alias rm="rm -I"
-alias please="sudo"
 alias inst="pacman -S"
-alias uninst="pacman -Rsn"
-alias search="pacman -Ss"
 alias mexec="chmod +x"
-alias dot="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 alias purge="rm -rf"
+
+alias g="git"
+alias gb="git branch -a"
+alias gc="git checkout"
+alias gcb="git checkout -b"
+alias gdbr="git branch -d"
+alias gd="git diff"
+alias gac="git add -A && git commit -m "
+alias glog="git log --all --decorate --oneline --graph"
+alias gls="git log --stat"
+alias gr="git remote"
+alias grv="git remote -v"
+alias gss="git status -u -s"
+
+alias findfont="fc-list | grep"
+alias open="setsid xdg-open"
+alias pdf="setsid zathura"
+alias grep="grep --color=auto"
 
 # Replace a symlink with the file it's pointing to
 removelink() {
   [ -L "$1" ] && cp --remove-destination "$(readlink "$1")" "$1"
 }
-
 
 # CONFIGS
 alias rlconf="source ~/.zshrc"
@@ -101,13 +114,8 @@ alias val="nvim $HOME/.config/alacritty/alacritty.yml"
 alias youtube="$FANCY_TXT_FORMAT MusicDL;$YTDL_MUSIC $GET_CLIPBOARD"
 alias youtubev="$FANCY_TXT_FORMAT VideoDL; $YTDL_VIDEO $GET_CLIPBOARD"
 alias youtubepl="$FANCY_TXT_FORMAT VideoDL; $YTDL_MUSIC_PLAYLIST $GET_CLIPBOARD"
-alias open="setsid xdg-open"
-alias pdf="setsid zathura"
-alias repulse="pulseaudio --kill && sleep 2 && pulseaudio --start"
-alias gitlog="git log --all --decorate --oneline --graph"
 alias bro="bro 2>/dev/null"
 alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; setxkbmap -option ctrl:nocaps"
-alias findfont="fc-list | grep"
 alias clip="xclip -selection clipboard"
 
 #Inits
