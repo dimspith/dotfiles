@@ -66,7 +66,7 @@ YTDL_MUSIC_PLAYLIST="youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title
 GET_CLIPBOARD="\$(xclip -o)"
 
 #QOL
-alias v="kak"
+alias v="nvim"
 alias ls="exa --group-directories-first --color always"
 alias la="ls -a"
 alias lal="la -l"
@@ -113,3 +113,4 @@ alias clip="xclip -selection clipboard"
 #Inits
 alias itray="stalonetray -c ~/.xmonad/stalonetrayrc &;disown"
 alias ipicom="picom --config ~/.xmonad/picom.conf -b"
+alias rlmacs="pkill emacs && emacs --daemon"

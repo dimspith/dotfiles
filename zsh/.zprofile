@@ -23,3 +23,5 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 # npm
 export PATH="$HOME/.npm-global/bin:$PATH"
+# go
+export PATH="$HOME/MyPrograms/go/bin:$PATH"
