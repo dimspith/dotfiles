@@ -9,15 +9,11 @@
 " | .__/|_|\__,_|\__, |_|_| |_|___/
 " |_|            |___/             
 "{{{
-"Move down the completion list instead of up
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
-""""""""""""""""""""""""""""""""""""""""""
 "==== PLUGINS ====
 call plug#begin('~/.config/nvim/plugged')
      Plug 'tpope/vim-surround'      " Surround text in vim
      Plug 'tpope/vim-repeat'        " Add repeat functionality
-     Plug 'iCyMind/NeoSolarized'    " Solarized colorscheme
+     Plug 'morhetz/gruvbox'         " Gruvbox theme
      Plug 'jiangmiao/auto-pairs'    " Automatic pairs
 call plug#end()
 "}}}
@@ -40,7 +36,7 @@ endif
 " Settings:
 syntax on " Enable syntax highlighting
 set background=dark " Set the background theme to dark
-colorscheme NeoSolarized " Set the colorscheme
+colorscheme gruvbox " Set the colorscheme
 set nu relativenumber " Enable line (+ relative) numbers
 filetype plugin indent on " Enable plugin indentation
 set autoindent smartindent cindent " Set code autoindentation
