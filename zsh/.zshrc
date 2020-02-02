@@ -132,3 +132,11 @@ findfont() {
     fc-list | grep --color=never "$1" | awk -F "/" '{print $NF}'
 }
 
+cheat() {
+    curl cht.sh/$1
+}
+
+locdsk() {
+   fd $1 /usr/share/applications
+}
+
