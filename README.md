@@ -20,7 +20,7 @@ The list of programs these dotfiles are for, is below:
 * rofi
 * zathura
 
-They can be installed by calling `stow <folder>` or just `stow *` to install everything.
+They can be installed by calling `stow <folder>` or just `make install` to install everything.
 
 Additional dotfiles outside this repo:
 
