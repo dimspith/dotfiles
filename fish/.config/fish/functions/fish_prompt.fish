@@ -1,10 +1,10 @@
 function fish_prompt --description 'Write out the prompt'
-    if test "$status" -eq 0
+    if test $status -eq 0
         set_color green
-        echo -n "[]"
+        echo -n "[SC]"        
     else
         set_color red
-        echo -n "[]"
+        echo -n "[ER]"        
     end
     set_color purple
     echo -n "["(prompt_pwd)"]"

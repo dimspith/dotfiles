@@ -1,16 +1,7 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
-# Any items in the `env` entry below will be added as
-# environment variables. Some entries may override variables
-# set by alacritty itself.
-#env:
-  # TERM variable
-  #
-  # This value is used to set the `$TERM` environment variable for
-  # each instance of Alacritty. If it is not present, alacritty will
-  # check the local terminfo database and use `alacritty` if it is
-  # available, otherwise `xterm-256color` is used.
-  #TERM: xterm-256color
+env:
+  TERM: xterm-256color
 
 window:
   # Window dimensions (changes require restart)
@@ -101,16 +92,16 @@ tabspaces: 8
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Cascadia Mono
+    family: Bedstead Semi Condensed
     style:  Medium
   bold:
-    family: Cascadia Mono
+    family: Bedstead Semi Condensed
     style:  Bold
   italic:
-    family: Cascadia Mono 
+    family: Bedstead  Semi Condensed
     style:  Italic
 
-  size: 11.0
+  size: 12.5
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -176,6 +167,35 @@ colors:
     cyan:    '0x8ec07c'
     white:   '0xebdbb2'
 
+
+#colors:
+#  # Default colors
+#  primary:
+#    background: '0x170f0d'
+#    foreground: '0x746c48'
+#
+#  # Normal colors
+#  normal:
+#    black:   '0x392925'
+#    red:     '0x98724c'
+#    green:   '0x908f32'
+#    yellow:  '0xaa964c'
+#    blue:    '0x7b854e'
+#    magenta: '0x6b5644'
+#    cyan:    '0x5c5142'
+#    white:   '0xc8b55b'
+#
+#  # Bright colors
+#  bright:
+#    black:   '0x544b2e'
+#    red:     '0xaf652f'
+#    green:   '0xc3c13d'
+#    yellow:  '0xc8b55b'
+#    blue:    '0x70a16c'
+#    magenta: '0x98724c'
+#    cyan:    '0x778725'
+#    white:   '0xe4dc8c'
+
   # Indexed Colors
   #
   # The indexed colors include all colors from 16 to 256.
@@ -191,7 +211,7 @@ visual_bell:
   duration: 0
   color: '0xffffff'
 
-background_opacity: 0.9
+background_opacity: 1.0
 
 # Mouse bindings
 #

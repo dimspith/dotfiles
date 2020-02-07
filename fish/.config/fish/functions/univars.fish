@@ -4,7 +4,7 @@ function univars --description "Set universal variables"
     set -Ux GTK2_RC_FILES "$HOME/.gtkrc-2.0"
 
     # Default application values
-    set -Ux EDITOR "emacsclient -c -nw"
+    set -Ux EDITOR "nvim"
     set -Ux BROWSER "firefox"
     set -Ux TERMINAL "alacritty"
     set -gx PASSWORD_STORE_ENABLE_EXTENSIONS "true"

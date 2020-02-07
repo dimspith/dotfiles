@@ -42,6 +42,8 @@ function aliases --description "Alias configuration"
     alias bro="bro 2>/dev/null"
     alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; setxkbmap -option ctrl:nocaps"
     alias clip="xclip -selection clipboard"
+    alias please="sudo"
+    alias install="pacman -S"
 
     #Inits
     alias itray="stalonetray -c ~/.xmonad/stalonetrayrc &;disown"
