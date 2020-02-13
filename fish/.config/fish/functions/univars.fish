@@ -1,17 +1,17 @@
 function univars --description "Set universal variables"
     # GTK and QT settings
-    set -Ux QT_QPA_PLATFORMTHEME "qt5ct"
-    set -Ux GTK2_RC_FILES "$HOME/.gtkrc-2.0"
+    set -gx QT_QPA_PLATFORMTHEME "qt5ct"
+    set -gx GTK2_RC_FILES "$HOME/.gtkrc-2.0"
 
     # Default application values
-    set -Ux EDITOR "nvim"
-    set -Ux BROWSER "firefox"
-    set -Ux TERMINAL "alacritty"
+    set -gx EDITOR "nvim"
+    set -gx BROWSER "firefox"
+    set -gx TERMINAL "alacritty"
     set -gx PASSWORD_STORE_ENABLE_EXTENSIONS "true"
     set -gx TERM "xterm-256color"
 
     # Set the default configuration file folder
-    set -U XDG_CONFIG_HOME "$HOME/.config"
+    set -g XDG_CONFIG_HOME "$HOME/.config"
 
     #### PATH ####
     # Ruby binaries
