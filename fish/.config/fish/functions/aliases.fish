@@ -1,6 +1,7 @@
 function aliases --description "Alias configuration"
     #QOL
     alias v="nvim"
+    alias em="emacsclient -c -nw"
     alias ls="exa --group-directories-first --color always"
     alias la="ls -a"
     alias lal="la -l"
