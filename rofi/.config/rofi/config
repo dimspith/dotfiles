@@ -1,14 +1,15 @@
+rofi.theme: ~/.config/rofi/theme.rasi
 rofi.modi:                           window,run,ssh,drun
 
-rofi.width:                          40
-rofi.lines:                          10
+rofi.width:                          50
+rofi.lines:                          15
 rofi.columns:                        2
 
-rofi.font:                           Futura LT 14
+rofi.font:                           Bedstead Semicondensed 14
 
 rofi.bw:                             0
 rofi.eh:                             1
-rofi.location:                       1
+rofi.location:                       2
 rofi.padding:                        5
 rofi.yoffset:                        20
 rofi.xoffset:                        0
@@ -42,12 +43,12 @@ rofi.hide-scrollbar:                 false
 
 rofi.fullscreen:                     false
 rofi.dpi:                            -1
-rofi.threads:                        0
+rofi.threads:                        3
 rofi.scroll-method:                  1
 rofi.click-to-exit:                  true
 rofi.show-match:                     true
 
-rofi.max-history-size:               25
+rofi.disable-history                 true
 rofi.combi-hide-mode-prefix:         false
 rofi.matching-negate-char:           -
 
@@ -203,4 +204,3 @@ rofi.me-accept-entry:                MouseDPrimary
 
 "Accept hovered row with custom action" Set from: Default
 rofi.me-accept-custom:               Control+MouseDPrimary
-rofi.theme: /usr/share/rofi/themes/gruvbox-dark-hard.rasi
