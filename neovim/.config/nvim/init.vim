@@ -15,6 +15,7 @@ call plug#begin('~/.config/nvim/plugged')
      Plug 'tpope/vim-repeat'        " Add repeat functionality
      Plug 'morhetz/gruvbox'         " Gruvbox theme
      Plug 'jiangmiao/auto-pairs'    " Automatic pairs
+     Plug 'axvr/org.vim'            " Org mode plugin 
 call plug#end()
 "}}}
 "          _   _   _                 

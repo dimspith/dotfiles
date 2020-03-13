@@ -13,6 +13,7 @@ function aliases --description "Alias configuration"
     alias pdf="setsid zathura"
     alias grepc="grep --color=auto"
     alias grep="grep -i"
+    alias sc="echo $status"
 
     # git
     alias g="git"
