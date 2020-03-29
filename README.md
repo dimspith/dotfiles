@@ -6,21 +6,8 @@ To use it, clone this repo in `~/.dotfiles` with:
 
 ```console
 git clone https://gitlab.com/dimitrissp/dotfiles.git ~/.dotfiles
-```
 
-The list of programs these dotfiles are for, is below:
-
-* alacritty
-* zsh
-* i3
-* dunst
-* nvim
-* newsboat
-* polybar
-* rofi
-* zathura
-
-They can be installed by calling `stow <folder>` or just `make install` to install everything.
+They can be installed by calling `stow <folder>` for particular programs or just `make install` to install everything.
 
 Additional dotfiles outside this repo:
 
