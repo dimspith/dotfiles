@@ -92,16 +92,16 @@ tabspaces: 8
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Bedstead Semi Condensed
+    family: agave Nerd Font
     style:  Medium
   bold:
-    family: Bedstead Semi Condensed
+    family: agave Nerd Font
     style:  Bold
   italic:
-    family: Bedstead  Semi Condensed
+    family: agave Nerd Font
     style:  Italic
 
-  size: 12.5
+  size: 13.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -133,68 +133,37 @@ font:
   use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 
-# Colors (Gruvbox dark)
+# Colors (Sweet)
 colors:
   # Default colors
   primary:
-    # hard contrast: background = '0x1d2021'
-    background: '0x282828'
-    # soft contrast: background = '0x32302f'
-    foreground: '0xebdbb2'
+    background: '0x161925'
+    foreground: '0xf5f5f5'
 
   # Normal colors
   normal:
-    black:   '0x282828'
-    red:     '0xcc241d'
-    green:   '0x98971a'
-    yellow:  '0xd79921'
-    blue:    '0x458588'
-    magenta: '0xb16286'
-    cyan:    '0x689d6a'
-    white:   '0xa89984'
+    black:   '0x0c0e14'
+    red:     '0xff483c'
+    green:   '0x64dd17'
+    yellow:  '0xfec320'
+    blue:    '0x13a0bf'
+    magenta: '0x8f02f2'
+    cyan:    '0x00e8c6'
+    white:   '0xf5f5f5'
 
   # Bright colors
-  bright:
-    black:   '0x928374'
-    red:     '0xfb4934'
-    green:   '0xb8bb26'
-    yellow:  '0xfabd2f'
-    blue:    '0x83a598'
-    magenta: '0xd3869b'
-    cyan:    '0x8ec07c'
-    white:   '0xebdbb2'
-
-
-#colors:
-#  # Default colors
-#  primary:
-#    background: '0x170f0d'
-#    foreground: '0x746c48'
-#
-#  # Normal colors
-#  normal:
-#    black:   '0x392925'
-#    red:     '0x98724c'
-#    green:   '0x908f32'
-#    yellow:  '0xaa964c'
-#    blue:    '0x7b854e'
-#    magenta: '0x6b5644'
-#    cyan:    '0x5c5142'
-#    white:   '0xc8b55b'
-#
-#  # Bright colors
-#  bright:
-#    black:   '0x544b2e'
-#    red:     '0xaf652f'
-#    green:   '0xc3c13d'
-#    yellow:  '0xc8b55b'
-#    blue:    '0x70a16c'
-#    magenta: '0x98724c'
-#    cyan:    '0x778725'
-#    white:   '0xe4dc8c'
+  #bright:
+  #black:   '0x928374'
+  #red:     '0xfb4934'
+  #green:   '0xb8bb26'
+  #yellow:  '0xfabd2f'
+  #blue:    '0x83a598'
+  #magenta: '0xd3869b'
+  #cyan:    '0x8ec07c'
+  #white:   '0xebdbb2'
 
   # Indexed Colors
   #
@@ -211,7 +180,7 @@ visual_bell:
   duration: 0
   color: '0xffffff'
 
-background_opacity: 0.8
+background_opacity: 0.9
 
 # Mouse bindings
 #

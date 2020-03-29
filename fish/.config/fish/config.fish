@@ -40,5 +40,8 @@ function bex
     "$argv[1]"&;disown
 end
 
-# opam configuration
-source /home/dimitris/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+function covid
+    curl https://corona-stats.online/"$argv[1]"'?top=30&source=2&minimal=true'
+end
+
+. ~/.config/fish/z-fish/z.fish

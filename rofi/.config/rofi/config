@@ -1,17 +1,20 @@
-rofi.theme: ~/.config/rofi/theme.rasi
-rofi.modi:                           window,run,ssh,drun
+rofi.theme:                          ~/.config/rofi/theme.rasi
+rofi.modi:                           drun
 
 rofi.width:                          50
 rofi.lines:                          15
 rofi.columns:                        2
 
-rofi.font:                           Bedstead Semicondensed 14
+rofi.font:                           Mononoki 12
 rofi.bw:                             0
 rofi.eh:                             1
 rofi.location:                       2
 rofi.padding:                        5
-rofi.yoffset:                        20
+rofi.yoffset:                        0
 rofi.xoffset:                        0
+
+rofi.lazy-grab:                      true
+rofi.run_list_command:               "" 
 
 rofi.fixed-num-lines:                true
 rofi.show-icons:                     true
@@ -19,7 +22,7 @@ rofi.show-icons:                     true
 rofi.terminal:                       alacritty
 rofi.ssh-client:                     ssh
 rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
-rofi.run-command:                    {cmd}
+rofi.run-command:                    zsh -c '{cmd}'
 rofi.run-shell-command:              {terminal} -e {cmd}
 rofi.window-command:                 xkill -id {window}
 rofi.window-match-fields:            all

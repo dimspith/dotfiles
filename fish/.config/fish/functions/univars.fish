@@ -10,8 +10,15 @@ function univars --description "Set universal variables"
     set -gx PASSWORD_STORE_ENABLE_EXTENSIONS "true"
     set -gx TERM "xterm-256color"
 
-    # Set the default configuration file folder
-    set -g XDG_CONFIG_HOME "$HOME/.config"
+    ###########################################
+    # CLEANUP (configuration and local files) #
+    ###########################################
+    # Base directories
+    set -gx XDG_CONFIG_HOME "$HOME/.config"
+    set -gx XDG_DATA_HOME "$HOME/.local/share"
+    set -gx XDG_CACHE_HOME "$HOME/.cache"
+    #MISC
+    set -g LESSHISTFILE -
 
     #### PATH ####
     # Ruby binaries

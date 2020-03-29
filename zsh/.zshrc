@@ -6,13 +6,16 @@
 ### ZSH OPTIONS ###
 
 # Load needed modules
+zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle :compinstall filename '/home/dimitris/.zshrc'
+
 autoload -Uz compinit promptinit
 compinit
 promptinit
 
 bindkey -e
 
-PROMPT='%(?.%F{green}[].%B%F{red}[])%F{magenta}[%2~]%F{yellow}%#>%f '
+#PROMPT='%F{red}[%2~]%F{green}%#>%f '
 
 # Complete in menu style with root detection
 zstyle ':completion:*' menu select
@@ -36,21 +39,6 @@ export LESS_TERMCAP_so=$'\E[01;47;34m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
-#  ______ _  ___ _ __
-# |_  / _` |/ _ \ '_ \
-#  / / (_| |  __/ | | |
-# /___\__, |\___|_| |_|
-#     |___/
-
-# load zgen
-source "${HOME}/.zgen/zgen.zsh"
-
-# load plugins
-if ! zgen saved;
-then
-  zgen load "zdharma/fast-syntax-highlighting"
-  zgen save
-fi
 
 #       _ _
 #  __ _| (_) __ _ ___  ___  __
@@ -58,12 +46,6 @@ fi
 #| (_| | | | (_| \__ \  __/\__ \
 # \__,_|_|_|\__,_|___/\___||___/
 #
-
-FANCY_TXT_FORMAT="toilet -f mono9 --rainbow"
-YTDL_MUSIC="youtube-dl --no-playlist --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3"
-YTDL_VIDEO="youtube-dl --no-playlist --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --format webm"
-YTDL_MUSIC_PLAYLIST="youtube-dl --output \"$HOME/Music/Youtube Downloads/%(title)s.%(ext)s\" -x --audio-format mp3"
-GET_CLIPBOARD="\$(xclip -o)"
 
 #QOL
 alias v="nvim"
@@ -76,24 +58,12 @@ alias inst="pacman -S"
 alias mexec="chmod +x"
 alias purge="rm -rf"
 
-alias g="git"
-alias gb="git branch -a"
-alias gc="git checkout"
-alias gcb="git checkout -b"
-alias gdbr="git branch -d"
-alias gd="git diff"
-alias gac="git add -A && git commit -m "
 alias glog="git log --all --decorate --oneline --graph"
-alias gls="git log --stat"
-alias gr="git remote"
-alias grv="git remote -v"
-alias gss="git status -u -s"
 
 alias open="setsid xdg-open"
 alias pdf="setsid zathura"
 alias grepc="grep --color=auto"
 alias grep="grep -i"
-
 
 # CONFIGS
 alias rlconf="source ~/.zshrc"
@@ -107,10 +77,6 @@ alias vtm="nvim $HOME/.config/termite/config"
 alias val="nvim $HOME/.config/alacritty/alacritty.yml"
 
 # MISCELLANEOUS
-alias youtube="$FANCY_TXT_FORMAT MusicDL;$YTDL_MUSIC $GET_CLIPBOARD"
-alias youtubev="$FANCY_TXT_FORMAT VideoDL; $YTDL_VIDEO $GET_CLIPBOARD"
-alias youtubepl="$FANCY_TXT_FORMAT VideoDL; $YTDL_MUSIC_PLAYLIST $GET_CLIPBOARD"
-alias bro="bro 2>/dev/null"
 alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; setxkbmap -option ctrl:nocaps"
 alias clip="xclip -selection clipboard"
 
@@ -136,7 +102,19 @@ cheat() {
     curl cht.sh/$1
 }
 
-locdsk() {
+fdesk() {
    fd $1 /usr/share/applications
 }
 
+# load nix
+load-nix () {
+    . ~/.nix-profile/etc/profile.d/nix.sh
+}
+
+# OTHER
+
+# load starship
+eval "$(starship init zsh)"
+
+# load z
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
