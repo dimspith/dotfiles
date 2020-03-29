@@ -6,6 +6,7 @@ To use it, clone this repo in `~/.dotfiles` with:
 
 ```console
 git clone https://gitlab.com/dimitrissp/dotfiles.git ~/.dotfiles
+```
 
 They can be installed by calling `stow <folder>` for particular programs or just `make install` to install everything.
 

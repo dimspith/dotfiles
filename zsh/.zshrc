@@ -40,6 +40,11 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
+###################
+### Keybindings ###
+###################
+
+
 #       _ _
 #  __ _| (_) __ _ ___  ___  __
 # / _` | | |/ _` / __|/ _ \/ __|
