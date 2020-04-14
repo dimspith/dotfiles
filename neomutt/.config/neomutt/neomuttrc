@@ -1,0 +1,3 @@
+set realname='Dimitris Spythouris'
+set editor='echo \$EDITOR'
+set folder=~/mail

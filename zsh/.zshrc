@@ -15,12 +15,21 @@ promptinit
 
 bindkey -e
 
-#PROMPT='%F{red}[%2~]%F{green}%#>%f '
+# ZSH Prompt
+PROMPT='%F{red}[%2~]%F{green}%#>%f '
 
 # Complete in menu style with root detection
 zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
 
+# Tweak history
+HISTFILE=~/.zhistory
+HISTSIZE=SAVEHIST=1000
+HISTORY_IGNORE='(hist-search|cd ..|ls|la|l)'
+setopt sharehistory
+setopt extendedhistory
+
+# load modules
 setopt ALIASES
 setopt COMPLETE_ALIASES
 setopt auto_menu
@@ -30,20 +39,57 @@ setopt AUTO_CD
 setopt AUTO_LIST
 setopt correct_all
 
-# Colored man pages
-export LESS_TERMCAP_mb=$'\E[01;32m'
-export LESS_TERMCAP_md=$'\E[01;32m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;47;34m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;36m'
-export LESS=-r
+# load starship
+# eval "$(starship init zsh)"
 
-###################
+# load z
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+
+#===============#
+### FUNCTIONS ###
+#===============#
+
+# Replace a symlink with the file it's pointing to
+removelink() {
+f  [ -L "$1" ] && cp --remove-destination "$(readlink "$1")" "$1"
+}
+
+# Find a font using fc-list
+findfont() {
+    fc-list | grep --color=never "$1" | awk -F "/" '{print $NF}'
+}
+
+# Get cheatsheet for a command
+cheat() {
+    curl cht.sh/$1
+}
+
+# Find desktop files
+fdesk() {
+   fd $1 /usr/share/applications ~/.local/share/applications/
+}
+
+# Display covid-19 info
+covid() {
+    curl https://corona-stats.online/"$1"'?top=30&source=2&minimal=true'
+}
+
+# load nix
+load-nix () {
+    . ~/.nix-profile/etc/profile.d/nix.sh
+}
+
+# Search the last 300 commands in history
+hist-search() {
+    $(history -300 | awk '{$1="";print $0}' | sort | uniq -u | fzy)
+}
+
+#=================#
 ### Keybindings ###
-###################
+#=================#
 
+# Ctrl-r uses fzy to search history
+bindkey -s '^r' '^uhist-search\n'
 
 #       _ _
 #  __ _| (_) __ _ ___  ___  __
@@ -54,21 +100,28 @@ export LESS=-r
 
 #QOL
 alias v="nvim"
-alias ls="exa --group-directories-first --color always"
+alias em="emacsclient -c"
+alias ls="exa --group-directories-first --color always --icons"
 alias la="ls -a"
 alias lal="la -l"
 alias ll="ls -1"
 alias rm="rm -I"
 alias inst="pacman -S"
 alias mexec="chmod +x"
-alias purge="rm -rf"
+alias sz="du -h"
+alias j="z"
 
 alias glog="git log --all --decorate --oneline --graph"
+alias gcm="git commit -m"
+alias git_optimize 'git reflog expire --all --expire=now; \\
+                    git gc --prune=now --aggressive'
 
 alias open="setsid xdg-open"
 alias pdf="setsid zathura"
 alias grepc="grep --color=auto"
 alias grep="grep -i"
+alias fzff="fzf -e -i --nth -1 --delimiter='/' --preview='nvim {}'"
+alias bfzf="fzf -e -i --prompt='book_search>' --nth -1 --delimiter='/' --color=16" 
 
 # CONFIGS
 alias rlconf="source ~/.zshrc"
@@ -86,40 +139,9 @@ alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; se
 alias clip="xclip -selection clipboard"
 
 #Inits
-alias itray="stalonetray -c ~/.xmonad/stalonetrayrc &;disown"
-alias ipicom="picom --config ~/.xmonad/picom.conf -b"
+alias itray="stalonetray -c ~/.xmonad/stalonetray-config/stalonetrayrc &;disown"
+alias ipicom="picom --config ~/.xmonad/picom-config/picom.conf -b"
 alias rlmacs="pkill emacs && emacs --daemon"
 
-#====================
-# FUNCTIONS
-#====================
-# Replace a symlink with the file it's pointing to
-removelink() {
-  [ -L "$1" ] && cp --remove-destination "$(readlink "$1")" "$1"
-}
-
-# Find a font using fc-list
-findfont() {
-    fc-list | grep --color=never "$1" | awk -F "/" '{print $NF}'
-}
-
-cheat() {
-    curl cht.sh/$1
-}
-
-fdesk() {
-   fd $1 /usr/share/applications
-}
-
-# load nix
-load-nix () {
-    . ~/.nix-profile/etc/profile.d/nix.sh
-}
-
-# OTHER
-
-# load starship
-eval "$(starship init zsh)"
-
-# load z
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+# opam configuration
+test -r /home/dimitris/.opam/opam-init/init.zsh && . /home/dimitris/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

@@ -52,7 +52,6 @@ compositing-foreground = over
 compositing-overline = over
 compositing-underline = over
 compositing-border = over
-
 ;                 "           #
 ; mmmmm   mmm   mmm    m mm   #mmm    mmm    m mm
 ; # # #  "   #    #    #"  #  #" "#  "   #   #"  "
@@ -62,6 +61,7 @@ compositing-border = over
 [bar/mainbar]
 ;=== MONITOR AND WM ===================================
 monitor = 
+pin-workspaces = true
 monitor-fallback =
 monitor-strict = false
 override-redirect = false
@@ -82,8 +82,8 @@ line-color = #f00
 padding-left = 1
 padding-right = 1
 
-font-0 = Space Mono:style=Regular:pixelsize=12;1
-font-1 = Ubuntu Nerd Font:pixelsize=13;2
+font-0 = Space Mono:style=Regular:pixelsize=12;3
+font-1 = FantasqueSansMono Nerd Font:style=Regular:pixelsize=13;3
 
 ;=== MODULES ============================================
 module-margin-left = 0
@@ -176,7 +176,7 @@ label-urgent-padding = 1
 [module/memory]
 type = internal/memory
 interval = 1
-format = <label>
+format =  <label>
 format-background = ${colors.background}
 format-foreground = ${colors.red}
 label = %percentage_used%% / %gb_used%
@@ -188,7 +188,7 @@ label-font = 1
 [module/cpu]
 type = internal/cpu
 interval = 1
-format = <label>
+format =  <label>
 format-background = ${colors.background}
 format-foreground = ${colors.green}
 label = %percentage%%
@@ -236,7 +236,7 @@ label-discharging-foreground = ${colors.yellow}
 ;label-discharging-underline = ${colors.yellow}
 label-discharging-font = 1
 
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <ramp-capacity>  <label-discharging>
 ;format-discharging-underline = ${colors.yellow}
 
 poll-interval = 5

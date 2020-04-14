@@ -1,20 +1,18 @@
 # ==================
-# | i3 config file |
+# | i2 config file |
 # | Author: Risorg |
 # ==================
 
 # VARIABLES
-set $terminal = alacritty
 set $mod Mod4
 
 #  ▄▄▄▄           ▄      ▄      ▀
 # █▀   ▀  ▄▄▄   ▄▄█▄▄  ▄▄█▄▄  ▄▄▄    ▄ ▄▄    ▄▄▄▄   ▄▄▄
 # ▀█▄▄▄  █▀  █    █      █      █    █▀  █  █▀ ▀█  █   ▀
 #     ▀█ █▀▀▀▀    █      █      █    █   █  █   █   ▀▀▀▄
-#  ▀▄▄▄█▀ ▀█▄▄▀    ▀▄▄    ▀▄▄  ▄▄█▄▄  █   █  ▀█▄▀█  ▀▄▄▄▀
+# ▀▄▄▄█▀ ▀█▄▄▀    ▀▄▄    ▀▄▄  ▄▄█▄▄  █   █  ▀█▄▀█  ▀▄▄▄▀
 #                                           ▄  █
 #                                            ▀▀
-# Shortcut: <Settings>
 
 # Desktop layout <default|stacking|tabbed>
 workspace_layout default
@@ -115,15 +113,15 @@ bindsym $mod+minus scratchpad show
 
 # Application shortcuts
 bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+Return exec --no-startup-id $terminal
-bindsym $mod+Shift+e exec --no-startup-id $terminal -e nvim
+bindsym $mod+Return exec --no-startup-id alacritty 
+bindsym $mod+Shift+e exec --no-startup-id alacritty -e nvim
 bindsym $mod+Ctrl+m exec pavucontrol
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+b exec --no-startup-id firefox
 bindsym $mod+Shift+d exec rofi -show drun
-bindsym $mod+Shift+f exec --no-startup-id $terminal -e vifm
+bindsym $mod+Shift+f exec --no-startup-id alacritty -e vifm
 bindsym $mod+Shift+t exec --no-startup-id start-tor-browser
 
 # reload the configuration file
@@ -159,12 +157,11 @@ mode "$mode_system" {
 #                Shortcut: <Startup>
 
 # === Sound section - configuration. (Proceed with care) ===
-exec --no-startup-id start-pulseaudio-x11
 exec --no-startup-id volumeicon
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore;
+exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
 # exec --no-startup-id pamac-tray
 exec --no-startup-id kdeconnect-indicator
@@ -257,27 +254,6 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-
-# Color palette used for the terminal ( ~/.Xresources file )
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border

@@ -13,7 +13,8 @@
 call plug#begin('~/.config/nvim/plugged')
      Plug 'tpope/vim-surround'      " Surround text in vim
      Plug 'tpope/vim-repeat'        " Add repeat functionality
-     Plug 'whatyouhide/vim-gotham'  " Gotham theme
+     Plug 'mcchrish/nnn.vim'        " nnn as file manager
+     Plug 'chriskempson/base16-vim' " Base16 theme
      Plug 'jiangmiao/auto-pairs'    " Automatic pairs
      Plug 'axvr/org.vim'            " Org mode plugin 
 call plug#end()
@@ -35,33 +36,39 @@ if (has("termguicolors"))
 endif
 
 " Settings:
-syntax on " Enable syntax highlighting
-set background=dark " Set the background theme to dark
-colorscheme gotham256 " Set the colorscheme
-set nu relativenumber " Enable line (+ relative) numbers
-filetype plugin indent on " Enable plugin indentation
-set autoindent smartindent cindent " Set code autoindentation
-set cursorline " Highlight current line
-set noshowmode " Don't show the indicator in insert mode.
-set tabstop=4 expandtab smarttab shiftwidth=4 " One TAB appears to be 4 spaces
-set splitbelow splitright " Splits open at the bottom and right
+syntax on                                " Enable syntax highlighting
+set background=dark                      " Set the background theme to dark
+colorscheme base16-default-dark          " Set the colorscheme
+set nu relativenumber                    " Enable line (+ relative) numbers
+filetype plugin indent on                " Enable plugin indentation
+set autoindent cindent                   " Set code autoindentation
+set cursorline                           " Highlight current line
+set noshowmode                           " Don't show the indicator in insert mode.
+set tabstop=4 shiftwidth=4               " One TAB appears to be 4 spaces
+set expandtab smarttab                   " Expand tabs into spaces and be smart about it 
+set splitbelow splitright                " Splits open at the bottom and right
 set completeopt=longest,menuone,noselect " Improve completion menu
-set textwidth=80 " Set max text in a line to 80
-set mouse=nicr " Smooth mouse scrolling
+set mouse=nicr                           " Smooth mouse scrolling
+set ignorecase smartcase                 " Ignore the case of letters only if no Upper case is present
+set incsearch                            " Show search while typing
+set showmatch                            " Show matching brackets when text indicator is over them
+set nohlsearch                           " Don't highlight matches after the search ends 
+set inccommand=split                     " Live substitution preview 
+set magic                                " Regular expressions on search
+set lazyredraw                           " Don't redraw while executing macros
+set undofile                             " File with undo history
 
 " Set the backup/undo/swap files location in /tmp
 set backupdir=/tmp//
 set directory=/tmp//
 set undodir=/tmp//
 
-set ignorecase smartcase " Ignore the case of letters only if no Upper case is present
-set incsearch " Show search while typing
-set showmatch " Show matching brackets when text indicator is over them
-
-"Wildmode
+" Wildmode
 set wildmenu
 set wildmode=list:longest,full
 
+" Status bar
+set statusline=%F%m%r%h%w\ [%04l,%04v]\-[%p%%]\ [%{&ff}]\-%y
 "}}}
 "                              _                 
 "  _ __ ___   __ _ _ __  _ __ (_)_ __   __ _ ___ 
@@ -71,9 +78,19 @@ set wildmode=list:longest,full
 "                 |_|   |_|            |___/     
 "{{{
 " Set the map leader to , (used in global maps)
-let mapleader="," 
+let mapleader=" " 
 " Set the local map leader to , (used in specific autocommands for compatibility reasons)
-let localleader=","
+let localleader=" "
+
+" Navigate to start or end of screen
+nnoremap K H
+nnoremap J L
+
+" Perform :help on the selected word
+noremap <F1> K
+
+" Unmap q:
+nmap q: <nop>
 
 "Navigate to start or end of line
 nnoremap H ^
@@ -93,10 +110,6 @@ vnoremap k gk
 vnoremap ^ g^
 vnoremap $ g$
 
-" Navigate to start or end of screen
-nnoremap K H
-nnoremap J L
-
 " Shortcutting split navigation, saving a keypress:
 noremap <A-h> <C-w>h
 noremap <A-j> <C-w>j
@@ -104,26 +117,33 @@ noremap <A-k> <C-w>k
 noremap <A-l> <C-w>l
 
 " Save keystrokes on save/quit
-nnoremap <space>w :w<cr>
-nnoremap <space>q :q<cr>
-nnoremap <space>eq :q!<cr>
-nnoremap <space>ew :wq<cr>
+nnoremap <leader>w :w<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>eq :q!<cr>
+nnoremap <leader>ew :wq<cr>
 
-" Perform :help on the selected word
-noremap <F1> K
+" Split keybindings
+nnoremap <leader>sv :vsplit<cr>
+nnoremap <leader>sv :split<cr>
+
+" Tab keybindings
+nnoremap <leader>tn :tabnew<cr>
+nnoremap <leader>tc :tabclose<cr>
+
+" Buffer keybindings
+nnoremap <leader>bq :bd!<cr>
+nnoremap <leader>bn :bn<cr>
+nnoremap <leader>bp :bp<cr>
 
 " Open your vimrc file in a split window for quick edits and reload it
-nnoremap <leader>ev :vsp $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>ve :vsp $MYVIMRC<cr>
+nnoremap <leader>vs :source $MYVIMRC<cr>
 
-" Unmap q:
-nmap q: <nop>
-
-" Fold an entire paragraph of text
-nnoremap <leader>fp zfip
+" Find a file with spc-f
+nnoremap <leader>f :NnnPicker<cr>
 
 " Capitalize the current word in insert mode
-inoremap <c-u> <esc>viwUea 
+inoremap <A-u> <esc>viwUea 
 
 " Disable highlighting
 nnoremap <space>h :noh<cr>
@@ -152,6 +172,9 @@ ino <Right> <nop>
 "  \__,_|\__,_|\__\___/ \___|_| |_| |_|\__,_|
 "{{{
 
+" Reload the file when focus is regained
+autocmd FocusGained * :checktime
+
 " For vim files
 augroup filetype_vim
      autocmd!
@@ -170,15 +193,9 @@ augroup END
 " For c files
 augroup filetype_c
 	 autocmd!
-	 autocmd FileType c nnoremap <buffer> <F5> :w<cr> :!gcc -ansi -pedantic -Wall -g % -o %:r<cr>
-     autocmd FileType c nnoremap <buffer> <F6> :!./%:r<cr>
-     autocmd FileType c inoremap <buffer> <leader>c I/*<Esc>A*/<Esc>
-     autocmd FileType c inoremap <buffer> <leader>br {<cr>}<Esc>O
-     autocmd FileType c iabbrev <buffer> pprintf printf("");<Esc>F"i
-     autocmd FileType c iabbrev <buffer> iff if()<cr>{<cr><cr>}<Esc>3kf)i
-     autocmd FileType c iabbrev <buffer> ffor for()<cr>{<cr><cr>}<Esc>3kf)i
-     autocmd FileType c iabbrev <buffer> wwhile while()<cr>{<cr><cr>}<Esc>3kf)hi
-     autocmd FileType c iabbrev <buffer> incl #include <><Esc>i
+	 autocmd FileType c nnoremap <buffer> <F5> :w<cr> :!gcc -ansi -pedantic -Wall -static -g % -o %:r<cr>
+         autocmd FileType c nnoremap <buffer> <F6> :!./%:r<cr>
+         autocmd FileType c set tabstop=8 shiftwidth=8
 augroup END
 
 " For html files
@@ -217,4 +234,22 @@ augroup END
 augroup filetype_bash
     autocmd FileType bash nnoremap <buffer> <F5> :w<cr> :!./%<cr> 
 augroup END
+"}}}
+"  __                  _   _                 
+" / _|_   _ _ __   ___| |_(_) ___  _ __  ___ 
+"| |_| | | | '_ \ / __| __| |/ _ \| '_ \/ __|
+"|  _| |_| | | | | (__| |_| | (_) | | | \__ \
+"|_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+"{{{
+
+" Clear whitespace
+function! StripTrailingWhitespace()
+  if !&binary && &filetype != 'diff'
+    normal mz
+    normal Hmy
+    %s/\s\+$//e
+    normal 'yz<CR>
+    normal `z
+  endif
+endfunction
 "}}}

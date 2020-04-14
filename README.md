@@ -1,6 +1,6 @@
 # Dotfiles
 
-I use [GNU/stow](https://www.gnu.org/software/stow/) to manage my dotfiles in this repo.
+I use [GNU/stow](https://www.gnu.org/software/stow/) to manage my dotfiles.
 
 To use it, clone this repo in `~/.dotfiles` with:
 
@@ -8,7 +8,7 @@ To use it, clone this repo in `~/.dotfiles` with:
 git clone https://gitlab.com/dimitrissp/dotfiles.git ~/.dotfiles
 ```
 
-They can be installed by calling `stow <folder>` for particular programs or just `make install` to install everything.
+They can be installed by calling `stow <folder>` for particular packages or just `make install` to install everything.
 
 Additional dotfiles outside this repo:
 

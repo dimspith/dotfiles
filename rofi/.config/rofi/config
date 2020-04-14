@@ -15,9 +15,11 @@ rofi.xoffset:                        0
 
 rofi.lazy-grab:                      true
 rofi.run_list_command:               "" 
+rofi.drun_use_desktop_cache          true
+rofi.drun_reload_desktop_cache       true
 
 rofi.fixed-num-lines:                true
-rofi.show-icons:                     true
+rofi.show-icons:                     false
 
 rofi.terminal:                       alacritty
 rofi.ssh-client:                     ssh
