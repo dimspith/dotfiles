@@ -16,7 +16,7 @@ promptinit
 bindkey -e
 
 # ZSH Prompt
-PROMPT='%F{red}[%2~]%F{green}%#>%f '
+PROMPT='%B%F{blue}[%2~]%F{green}%#>%f%b '
 
 # Complete in menu style with root detection
 zstyle ':completion:*' menu select
@@ -75,9 +75,9 @@ covid() {
 }
 
 # load nix
-load-nix () {
-    . ~/.nix-profile/etc/profile.d/nix.sh
-}
+#load-nix () {
+#    . ~/.nix-profile/etc/profile.d/nix.sh
+#}
 
 # Search the last 300 commands in history
 hist-search() {
@@ -100,7 +100,6 @@ bindkey -s '^r' '^uhist-search\n'
 
 #QOL
 alias v="nvim"
-alias em="emacsclient -c"
 alias ls="exa --group-directories-first --color always --icons"
 alias la="ls -a"
 alias lal="la -l"
@@ -122,6 +121,7 @@ alias grepc="grep --color=auto"
 alias grep="grep -i"
 alias fzff="fzf -e -i --nth -1 --delimiter='/' --preview='nvim {}'"
 alias bfzf="fzf -e -i --prompt='book_search>' --nth -1 --delimiter='/' --color=16" 
+alias vf='nvim $(fzff)'
 
 # CONFIGS
 alias rlconf="source ~/.zshrc"
@@ -137,11 +137,15 @@ alias val="nvim $HOME/.config/alacritty/alacritty.yml"
 # MISCELLANEOUS
 alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; setxkbmap -option ctrl:nocaps"
 alias clip="xclip -selection clipboard"
+alias hc="herbstclient"
 
 #Inits
 alias itray="stalonetray -c ~/.xmonad/stalonetray-config/stalonetrayrc &;disown"
 alias ipicom="picom --config ~/.xmonad/picom-config/picom.conf -b"
 alias rlmacs="pkill emacs && emacs --daemon"
+alias initmacs="emacs --daemon;setsid emacsclient -c;exit"
+alias xeph="Xephyr -br -ac -noreset -screen 1280x720 :1"
+alias inxeph="DISPLAY=:1"
 
 # opam configuration
 test -r /home/dimitris/.opam/opam-init/init.zsh && . /home/dimitris/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

@@ -1,8 +1,0 @@
-# Don't print a newline at the start of the prompt
-add_newline = false
-
-# Wait 10 milliseconds for starship to check files under the current directory
-scan_timeout = 10
-
-# Shortest duration of command to show time for (ms)
-min_time = 1000

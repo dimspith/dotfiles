@@ -76,6 +76,8 @@ qemu
 virt-manager
 ebtables
 
+xorg-server-xephyr
+
 
 [yay]
 drawio-desktop-bin

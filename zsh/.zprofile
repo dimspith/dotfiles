@@ -48,4 +48,4 @@ export PATH="$HOME/.nimble/bin:$PATH"
 export PATH="$HOME/MyPrograms/go/bin:$PATH"
 
 # load nix
-. ~/.nix-profile/etc/profile.d/nix.sh
+#. ~/.nix-profile/etc/profile.d/nix.sh

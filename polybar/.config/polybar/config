@@ -5,37 +5,19 @@
 ; For info on how to edit the
 ; polybar config visit 
 ; https://github.com/polybar/polybar/wiki/Configuration
-;
-; This config was made for use with
-; i3 and uses these fonts:
-; - Futura LT: Condensed (Text)
-; - Ubuntu Nerd Font (Icons)
 
 [colors]
-
-; Google Dark
-;black      = #1d1f21
-;red        = #cc342b
-;green      = #198844
-;yellow     = #fba922
-;blue       = #3971ed
-;magenta    = #a36ac7
-;cyan       = #3971ed
-;white      = #c5c8c6
-;background = ${colors.black}
-;foreground = #ffffff
-
-;NumixDarkest
-foreground = #E0E0E0
-background = #282828
-black      = #555555
-red        = #9c3528
-green      = #61bc3b
-yellow     = #f3b43a
-blue       = #0d68a8
-magenta    = #9e5e83
-cyan       = #288e9c
-white      = #a2a2a2
+;Base16
+foreground = #d0d0d0
+background = #151515
+black      = #151515
+red        = #ac4142
+green      = #90a959
+yellow     = #f4bf75
+blue       = #6a9fb5
+magenta    = #aa759f
+cyan       = #75b5aa
+white      = #d0d0d0
 
 
 [global/wm]
@@ -60,10 +42,10 @@ compositing-border = over
 
 [bar/mainbar]
 ;=== MONITOR AND WM ===================================
-monitor = 
+monitor = ${env:MONITOR}
+monitor-strict = false
 pin-workspaces = true
 monitor-fallback =
-monitor-strict = false
 override-redirect = false
 wm-restack = i3
 
@@ -104,7 +86,60 @@ tray-offset-x = 0
 tray-offset-y = 0
 tray-padding = 1
 tray-scale = 1.0
-enable-ipc = false
+enable-ipc = true
+
+
+                            
+ ; #      ""#                 
+ ; # mm     #   m     m mmmmm 
+ ; #"  #    #   "m m m" # # # 
+ ; #   #    #    #m#m#  # # # 
+ ; #   #    "mm   # #   # # # 
+                            
+[bar/hlwm]
+;=== MONITOR AND WM ===================================
+monitor = ${env:MONITOR}
+monitor-strict = false
+pin-workspaces = true
+
+;=== BAR ATTRIBUTES ==================================
+bottom = false
+fixed-center = true
+width = 100%-14
+height = 24
+offset-x = 7
+offset-y = 7
+background = ${colors.background}
+foreground = ${colors.foreground}
+radius = 5
+line-size = 1
+line-color = #f00
+padding-left = 3
+padding-right = 3
+
+font-0 = Space Mono:style=Regular:pixelsize=12;3
+font-1 = VictorMono Nerd Font:style=Regular:pixelsize=13;3
+
+;=== MODULES ============================================
+module-margin-left = 1
+module-margin-right = 1
+module-padding = 0
+modules-left = ewmh
+modules-center = 
+modules-right = cpu memory keyboard battery date
+separator = |
+locale =
+
+;=== SYSTEM TRAY CONFIGURATION ================================
+tray-position = center
+tray-detached = false
+tray-maxsize = 21
+tray-background = ${colors.background}
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 1
+tray-scale = 1.0
+enable-ipc = true
 
 ;                   #         ""#
 ; mmmmm   mmm    mmm#  m   m    #     mmm    mmm
@@ -112,6 +147,49 @@ enable-ipc = false
 ; # # #  #   #  #   #  #   #    #    #""""   """m
 ; # # #  "#m#"  "#m##  "mm"#    "mm  "#mm"  "mmm"
 ;=======================================================
+
+[module/ewmh]
+type = internal/xworkspaces
+
+pin-workspaces = false
+enable-click = true
+enable-scroll = false
+
+icon-0 = 1;
+icon-1 = 2;
+icon-2 = 3;
+icon-3 = 4;
+icon-4 = 5;
+icon-5 = 6;
+icon-6 = 7;
+icon-7 = 8;
+icon-default = 
+
+format = <label-state>
+label-monitor = %name%
+
+label-active = %name%
+label-active-foreground = ${colors.foreground}
+label-active-background = ${colors.background}
+label-active-underline= #6790eb
+label-active-padding = 1
+
+label-occupied = %name%
+label-occupied-background = ${colors.background}
+label-occupied-padding = 1
+
+label-urgent = %name%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.alert}
+label-urgent-underline = ${colors.alert}
+label-urgent-padding = 1
+
+label-empty = %name%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 1
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
 [module/date]
 type = internal/date
 interval = 1.0
@@ -236,12 +314,12 @@ label-discharging-foreground = ${colors.yellow}
 ;label-discharging-underline = ${colors.yellow}
 label-discharging-font = 1
 
-format-discharging = <ramp-capacity>  <label-discharging>
+format-discharging = <ramp-capacity><label-discharging>
 ;format-discharging-underline = ${colors.yellow}
 
 poll-interval = 5
 time-format = %H:%M
-label-full = Fully charged
+label-full = Full
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -271,3 +349,5 @@ label-maxlen = 50
 label-empty = Nil
 label-empty-foreground = ${colors.foreground}
 label-font = 1
+
+#vim:ft=dosini
