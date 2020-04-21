@@ -69,14 +69,13 @@ alsa-utils
 alsa-plugins
 neomutt
 i3-gaps
-openbox
-tint2
 
 qemu
 virt-manager
 ebtables
-
 xorg-server-xephyr
+
+herbstluftwm
 
 
 [yay]
