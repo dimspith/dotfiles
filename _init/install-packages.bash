@@ -53,13 +53,17 @@ then
             echo "\e[36m${REPOS_NOT_INSTALLED[@]}\e[0m"
             echo -e "\e[34mAUR:\e[0m"
             echo "\e[36m${AUR_NOT_INSTALLED[@]}"
+        elif [[ $INPUT =~ ^[Yy]$ ]]   
+        then
+            if sudo pacman -Sq "${REPOS_NOT_INSTALLED[@]}";
+            then
+                echo -e "\e[30;42m All done! :)\e[0m"
+            else
+                echo -e "\e[30;41m Installation cancelled.. :(\e[0m"
+            fi
         fi
     done
+else
+    echo "All packages are installed!"
 fi
 
-if sudo pacman -Sq "${REPOS_NOT_INSTALLED[@]}";
-then
-    echo -e "\e[30;42m All done! :)\e[0m"
-else
-    echo -e "\e[30;41m Installation cancelled.. :(\e[0m"
-fi
