@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo -e "\e[0;34mChecking if emacs is installed..\e[0m"
 if [ -d ~/.emacs.d/ ]; then
     echo -e "\e[0;33mEmacs is already installed!\e[0m"
 else
@@ -11,7 +10,6 @@ else
 
 fi
 
-echo -e "\e[0;34mChecking if XMonad is installed..\e[0m"
 if [ -d ~/.xmonad/ ]; then
     echo -e "\e[0;33mXMonad is already installed!\e[0m"
 else
