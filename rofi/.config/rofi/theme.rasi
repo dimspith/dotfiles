@@ -1,42 +1,38 @@
-/**
- * User: qball
- * Copyright: Dave Davenport
- */
 * {
-    text-color:  #ffeedd;
-    background-color:  rgba(0,0,0,0);
-    dark: #1c1c1c;
+    text-color:  #d0d0d0;
+    background-color:  #151515;
+    dark: #151515;
     // Black
-    black:       #3d352a;
-    lightblack:  #554444;
+    black:       #151515;
+    lightblack:  #505050;
     //
     // Red
-    red:         #cd5c5c;
-    lightred:    #cc5533;
+    red:         #ac4142;
+    lightred:    #ac4142;
     //
     // Green
-    green:       #86af80;
-    lightgreen:  #88cc22;
+    green:       #90a959;
+    lightgreen:  #90a959;
     //
     // Yellow
-    yellow:      #e8ae5b;
-    lightyellow:     #ffa75d;
+    yellow:      #f4bf75;
+    lightyellow: #f4bf75;
     //
     // Blue
-    blue:      #6495ed;
-    lightblue:     #87ceeb;
+    blue:      #6a9fb5;
+    lightblue: #6a9fb5;
     //
     // Magenta
-    magenta:      #deb887;
-    lightmagenta:     #996600;
+    magenta:      #aa759f;
+    lightmagenta: #aa759f;
     //
     // Cyan
-    cyan:      #b0c4de;
-    lightcyan:     #b0c4de;
+    cyan:      #75b5aa;
+    lightcyan: #75b5aa;
     //
     // White
-    white:      #bbaa99;
-    lightwhite:     #ddccbb;
+    white:      #d0d0d0;
+    lightwhite: #f5f5f5;
     //
     // Bold, Italic, Underline
     highlight:     bold #ffffff;
