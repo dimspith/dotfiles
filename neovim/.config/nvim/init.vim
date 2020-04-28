@@ -14,7 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
      Plug 'tpope/vim-surround'      " Surround text in vim
      Plug 'tpope/vim-repeat'        " Add repeat functionality
      Plug 'mcchrish/nnn.vim'        " nnn as file manager
-     Plug 'chriskempson/base16-vim' " Base16 theme
+     Plug 'srcery-colors/srcery-vim' " Srcery theme
      Plug 'jiangmiao/auto-pairs'    " Automatic pairs
      Plug 'axvr/org.vim'            " Org mode plugin 
 call plug#end()
@@ -38,7 +38,7 @@ endif
 " Settings:
 syntax on                                " Enable syntax highlighting
 set background=dark                      " Set the background theme to dark
-colorscheme base16-default-dark          " Set the colorscheme
+colorscheme srcery                       " Set the colorscheme
 set nu relativenumber                    " Enable line (+ relative) numbers
 filetype plugin indent on                " Enable plugin indentation
 set autoindent cindent                   " Set code autoindentation
