@@ -6,7 +6,7 @@
 ### ZSH OPTIONS ###
 
 # Load needed modules
-zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle ':completion:*' completer _complete _ignored 
 zstyle :compinstall filename '/home/dimitris/.zshrc'
 
 autoload -Uz compinit promptinit
@@ -16,7 +16,7 @@ promptinit
 bindkey -e
 
 # ZSH Prompt
-PROMPT='%B%F{blue}[%2~]%F{green}%#>%f%b '
+PROMPT='%B%F{red}[%2~]%F{yellow}%#>%f%b '
 
 # Complete in menu style with root detection
 zstyle ':completion:*' menu select
@@ -109,6 +109,7 @@ alias inst="pacman -S"
 alias mexec="chmod +x"
 alias sz="du -h"
 alias j="z"
+alias jjar="java -jar"
 
 alias glog="git log --all --decorate --oneline --graph"
 alias gcm="git commit -m"
