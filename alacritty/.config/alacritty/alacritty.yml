@@ -40,16 +40,16 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Jetbrains Mono
+    family: agave
     style:  Regular
   bold:
-    family: Jetbrains Mono
+    family: agave
     style:  Bold
   italic:
-    family: Jetbrains Mono
+    family: agave
     style:  Italic
 
-  size: 7
+  size: 8
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -74,30 +74,30 @@ font:
 colors:
   # Default colors
   primary:
-    background: '0x151515'
-    foreground: '0xd0d0d0'
+    background: '0x1c1b19'
+    foreground: '0xd0bfa1'
 
   # Normal colors
   normal:
-    black:   '0x151515'
-    red:     '0xac4142'
-    green:   '0x90a959'
-    yellow:  '0xf4bf75'
-    blue:    '0x6a9fb5'
-    magenta: '0xaa759f'
-    cyan:    '0x75b5aa'
-    white:   '0xd0d0d0'
+    black:   '0x1c1b19'
+    red:     '0xef2f27'
+    green:   '0x519f50'
+    yellow:  '0xfbb829'
+    blue:    '0x2c78bf'
+    magenta: '0xe02c6d'
+    cyan:    '0x0aaeb3'
+    white:   '0xd0bfa1'
 
   # Bright colors
   bright:
-    black:   '0x505050'
-    red:     '0xac4142'
-    green:   '0x90a959'
-    yellow:  '0xf4bf75'
-    blue:    '0x6a9fb5'
-    magenta: '0xaa759f'
-    cyan:    '0x75b5aa'
-    white:   '0xf5f5f5'
+    black:   '0x918175'
+    red:     '0xf75341'
+    green:   '0x98bc37'
+    yellow:  '0xfed06e'
+    blue:    '0x68a8e4'
+    magenta: '0xe02c6d'
+    cyan:    '0x0aaeb3'
+    white:   '0xfce8c3'
 
 # Disable visual bell
 visual_bell:
@@ -105,8 +105,7 @@ visual_bell:
   duration: 0
   color: '0xffffff'
 
-# Opaque background
-background_opacity: 1.0
+background_opacity: 0.9
 
 mouse:
   # Click settings
