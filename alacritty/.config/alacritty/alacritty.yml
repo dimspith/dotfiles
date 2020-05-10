@@ -31,7 +31,7 @@ window:
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
-  history: 10000
+  history: 1000
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
@@ -40,16 +40,16 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: agave
+    family: Cascadia Code
     style:  Regular
   bold:
-    family: agave
+    family: Cascadia Code
     style:  Bold
   italic:
-    family: agave
+    family: Cascadia Code
     style:  Italic
 
-  size: 8
+  size: 7
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
