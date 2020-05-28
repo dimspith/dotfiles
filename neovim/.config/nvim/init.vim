@@ -11,12 +11,12 @@
 "{{{
 "==== PLUGINS ====
 call plug#begin('~/.config/nvim/plugged')
-     Plug 'tpope/vim-surround'      " Surround text in vim
-     Plug 'tpope/vim-repeat'        " Add repeat functionality
-     Plug 'mcchrish/nnn.vim'        " nnn as file manager
+     Plug 'tpope/vim-surround'       " Surround text in vim
+     Plug 'tpope/vim-repeat'         " Add repeat functionality
+     Plug 'junegunn/goyo.vim'        " Distraction-free writing mode
      Plug 'srcery-colors/srcery-vim' " Srcery theme
-     Plug 'jiangmiao/auto-pairs'    " Automatic pairs
-     Plug 'axvr/org.vim'            " Org mode plugin 
+     Plug 'axvr/org.vim'             " Org mode plugin 
+     Plug 'zah/nim.vim'              " Nim Language support
 call plug#end()
 "}}}
 "          _   _   _                 
@@ -38,6 +38,7 @@ endif
 " Settings:
 syntax on                                " Enable syntax highlighting
 set background=dark                      " Set the background theme to dark
+set nocompatible                         " Disable vim compatibility
 colorscheme srcery                       " Set the colorscheme
 set nu relativenumber                    " Enable line (+ relative) numbers
 filetype plugin indent on                " Enable plugin indentation
@@ -63,6 +64,16 @@ set backupdir=/tmp//
 set directory=/tmp//
 set undodir=/tmp//
 
+" Tweak netrw (file browser)
+let g:netrw_banner=0        " Disable banner
+let g:netrw_browse_split=4  " Open in prior window
+let g:netrw_altv=1          " Open splits to the right
+let g:netrw_liststyle=3     " Tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+
+" When looking for a file, recurse into all subdirectories
+set path+=**
+
 " Wildmode
 set wildmenu
 set wildmode=list:longest,full
@@ -81,6 +92,12 @@ set statusline=%F%m%r%h%w\ [%04l,%04v]\-[%p%%]\ [%{&ff}]\-%y
 let mapleader=" " 
 " Set the local map leader to , (used in specific autocommands for compatibility reasons)
 let localleader=" "
+
+" :MakeTags creates a tag file using ctags (if installed)
+" ^]  to jump to tag
+" g^] to jump to ambiguous tag
+" ^t to jump back up the tag stack
+command! MakeTags !ctags -R .
 
 " Navigate to start or end of screen
 nnoremap K H
@@ -140,7 +157,7 @@ nnoremap <leader>ve :vsp $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<cr>
 
 " Find a file with spc-f
-nnoremap <leader>f :NnnPicker<cr>
+nnoremap <leader>f :find
 
 " Capitalize the current word in insert mode
 inoremap <A-u> <esc>viwUea 
@@ -181,15 +198,6 @@ augroup filetype_vim
      autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-" For go files
-augroup filetype_go
-     autocmd!
-     autocmd FileType go nnoremap <buffer> <F5> :w<cr> :!go build %<cr>
-     autocmd FileType go nnoremap <buffer> <F6> :!./%:r<cr>
-     autocmd FileType go nnoremap <buffer> <F7> :w<cr> :!go run %<cr>
-     autocmd FileType go inoremap <buffer> <leader>pr fmt.Println()<Left>
-augroup END
-
 " For c files
 augroup filetype_c
 	 autocmd!
@@ -210,24 +218,6 @@ augroup filetype_html
      autocmd FileType html inoremap <buffer> <leader>bd <body><cr></body><Esc>O
      autocmd FileType html inoremap <buffer> <leader>tit <title></title><esc>F<i
 	 autocmd FileType html nnoremap <buffer> <buffer> <leader>f zfit
-augroup END
-
-" For Python files
-augroup filetype_python
-    autocmd FileType python nnoremap <buffer> <F5> :w<cr> :!python %<cr>
-    autocmd FileType python inoremap <buffer> <leader>p print("")<Esc>hi
-augroup END
-
-" For Ruby Files
-augroup filetype_ruby
-    autocmd FileType ruby set tabstop=2 expandtab smarttab shiftwidth=2
-    autocmd FileType ruby nnoremap <buffer> <F5> :w<cr> :!ruby %<cr>
-augroup END
-
-" For Haskell Files
-augroup filetype_haskell
-    autocmd FileType haskell nnoremap <buffer> <F5> :w<cr> :!ghc -Wall -O2 --make -threaded -o %:r %<cr>
-    autocmd FileType haskell nnoremap <buffer> <F6> :!./%:r<cr>
 augroup END
 
 " For Bash scripts

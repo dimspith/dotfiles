@@ -103,18 +103,15 @@ alias v="nvim"
 alias ls="exa --group-directories-first --color always --icons"
 alias la="ls -a"
 alias lal="la -l"
+alias lla="la -l"
 alias ll="ls -1"
 alias rm="rm -I"
-alias inst="pacman -S"
 alias mexec="chmod +x"
-alias sz="du -h"
 alias j="z"
-alias jjar="java -jar"
 
 alias glog="git log --all --decorate --oneline --graph"
-alias gcm="git commit -m"
-alias git_optimize 'git reflog expire --all --expire=now; \\
-                    git gc --prune=now --aggressive'
+alias git_optimize="git reflog expire --all --expire=now; \\
+                    git gc --prune=now --aggressive"
 
 alias open="setsid xdg-open"
 alias pdf="setsid zathura"
@@ -139,6 +136,7 @@ alias val="nvim $HOME/.config/alacritty/alacritty.yml"
 alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; setxkbmap -option ctrl:nocaps"
 alias clip="xclip -selection clipboard"
 alias hc="herbstclient"
+alias rbackup="rsync -arvPz --delete"
 
 #Inits
 alias itray="stalonetray -c ~/.xmonad/stalonetray-config/stalonetrayrc &;disown"
@@ -147,6 +145,3 @@ alias rlmacs="pkill emacs && emacs --daemon"
 alias initmacs="emacs --daemon;setsid emacsclient -c;exit"
 alias xeph="Xephyr -br -ac -noreset -screen 1280x720 :1"
 alias inxeph="DISPLAY=:1"
-
-# opam configuration
-test -r /home/dimitris/.opam/opam-init/init.zsh && . /home/dimitris/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

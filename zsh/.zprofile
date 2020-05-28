@@ -30,8 +30,6 @@ export LESSHISTFILE=-
 
 # ZSH path fix
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
-# Ruby binaries
-export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
 # cabal binaries
 export PATH="$HOME/.cabal/bin:$PATH"
 # Rust binaries
@@ -46,6 +44,8 @@ export PATH="$HOME/.luarocks/bin:$PATH"
 export PATH="$HOME/.nimble/bin:$PATH"
 # go
 export PATH="$HOME/MyPrograms/go/bin:$PATH"
+# Custom scripts
+export PATH="$HOME/.scripts:$PATH"
 
 # load nix
 #. ~/.nix-profile/etc/profile.d/nix.sh

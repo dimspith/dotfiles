@@ -40,13 +40,13 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Cascadia Code
+    family: Inconsolata
     style:  Regular
   bold:
-    family: Cascadia Code
+    family: Inconsolata
     style:  Bold
   italic:
-    family: Cascadia Code
+    family: Inconsolata
     style:  Italic
 
   size: 7

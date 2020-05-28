@@ -7,9 +7,3 @@ link:
 
 install-deps:
 	@sudo pacman -Sq --needed stow 2>/dev/null
-
-install-external:
-	@_init/install-external.bash
-
-install-packages:
-	@_init/install-packages.bash
