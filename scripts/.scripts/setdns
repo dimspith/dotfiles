@@ -1,0 +1,40 @@
+#!/bin/bash
+
+
+ADGUARD="
+# ADGUARD
+nameserver 176.103.130.130
+nameserver 176.103.130.131
+
+# Cloudflare
+nameserver 1.1.1.1
+nameserver 1.0.0.1
+"
+
+CLOUDFLARE="
+# Cloudflare
+nameserver 1.1.1.1
+nameserver 1.0.0.1
+
+# ADGUARD
+nameserver 176.103.130.130
+nameserver 176.103.130.131
+"
+
+if [[ $1 == "adguard" ]];
+then
+    [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+    chattr -i /etc/resolv.conf
+    echo "$ADGUARD" > /etc/resolv.conf
+    chattr +i /etc/resolv.conf
+elif [[ $1 == "cloudflare" ]];
+then
+    [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+    chattr -i /etc/resolv.conf
+    echo "$CLOUDFLARE" > /etc/resolv.conf
+    chattr +i /etc/resolv.conf
+else
+    echo -e "\e[31mInvalid DNS, specify one of [adguard, cloudflare]\e[0m"
+fi
+
+

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+BACKUP_COMMAND="rsync -arvP --delete"
+LOCAL_LIB="$HOME/Music/*"
+BACKUP_DRIVE="$HOME/mounts/music/"
+
+echo -e "\e[0;34mWelcome to the simplest music backup tool\e[0m\n"
+
+echo -e "Currently backing up music from:
+\e[0;33m$LOCAL_LIB\e[0m
+to:
+\e[0;33m$BACKUP_DRIVE\e[0m
+"
+
+read -r -p "Proceed? (y/n): " -n 1 INPUT
+echo
+if [[ $INPUT =~ ^[Nn]$ ]]; then
+    exit
+fi
+
+eval "$BACKUP_COMMAND $LOCAL_LIB $BACKUP_DRIVE"

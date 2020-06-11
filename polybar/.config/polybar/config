@@ -42,7 +42,7 @@ compositing-border = over
 
 [bar/mainbar]
 ;=== MONITOR AND WM ===================================
-monitor = ${env:MONITOR}
+;monitor =
 monitor-strict = false
 pin-workspaces = true
 monitor-fallback =

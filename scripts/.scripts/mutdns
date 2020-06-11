@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# If user isn't root exec with sudo
+[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@"
+
+chattr -i /etc/resolv.conf

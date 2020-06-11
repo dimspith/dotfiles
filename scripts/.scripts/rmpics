@@ -1,0 +1,24 @@
+#!/bin/bash
+
+WIDTH="$1"
+HEIGHT="$2"
+TRASH_DIR="$3"
+
+if [[ $1 == "" || $2 == "" ]]
+then
+    echo -e "\e[31mPlease provide both a width and a height to filter by\e[0m"
+    exit
+fi
+
+for file in ./*
+do
+    if [[ $file == *.jpg || $file == *.png ]]
+    then
+        read -r i_width i_height < <(identify -format "%w %h" "$file")
+        if [[ $i_width != "$WIDTH" || $i_height != "$HEIGHT" ]]
+        then
+            echo -e "\e[33m$file\e[0m doesn't have the required dimensions"
+            mv "$file" "$HOME/pics/shite/"
+        fi
+    fi
+done

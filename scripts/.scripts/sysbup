@@ -1,0 +1,25 @@
+#!/bin/bash
+
+dirlist="
+~/desktop
+~/docs
+~/downloads
+~/mounts
+~/notes
+~/pics
+~/progs
+~/.dotfiles
+~/.xmonad
+~/.emacs.d
+~/.m2
+~/.cargo
+~/.stack
+~/.lein
+~/.nimble
+~/.mozilla"
+
+onelinedirs="$("$dirlist" | sed "s/\n/ /g")"
+
+echo $onelinedirs
+#borg create --list -n ~/files/homebackup::test $dirlist
+

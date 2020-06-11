@@ -1,0 +1,48 @@
+#!/bin/bash
+
+#####################################################
+### Quick and dirty script to quicky mount drives ###
+####################################################
+
+# Map of drives and UUIDs
+declare -A uuids=( ["music"]="bf55f5cc-49eb-4892-afa5-4acb40f06079"
+                   ["backup"]="9df03bb4-de9b-4f00-9ee5-c27351e260a0" )
+
+# Map of drives and mount points
+declare -A mntpoints=( ["music"]="/home/dimitris/mounts/music/"
+                       ["backup"]="/home/dimitris/mounts/backup/" )
+
+# Supported actions
+SUPP_ACTIONS=( "mount" "unmount" )
+
+# Selected options
+SEL_DRIVE=""
+SEL_ACTION=""
+
+# Check if $1 refers to a valid drive else exit
+for drive in "${!uuids[@]}"
+do
+    [[ $1 == "$drive" ]] && SEL_DRIVE="$drive"
+done
+
+if [[ $SEL_DRIVE == "" ]]; then
+    echo "Invalid drive! Choose one of: ${!uuids[@]}" && exit
+fi
+
+# Check if $2 refers to a valid bbbbbb else exit
+for action in "${SUPP_ACTIONS[@]}"
+do
+    [[ $2 == "$action" ]] && SEL_ACTION="$action"
+done
+
+if [[ $SEL_ACTION == "" ]]; then
+    echo "Invalid action! Choose one of: ${SUPP_ACTIONS[@]}" && exit
+fi
+
+if [[ $SEL_ACTION == "mount" ]];
+then
+     sudo mount -U ${uuids[$SEL_DRIVE]} ${mntpoints[$SEL_DRIVE]}
+elif [[ $SEL_ACTION == "unmount" ]];
+then
+     sudo umount ${mntpoints[$SEL_DRIVE]}
+fi

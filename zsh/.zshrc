@@ -136,7 +136,7 @@ alias val="nvim $HOME/.config/alacritty/alacritty.yml"
 alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; setxkbmap -option ctrl:nocaps"
 alias clip="xclip -selection clipboard"
 alias hc="herbstclient"
-alias rbackup="rsync -arvPz --delete"
+alias rbackup="rsync -arvP --delete"
 
 #Inits
 alias itray="stalonetray -c ~/.xmonad/stalonetray-config/stalonetrayrc &;disown"

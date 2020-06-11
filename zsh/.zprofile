@@ -43,9 +43,6 @@ export PATH="$HOME/.luarocks/bin:$PATH"
 # nim
 export PATH="$HOME/.nimble/bin:$PATH"
 # go
-export PATH="$HOME/MyPrograms/go/bin:$PATH"
+export PATH="$HOME/progs/go/bin:$PATH"
 # Custom scripts
 export PATH="$HOME/.scripts:$PATH"
-
-# load nix
-#. ~/.nix-profile/etc/profile.d/nix.sh

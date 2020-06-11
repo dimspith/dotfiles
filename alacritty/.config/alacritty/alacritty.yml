@@ -40,16 +40,16 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Inconsolata
+    family: Jetbrains Mono
     style:  Regular
   bold:
-    family: Inconsolata
+    family: Jetbrains Mono
     style:  Bold
   italic:
-    family: Inconsolata
+    family: Jetbrains Mono
     style:  Italic
 
-  size: 7
+  size: 7.5
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -74,30 +74,30 @@ font:
 colors:
   # Default colors
   primary:
-    background: '0x1c1b19'
-    foreground: '0xd0bfa1'
+    background: '0x000000'
+    foreground: '0xffffff'
 
   # Normal colors
   normal:
-    black:   '0x1c1b19'
-    red:     '0xef2f27'
-    green:   '0x519f50'
-    yellow:  '0xfbb829'
-    blue:    '0x2c78bf'
-    magenta: '0xe02c6d'
-    cyan:    '0x0aaeb3'
-    white:   '0xd0bfa1'
+    black:   '0x000000'
+    red:     '0xcf6a4c'
+    green:   '0x99ad6a'
+    yellow:  '0xfad07a'
+    blue:    '0x8fbfdc'
+    magenta: '0xaa759f'
+    cyan:    '0x75b5aa'
+    white:   '0xffffff'
 
   # Bright colors
-  bright:
-    black:   '0x918175'
-    red:     '0xf75341'
-    green:   '0x98bc37'
-    yellow:  '0xfed06e'
-    blue:    '0x68a8e4'
-    magenta: '0xe02c6d'
-    cyan:    '0x0aaeb3'
-    white:   '0xfce8c3'
+  normal:
+    black:   '0x000000'
+    red:     '0xcf6a4c'
+    green:   '0x99ad6a'
+    yellow:  '0xfad07a'
+    blue:    '0x8fbfdc'
+    magenta: '0xaa759f'
+    cyan:    '0x75b5aa'
+    white:   '0xffffff'
 
 # Disable visual bell
 visual_bell:
