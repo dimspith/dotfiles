@@ -44,6 +44,7 @@ set nu relativenumber                    " Enable line (+ relative) numbers
 filetype plugin indent on                " Enable plugin indentation
 set autoindent cindent                   " Set code autoindentation
 set cursorline                           " Highlight current line
+set modeline                             " Enable file-local settings
 set noshowmode                           " Don't show the indicator in insert mode.
 set tabstop=4 shiftwidth=4               " One TAB appears to be 4 spaces
 set expandtab smarttab                   " Expand tabs into spaces and be smart about it 
@@ -197,6 +198,12 @@ augroup filetype_vim
      autocmd!
      autocmd FileType vim setlocal foldmethod=marker
 augroup END
+
+" For lua files
+"augroup filetype_lua
+"     autocmd!
+"     autocmd FileType lua setlocal foldmethod=marker
+"augroup END
 
 " For c files
 augroup filetype_c
