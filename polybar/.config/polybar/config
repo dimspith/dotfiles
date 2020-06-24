@@ -64,7 +64,7 @@ line-color = #f00
 padding-left = 1
 padding-right = 1
 
-font-0 = Space Mono:style=Regular:pixelsize=12;3
+font-0 = CaskaydiaCove Nerd Font:style=Regular:pixelsize=12;3
 font-1 = FantasqueSansMono Nerd Font:style=Regular:pixelsize=13;3
 
 ;=== MODULES ============================================
