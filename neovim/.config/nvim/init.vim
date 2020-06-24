@@ -14,7 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
      Plug 'tpope/vim-surround'       " Surround text in vim
      Plug 'tpope/vim-repeat'         " Add repeat functionality
      Plug 'junegunn/goyo.vim'        " Distraction-free writing mode
-     Plug 'srcery-colors/srcery-vim' " Srcery theme
+     Plug 'AlessandroYorba/Alduin'   " Alduin theme
      Plug 'axvr/org.vim'             " Org mode plugin 
      Plug 'zah/nim.vim'              " Nim Language support
 call plug#end()
@@ -39,7 +39,8 @@ endif
 syntax on                                " Enable syntax highlighting
 set background=dark                      " Set the background theme to dark
 set nocompatible                         " Disable vim compatibility
-colorscheme srcery                       " Set the colorscheme
+let g:alduin_Shout_Dragon_Aspect = 1
+colorscheme alduin                       " Set the colorscheme
 set nu relativenumber                    " Enable line (+ relative) numbers
 filetype plugin indent on                " Enable plugin indentation
 set autoindent cindent                   " Set code autoindentation
