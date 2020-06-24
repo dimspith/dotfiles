@@ -28,6 +28,7 @@ color listfocus_unread yellow default bold
 color info red black bold
 color article white default
 
-browser qutebrowser
+browser firefox
 macro , macro-prefix
-macro w set browser "w3m"; open-in-browser ; set browser qutebrowser
+macro w set browser "lynx"; open-in-browser ; set browser firefox
+macro a set browser "mpv"; open-in-browser ; set browser firefox
