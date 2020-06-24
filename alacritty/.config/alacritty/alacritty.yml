@@ -18,7 +18,7 @@ window:
   dynamic_padding: false
 
   # No borders or title bar
-  decorations: none
+  decorations: full
 
   # Start in windowed mode
   startup_mode: Windowed
@@ -40,16 +40,16 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Jetbrains Mono
+    family: Mononoki
     style:  Regular
   bold:
-    family: Jetbrains Mono
+    family: Mononoki
     style:  Bold
   italic:
-    family: Jetbrains Mono
+    family: Mononoki
     style:  Italic
 
-  size: 7.5
+  size: 10 
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -70,34 +70,34 @@ font:
   # Bold text is drawn using the bright color variants.
   draw_bold_text_with_bright_colors: true
 
-# Base16
 colors:
-  # Default colors
   primary:
-    background: '0x000000'
-    foreground: '0xffffff'
+    foreground:   '0xdfdfaf'
+    background:   '0x080808'
 
   # Normal colors
-  normal:
-    black:   '0x000000'
-    red:     '0xcf6a4c'
-    green:   '0x99ad6a'
-    yellow:  '0xfad07a'
-    blue:    '0x8fbfdc'
-    magenta: '0xaa759f'
-    cyan:    '0x75b5aa'
-    white:   '0xffffff'
+  bright:
+    black:   '0x080808'
+    red:     '0xaf5f5f'
+    green:   '0x87875f'
+    yellow:  '0xaf875f'
+    blue:    '0x878787'
+    magenta: '0xaf8787'
+    cyan:    '0x87afaf'
+    white:   '0xdfdfaf'
 
   # Bright colors
   normal:
-    black:   '0x000000'
-    red:     '0xcf6a4c'
-    green:   '0x99ad6a'
-    yellow:  '0xfad07a'
-    blue:    '0x8fbfdc'
-    magenta: '0xaa759f'
-    cyan:    '0x75b5aa'
-    white:   '0xffffff'
+    black:   '0x878787'
+    red:     '0xaf5f5f'
+    green:   '0x87875f'
+    yellow:  '0xaf875f'
+    blue:    '0x878787'
+    magenta: '0xaf8787'
+    cyan:    '0x87afaf'
+    white:   '0xdfdfaf'
+
+
 
 # Disable visual bell
 visual_bell:
