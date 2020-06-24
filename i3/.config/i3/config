@@ -28,18 +28,9 @@ font pango:monospace 10
 hide_edge_borders none
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="calamares"] floating enable border normal
-for_window [title="File Transfer*"] floating enable
 for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro Settings Manager"] floating enable border normal
 for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="octopi"] floating enable
-for_window [class="Pamac-manager"] floating enable
-for_window [class="Pavucontrol"] floating enable
-for_window [class="Simple-scan"] floating enable border normal
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -169,8 +160,7 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id  sh $HOME/.config/polybar/launch.sh
-exec --no-startup-id setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle
-# exec --no-startup-id setxkbmap -option ctrl:nocaps
+exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle"
 
 #▄     ▄               █
 #█  █  █  ▄▄▄    ▄ ▄▄  █   ▄   ▄▄▄   ▄▄▄▄    ▄▄▄    ▄▄▄    ▄▄▄    ▄▄▄
