@@ -74,22 +74,10 @@ covid() {
     curl https://corona-stats.online/"$1"'?top=30&source=2&minimal=true'
 }
 
-# load nix
-#load-nix () {
-#    . ~/.nix-profile/etc/profile.d/nix.sh
-#}
-
-# Search the last 300 commands in history
-hist-search() {
-    $(history -300 | awk '{$1="";print $0}' | sort | uniq -u | fzy)
+# Restart a process by name 
+restart() {
+    killall -9 "$1" && setsid -f "$1"
 }
-
-#=================#
-### Keybindings ###
-#=================#
-
-# Ctrl-r uses fzy to search history
-bindkey -s '^r' '^uhist-search\n'
 
 #       _ _
 #  __ _| (_) __ _ ___  ___  __
@@ -100,7 +88,7 @@ bindkey -s '^r' '^uhist-search\n'
 
 #QOL
 alias v="nvim"
-alias ls="exa --group-directories-first --color always --icons"
+alias ls="exa --group-directories-first --color always"
 alias la="ls -a"
 alias lal="la -l"
 alias lla="la -l"
