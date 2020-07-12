@@ -133,3 +133,6 @@ alias rlmacs="pkill emacs && emacs --daemon"
 alias initmacs="emacs --daemon;setsid emacsclient -c;exit"
 alias xeph="Xephyr -br -ac -noreset -screen 1280x720 :1"
 alias inxeph="DISPLAY=:1"
+
+# opam configuration
+test -r /home/dimitris/.opam/opam-init/init.zsh && . /home/dimitris/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

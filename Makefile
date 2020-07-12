@@ -1,7 +1,7 @@
 install: install-deps link install-external install-packages
 
 link:
-	@echo -e "\e[0;34mLinking dotfiles...\e[m"
+	@echo -e "Linking dotfiles..."
 	@cd ..
 	@ls -d */ | grep -v '^_' | xargs stow
 
