@@ -16,7 +16,7 @@ promptinit
 bindkey -e
 
 # ZSH Prompt
-PROMPT='%B%F{red}[%2~]%F{yellow}%#>%f%b '
+PROMPT='%B%F{green}{ %2~ }%F{yellow}~%#>%f%b '
 
 # Complete in menu style with root detection
 zstyle ':completion:*' menu select
@@ -108,6 +108,7 @@ alias grep="grep -i"
 alias fzff="fzf -e -i --nth -1 --delimiter='/' --preview='nvim {}'"
 alias bfzf="fzf -e -i --prompt='book_search>' --nth -1 --delimiter='/' --color=16" 
 alias vf='nvim $(fzff)'
+alias yay="yaourtix"
 
 # CONFIGS
 alias rlconf="source ~/.zshrc"
@@ -125,6 +126,7 @@ alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; se
 alias clip="xclip -selection clipboard"
 alias hc="herbstclient"
 alias rbackup="rsync -arvP --delete"
+alias yeet="rm -rf "
 
 #Inits
 alias itray="stalonetray -c ~/.xmonad/stalonetray-config/stalonetrayrc &;disown"

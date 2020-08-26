@@ -40,16 +40,16 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Mononoki
+    family: Iosevka Term Slab
     style:  Regular
   bold:
-    family: Mononoki
+    family: Iosevka Term Slab
     style:  Bold
   italic:
-    family: Mononoki
+    family: Iosevka Term Slab
     style:  Italic
 
-  size: 10 
+  size: 8 
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -70,40 +70,40 @@ font:
   # Bold text is drawn using the bright color variants.
   draw_bold_text_with_bright_colors: true
 
+# Base16 Tomorrow Night - alacritty color config
+# Chris Kempson (http://chriskempson.com)
 colors:
+  # Default colors
   primary:
-    foreground:   '0xdfdfaf'
-    background:   '0x080808'
+    background: '0x1d1f21'
+    foreground: '0xc5c8c6'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x1d1f21'
+    cursor: '0xc5c8c6'
 
   # Normal colors
-  bright:
-    black:   '0x080808'
-    red:     '0xaf5f5f'
-    green:   '0x87875f'
-    yellow:  '0xaf875f'
-    blue:    '0x878787'
-    magenta: '0xaf8787'
-    cyan:    '0x87afaf'
-    white:   '0xdfdfaf'
+  normal:
+    black:   '0x1d1f21'
+    red:     '0xcc6666'
+    green:   '0xb5bd68'
+    yellow:  '0xf0c674'
+    blue:    '0x81a2be'
+    magenta: '0xb294bb'
+    cyan:    '0x8abeb7'
+    white:   '0xc5c8c6'
 
   # Bright colors
-  normal:
-    black:   '0x878787'
-    red:     '0xaf5f5f'
-    green:   '0x87875f'
-    yellow:  '0xaf875f'
-    blue:    '0x878787'
-    magenta: '0xaf8787'
-    cyan:    '0x87afaf'
-    white:   '0xdfdfaf'
-
-
-
-# Disable visual bell
-visual_bell:
-  animation: EaseOutExpo
-  duration: 0
-  color: '0xffffff'
+  bright:
+    black:   '0x969896'
+    red:     '0xde935f'
+    green:   '0x282a2e'
+    yellow:  '0x373b41'
+    blue:    '0xb4b7b4'
+    magenta: '0xe0e0e0'
+    cyan:    '0xa3685a'
+    white:   '0xffffff'
 
 background_opacity: 0.95
 
@@ -133,7 +133,7 @@ selection:
   save_to_clipboard: true
 
 # Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
+window.dynamic_title: true
 
 cursor:
   # Cursor style
