@@ -40,13 +40,13 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Iosevka Term Slab
+    family: IBM Plex Mono
     style:  Regular
   bold:
-    family: Iosevka Term Slab
+    family: IBM Plex Mono
     style:  Bold
   italic:
-    family: Iosevka Term Slab
+    family: IBM Plex Mono
     style:  Italic
 
   size: 8 
@@ -70,42 +70,57 @@ font:
   # Bold text is drawn using the bright color variants.
   draw_bold_text_with_bright_colors: true
 
-# Base16 Tomorrow Night - alacritty color config
-# Chris Kempson (http://chriskempson.com)
+# Nord Theme
 colors:
-  # Default colors
   primary:
-    background: '0x1d1f21'
-    foreground: '0xc5c8c6'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
+    background: '#2e3440'
+    foreground: '#d8dee9'
+    dim_foreground: '#a5abb6'
   cursor:
-    text: '0x1d1f21'
-    cursor: '0xc5c8c6'
-
-  # Normal colors
+    text: '#2e3440'
+    cursor: '#d8dee9'
+  vi_mode_cursor:
+    text: '#2e3440'
+    cursor: '#d8dee9'
+  selection:
+    text: CellForeground
+    background: '#4c566a'
+  search:
+    matches:
+      foreground: CellBackground
+      background: '#88c0d0'
+    bar:
+      background: '#434c5e'
+      foreground: '#d8dee9'
   normal:
-    black:   '0x1d1f21'
-    red:     '0xcc6666'
-    green:   '0xb5bd68'
-    yellow:  '0xf0c674'
-    blue:    '0x81a2be'
-    magenta: '0xb294bb'
-    cyan:    '0x8abeb7'
-    white:   '0xc5c8c6'
-
-  # Bright colors
+    black: '#3b4252'
+    red: '#bf616a'
+    green: '#a3be8c'
+    yellow: '#ebcb8b'
+    blue: '#81a1c1'
+    magenta: '#b48ead'
+    cyan: '#88c0d0'
+    white: '#e5e9f0'
   bright:
-    black:   '0x969896'
-    red:     '0xde935f'
-    green:   '0x282a2e'
-    yellow:  '0x373b41'
-    blue:    '0xb4b7b4'
-    magenta: '0xe0e0e0'
-    cyan:    '0xa3685a'
-    white:   '0xffffff'
+    black: '#4c566a'
+    red: '#bf616a'
+    green: '#a3be8c'
+    yellow: '#ebcb8b'
+    blue: '#81a1c1'
+    magenta: '#b48ead'
+    cyan: '#8fbcbb'
+    white: '#eceff4'
+  dim:
+    black: '#373e4d'
+    red: '#94545d'
+    green: '#809575'
+    yellow: '#b29e75'
+    blue: '#68809a'
+    magenta: '#8c738c'
+    cyan: '#6d96a5'
+    white: '#aeb3bb'
 
-background_opacity: 0.95
+background_opacity: 1
 
 mouse:
   # Click settings
@@ -191,9 +206,9 @@ key_bindings:
   - { key: C,        mods: Control|Shift, action: Copy                       }
   - { key: Key0,     mods: Control,       action: ResetFontSize              }
   - { key: Equals,   mods: Control,       action: IncreaseFontSize           }
-  - { key: Add,      mods: Control,       action: IncreaseFontSize           }
-  - { key: Subtract, mods: Control,       action: DecreaseFontSize           }
-  - { key: Minus,    mods: Control,       action: DecreaseFontSize           }
+    #- { key: Add,      mods: Control,       action: IncreaseFontSize           }
+    #- { key: Subtract, mods: Control,       action: DecreaseFontSize           }
+    #- { key: Minus,    mods: Control,       action: DecreaseFontSize           }
   - { key: L,        mods: Control,       action: ClearLogNotice             }
   - { key: L,        mods: Control,       chars: "\x0c"                      }
   - { key: V,        mods: Alt,           action: ScrollPageUp,   mode: ~Alt }

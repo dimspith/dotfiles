@@ -16,11 +16,14 @@ promptinit
 bindkey -e
 
 # ZSH Prompt
-PROMPT='%B%F{green}{ %2~ }%F{yellow}~%#>%f%b '
+PROMPT='%B%F{green}[ %2~ ]%F{yellow}%#~>%f%b '
 
 # Complete in menu style with root detection
 zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
+
+# Look for matches on the left side of words
+zstyle ':completion:*' matcher-list 'l:|=* r:|=*' 
 
 # Tweak history
 HISTFILE=~/.zhistory
@@ -38,12 +41,6 @@ setopt always_to_end
 setopt AUTO_CD
 setopt AUTO_LIST
 setopt correct_all
-
-# load starship
-# eval "$(starship init zsh)"
-
-# load z
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 #===============#
 ### FUNCTIONS ###
@@ -95,7 +92,6 @@ alias lla="la -l"
 alias ll="ls -1"
 alias rm="rm -I"
 alias mexec="chmod +x"
-alias j="z"
 
 alias glog="git log --all --decorate --oneline --graph"
 alias git_optimize="git reflog expire --all --expire=now; \\
@@ -136,5 +132,3 @@ alias initmacs="emacs --daemon;setsid emacsclient -c;exit"
 alias xeph="Xephyr -br -ac -noreset -screen 1280x720 :1"
 alias inxeph="DISPLAY=:1"
 
-# opam configuration
-test -r /home/dimitris/.opam/opam-init/init.zsh && . /home/dimitris/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

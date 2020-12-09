@@ -23,10 +23,13 @@ export LESS=-r
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+export XDG_DATA_DIRS="/usr/local/share:/usr/share:$HOME/.local/share/flatpak/exports/share"
 
 # Disable "less" history
 export LESSHISTFILE=-
+
+# Set bat as a manpager
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # ZSH path fix
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
@@ -44,5 +47,8 @@ export PATH="$HOME/.luarocks/bin:$PATH"
 export PATH="$HOME/.nimble/bin:$PATH"
 # go
 export PATH="$HOME/progs/go/bin:$PATH"
+# raku
+export PATH="$HOME/progs/rakudo/share/perl6/site/bin:$PATH"
+export PATH="$HOME/progs/rakudo/bin:$PATH"
 # Custom scripts
 export PATH="$HOME/.scripts:$PATH"

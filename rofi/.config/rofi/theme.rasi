@@ -1,98 +1,100 @@
+/*
+ * ROFI One Dark
+ *
+ * Based on OneDark.vim (https://github.com/joshdick/onedark.vim)
+ *
+ * Author: Benjamin Stauss
+ * User: me-benni
+ *
+ */
+
+
 * {
-    text-color:  #d0d0d0;
-    background-color:  #151515;
-    dark: #151515;
-    // Black
-    black:       #151515;
-    lightblack:  #505050;
-    //
-    // Red
-    red:         #ac4142;
-    lightred:    #ac4142;
-    //
-    // Green
-    green:       #90a959;
-    lightgreen:  #90a959;
-    //
-    // Yellow
-    yellow:      #f4bf75;
-    lightyellow: #f4bf75;
-    //
-    // Blue
-    blue:      #6a9fb5;
-    lightblue: #6a9fb5;
-    //
-    // Magenta
-    magenta:      #aa759f;
-    lightmagenta: #aa759f;
-    //
-    // Cyan
-    cyan:      #75b5aa;
-    lightcyan: #75b5aa;
-    //
-    // White
-    white:      #d0d0d0;
-    lightwhite: #f5f5f5;
-    //
-    // Bold, Italic, Underline
-    highlight:     bold #ffffff;
-}
-#window {
-    height:   100%;
-    width: 30em;
-    location: west;
-    anchor:   west;
-    border:  0px 2px 0px 0px;
-    text-color: @lightwhite;
+  black:      #3b4252;
+  red:        #bf616a;
+  green:      #a3be8c;
+  yellow:     #abcb8b;
+  blue:       #81a1c1;
+  mangenta:   #b48ead;
+  cyan:       #88c0d0;
+  emphasis:   #50536b;
+  text:       #d8dee9;
+  text-alt:   #d8dee9;
+  fg:         #d8dee9;
+  bg:         #2e3440;
+
+  spacing: 0;
+  background-color: transparent;
+
+  font: "Knack Nerd Font 14";
+  text-color: @text;
 }
 
-#mode-switcher {
-    border: 2px 0px 0px 0px;
-    background-color: @lightblack;
-    padding: 4px;
+window {
+  transparency: "real";
+  fullscreen: true;
+  background-color: #282c34dd;
 }
-#button selected {
-    border-color: @lightgreen;
-    text-color: @lightgreen;
+
+mainbox {
+  padding: 30% 30%;
 }
-#inputbar {
-    background-color: @lightblack;
-    text-color: @lightgreen;
-    padding: 4px;
-    border: 0px 0px 2px 0px;
+
+inputbar {
+  margin: 0px 0px 20px 0px;
+  children: [prompt, textbox-prompt-colon, entry, case-indicator];
 }
-#mainbox {
-    expand: true;
-    background-color: #1c1c1cee;
-    spacing: 1em;
+
+prompt {
+  text-color: @blue;
 }
-#listview {
-    padding: 0em 0.4em 0em 1em;
-    dynamic: false;
-    lines: 0;
+
+textbox-prompt-colon {
+  expand: false;
+  str: ":";
+  text-color: @text-alt;
 }
-#element selected  normal {
-    background-color: @blue;
+
+entry {
+  margin: 0px 10px;
 }
-#element normal active {
-    text-color: @lightblue;
+
+listview {
+  spacing: 5px;
+  dynamic: true;
+  scrollbar: false;
 }
-#element normal urgent {
-    text-color: @lightred;
+
+element {
+  padding: 5px;
+  text-color: @text-alt;
+  highlight: bold #95ee8f; /* green */
+  border-radius: 3px;
 }
-#element alternate normal {
+
+element selected {
+  background-color: @emphasis;
+  text-color: @text;
 }
-#element alternate active {
-    text-color: @lightblue;
+
+element urgent, element selected urgent {
+  text-color: @red;
 }
-#element alternate urgent {
-    text-color: @lightred;
+
+element active, element selected active {
+  text-color: @purple;
 }
-#element selected active {
-    background-color: @lightblue;
-    text-color: @dark;
+
+message {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @emphasis;
+  border: 1px;
+  border-color: @cyan;
 }
-#element selected urgent {
-    background-color: @lightred;
-    text-color: @dark;
+
+button selected {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: @emphasis;
 }

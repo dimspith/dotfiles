@@ -18,11 +18,11 @@ set $mod Mod4
 workspace_layout default
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window pixel 1
+new_window pixel 2
 new_float normal
 
 # Font for window titles
-font pango:monospace 10
+font pango:Iosevka 10
 
 # Hide borders
 hide_edge_borders none
@@ -103,9 +103,8 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Application shortcuts
-bindsym $mod+d exec --no-startup-id dmenu_recency
 bindsym $mod+Return exec --no-startup-id alacritty 
-bindsym $mod+Shift+e exec --no-startup-id alacritty -e nvim
+bindsym $mod+Shift+e exec --no-startup-id emacsclient -c -a "alacritty -e nvim"
 bindsym $mod+Ctrl+m exec pavucontrol
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
@@ -159,7 +158,6 @@ exec --no-startup-id kdeconnect-indicator
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id  sh $HOME/.config/polybar/launch.sh
 exec --no-startup-id "setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle"
 
 #▄     ▄               █
@@ -279,3 +277,11 @@ smart_borders on
 
 # Show popups only from the fullscreen application in the workspace
 popup_during_fullscreen smart
+
+bar {
+        status_command slstatus -s
+        position top
+        tray_padding 2
+        font pango: Iosevka Extended 11
+        workspace_buttons yes
+}
