@@ -48,7 +48,7 @@ setopt correct_all
 
 # Replace a symlink with the file it's pointing to
 removelink() {
-f  [ -L "$1" ] && cp --remove-destination "$(readlink "$1")" "$1"
+    f  [ -L "$1" ] && cp --remove-destination "$(readlink "$1")" "$1"
 }
 
 # Find a font using fc-list
@@ -58,7 +58,7 @@ findfont() {
 
 # Get cheatsheet for a command
 cheat() {
-    curl cht.sh/$1
+   curl cht.sh/$1
 }
 
 # Find desktop files
@@ -74,6 +74,21 @@ covid() {
 # Restart a process by name 
 restart() {
     killall -9 "$1" && setsid -f "$1"
+}
+
+j() {
+    if [ "$1" ]
+    then
+        DIR="$(fd -H --type directory $1)"
+        if [ "$DIR" ]
+        then
+            cd "$(echo $DIR | fzy -p "DIR: " -l 20)" || return
+        else
+            echo "Directory not found!"
+        fi
+    else
+        cd "$(fd -H --type directory | fzy -p "DIR: " -l 20)" || return
+    fi
 }
 
 #       _ _
@@ -123,6 +138,7 @@ alias clip="xclip -selection clipboard"
 alias hc="herbstclient"
 alias rbackup="rsync -arvP --delete"
 alias yeet="rm -rf "
+alias nirun="nim c -r --hints:off"
 
 #Inits
 alias itray="stalonetray -c ~/.xmonad/stalonetray-config/stalonetrayrc &;disown"
