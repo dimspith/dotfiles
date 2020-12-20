@@ -40,16 +40,16 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: IBM Plex Mono
+    family: Ubuntu Mono
     style:  Regular
   bold:
-    family: IBM Plex Mono
+    family: Ubuntu Mono
     style:  Bold
   italic:
-    family: IBM Plex Mono
+    family: Ubuntu Mono
     style:  Italic
 
-  size: 10.5
+  size: 11
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.

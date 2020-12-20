@@ -1,15 +1,3 @@
-https://www.archlinux.org/feeds/packages/       "~LINUX: Arch Linux Packages"
-https://feeds.feedburner.com/Torrentfreak       "~PIRACY: Torrentfreak"
-https://hnrss.org/frontpage                     "~FEEDS: HackerNews Frontpage"
-https://www.pine64.org/feed/                    "~HARDWARE: Pine64
-https://www.omnycontent.com/d/playlist/aaea4e69-af51-495e-afc9-a9760146922b/6081eee7-c459-4e12-a1ab-aadc000fc4a7/413a6904-4d72-4be8-9421-aadc000fc4ba/podcast.rss "~PODCAST: Art of Manliness"
-https://infosec-handbook.eu/blog/index.xml      "~BLOG: Infosec Handbook"
-https://pedestrianobservations.com/feed/        "~BLOG: Pedestrian Observations"
-https://www.evilsocket.net/atom.xml             "~BLOG: EvilSocket"
-https://nickdrozd.github.io/feed.xml            "~BLOG: NickDrozd"
-https://tkainrad.dev/posts/index.xml            "~BLOG: Thomas Kainrad"
-https://dustri.org/b/rss.xml                    "~BLOG: Artificial Truth"
-http://okmij.org/ftp/rss.xml                    "~BLOG: The FTP Blog"
-https://beepb00p.xyz/rss.xml                    "~BLOG: Beepb00p"
-https://fs.blog/feed/                           "~BLOG: Farnam Street Blog"
-https://danielmiessler.com/feed/                "~BLOG: Daniel Miessler
+https://hnrss.org/frontpage                                      "~FEEDS: HackerNews Frontpage"
+https://voidlinux.org/atom.xml                                   "~VOID: Void Linux News"
+https://github.com/void-linux/void-packages/commits/master.atom  "~VOID: Void Linux Packages"

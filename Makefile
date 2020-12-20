@@ -1,7 +1,7 @@
 install: install-deps link install-external install-packages
 
 link:
-	@echo -e "Linking dotfiles..."
+	@echo "Linking dotfiles..."
 	@cd ..
 	@ls -d */ | grep -v '^_' | xargs stow
 
