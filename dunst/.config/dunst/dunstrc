@@ -2,7 +2,7 @@
     frame_width = 1
     frame_color = "#d8d8d8"
     separator_color = "#d8d8d8"
-    font = SpaceMono NF bold 10
+    font = Iosevka Term Extended 10
     
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -50,7 +50,7 @@
     
     # Split notifications into multiple lines if they don't fit into
     # geometry.
-    word_wrap = no
+    word_wrap = yes
     
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
@@ -180,20 +180,20 @@
 
 [base16_low]
     msg_urgency = low
-    background = "#1c1b19"
-    foreground = "#d0bfa1"
+    background = "#111111"
+    foreground = "#f8f8f8"
     timeout=10
 
 [base16_normal]
     msg_urgency = normal
-    background = "#1c1b19"
-    foreground = "#d0bfa1"
+    background = "#111111"
+    foreground = "#f8f8f8"
     timeout=10
 
 [base16_critical]
     msg_urgency = critical
-    background = "#1c1b19"
-    foreground = "#d0bfa1"
+    background = "#111111"
+    foreground = "#f8f8f8"
     timeout=0
 
 # Every section that isn't one of the above is interpreted as a rules to
