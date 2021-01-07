@@ -1,3 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/dimitris/programs/dwm'
+let g:netrw_dirhist_4='/etc/init.d'
+let g:netrw_dirhist_3='/etc'
+let g:netrw_dirhist_2='/etc/init.d'
 let g:netrw_dirhist_1='/home/dimitris/.dotfiles/fonts/.local/share/Steam/steamapps/common/Risk of Rain'

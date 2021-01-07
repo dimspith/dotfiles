@@ -1,24 +1,15 @@
 #!/bin/bash
 
-
 ADGUARD="
 # ADGUARD
 nameserver 176.103.130.130
 nameserver 176.103.130.131
-
-# Cloudflare
-nameserver 1.1.1.1
-nameserver 1.0.0.1
 "
 
 CLOUDFLARE="
 # Cloudflare
 nameserver 1.1.1.1
 nameserver 1.0.0.1
-
-# ADGUARD
-nameserver 176.103.130.130
-nameserver 176.103.130.131
 "
 
 if [[ $1 == "adguard" ]];
@@ -33,8 +24,16 @@ then
     chattr -i /etc/resolv.conf
     echo "$CLOUDFLARE" > /etc/resolv.conf
     chattr +i /etc/resolv.conf
+elif [[ $1 == "" ]];
+then
+    echo "This is a simple script that sets a system-wide DNS server at /etc/resolv.conf and makes the file immutable. Provide a valid DNS server name such as \"cloudflare\" or \"-l\" for a list of supported servers."
+elif [[ $1 == "-l" ]];
+then
+    echo "Supported DNS servers:"
+    echo "- Cloudflare"
+    echo "- Adguard"
 else
-    echo -e "\e[31mInvalid DNS, specify one of [adguard, cloudflare]\e[0m"
+    echo -e "\e[31mInvalid DNS! Run with -l to view the list of supported servers.\e[0m"
 fi
 
 

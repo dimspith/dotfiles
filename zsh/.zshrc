@@ -73,7 +73,12 @@ covid() {
 
 # Restart a process by name 
 restart() {
-    killall -9 "$1" && setsid -f "$1"
+    killall -9 "$1" && sleep 1 && setsid -f "$1"
+}
+
+# Johny Decimal function
+cjd() {
+    pushd /mnt/pcdata/Files/*/*/${1}*
 }
 
 j() {
@@ -116,7 +121,7 @@ alias open="setsid xdg-open"
 alias pdf="setsid zathura"
 alias grepc="grep --color=auto"
 alias grep="grep -i"
-alias fzff="fzf -e -i --nth -1 --delimiter='/' --preview='nvim {}'"
+alias fzff="fzf -e -i --nth -1 --delimiter='/' --preview='bat {}'"
 alias bfzf="fzf -e -i --prompt='book_search>' --nth -1 --delimiter='/' --color=16" 
 alias vf='nvim $(fzff)'
 alias yay="yaourtix"
@@ -128,7 +133,7 @@ alias vzc="nvim $HOME/.zshrc"
 alias vrc="nvim $HOME/.config/nvim/init.vim"
 alias vpol="nvim $HOME/.config/polybar/config"
 alias vi3="nvim $HOME/.config/i3/config"
-alias vrf="nvim $HOME/.config/rofi/config"
+alias vrf="nvim $HOME/.config/rofi/config.rasi"
 alias vtm="nvim $HOME/.config/termite/config"
 alias val="nvim $HOME/.config/alacritty/alacritty.yml"
 

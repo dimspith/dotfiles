@@ -13,7 +13,7 @@
 call plug#begin('~/.config/nvim/plugged')
      Plug 'tpope/vim-surround'       " Surround text in vim
      Plug 'tpope/vim-repeat'         " Add repeat functionality
-     Plug 'patstockwell/vim-monokai-tasty'
+     Plug 'co1ncidence/mountaineer'  " Mountaineer theme
      Plug 'junegunn/goyo.vim'        " Distraction-free writing mode
      Plug 'axvr/org.vim'             " Org mode plugin 
      Plug 'zah/nim.vim'              " Nim Language support
@@ -39,8 +39,7 @@ endif
 syntax on                                " Enable syntax highlighting
 set background=dark                      " Set the background theme to dark
 set nocompatible                         " Disable vim compatibility
-let g:alduin_Shout_Dragon_Aspect = 1
-colorscheme vim-monokai-tasty            " Set the colorscheme
+colorscheme mountaineer                  " Set the colorscheme
 set nu relativenumber                    " Enable line (+ relative) numbers
 filetype plugin indent on                " Enable plugin indentation
 set autoindent cindent                   " Set code autoindentation

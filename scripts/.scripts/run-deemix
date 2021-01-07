@@ -1,0 +1,3 @@
+#!env bash
+
+docker run -d --name Deemix -v "/mnt/pcdata/Music/deemix/:/downloads" -v "/home/dimitris/.config/deemix:/config"  -e PUID=1000  -e PGID=1000  -e ARL=1234567  -e UMASK_SET=022  -e DEEZUI=false  -p 6595:6595 --rm registry.gitlab.com/bockiii/deemix-docker:latest

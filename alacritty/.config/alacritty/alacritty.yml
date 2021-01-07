@@ -24,7 +24,7 @@ window:
   startup_mode: Windowed
 
   # Window title
-  title: Alacritty
+  title: Alacrittywindow
 
   # Window class (Linux only):
   class: Alacritty
@@ -49,7 +49,7 @@ font:
     family: JuliaMono
     style:  Italic
 
-  size: 10
+  size: 10.5
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -71,62 +71,59 @@ font:
   draw_bold_text_with_bright_colors: true
 
 colors:
-  # Default colors
   primary:
-    background: '0x141413'
-    foreground: '0xebdbb2'
+    background: '0x0f0f0f'
+    foreground: '0xf0f0f0'
 
-  # Normal colors
   normal:
-    black:   '0x141413'
-    red:     '0xff2c4b'
-    green:   '0xa0cf5d'
-    yellow:  '0xffa724'
-    blue:    '0x0a9dff'
-    magenta: '0xb16286'
-    cyan:    '0x88c0d0'
-    white:   '0xebdbb2'
+    black:   '0x262626'
+    red:     '0xac8a8c'
+    green:   '0x8aac8b'
+    yellow:  '0xaca98a'
+    blue:    '0x8f8aac'
+    magenta: '0xac8aac'
+    cyan:    '0x8aabac'
+    white:   '0xe7e7e7'
+    orange:  '0xc6a679' #Here for reference
 
-  # Bright colors
   bright:
-    black:   '0x242321'
-    red:     '0xff2c4b'
-    green:   '0xaeee00'
-    yellow:  '0xf4cf86'
-    blue:    '0x0a9dff'
-    magenta: '0xff9eb8'
-    cyan:    '0x8fbcbb'
-    white:   '0xfbf1c7'
-
+    black:   '0x4c4c4c'
+    red:     '0xc49ea0'
+    green:   '0x9ec49f'
+    yellow:  '0xc4c19e'
+    blue:    '0xa39ec4'
+    magenta: '0xc49ec4'
+    cyan:    '0x9ec3c4'
+    white:   '0xf5f5f5'
+    orange:  '0xceb188' #Here for reference
 
     #colors:
     #  # Default colors
     #  primary:
-    #    background: '0x111111'
+    #    background: '0x141413'
     #    foreground: '0xebdbb2'
     #
     #  # Normal colors
     #  normal:
-    #    black:   '0x1d1d1d'
-    #    red:     '0xcc241d'
+    #    black:   '0x141413'
+    #    red:     '0xff2c4b'
     #    green:   '0xa0cf5d'
-    #    yellow:  '0xe67e22'
-    #    blue:    '0x6a89cc'
+    #    yellow:  '0xffa724'
+    #    blue:    '0x0a9dff'
     #    magenta: '0xb16286'
-    #    cyan:    '0xa3be8c'
-    #    white:   '0xa89984'
+    #    cyan:    '0x88c0d0'
+    #    white:   '0xebdbb2'
     #
     #  # Bright colors
     #  bright:
-    #    black:   '0x928374'
-    #    red:     '0xc0392b'
-    #    green:   '0xb8bb26'
-    #    yellow:  '0xfa983a'
-    #    blue:    '0x83a598'
-    #    magenta: '0xb48ead'
-    #    #magenta: '0xd3869b'
-    #    cyan:    '0xa3be8c'
-    #    white:   '0xf8eac7'
+    #    black:   '0x242321'
+    #    red:     '0xff2c4b'
+    #    green:   '0xaeee00'
+    #    yellow:  '0xf4cf86'
+    #    blue:    '0x0a9dff'
+    #    magenta: '0xff9eb8'
+    #    cyan:    '0x8fbcbb'
+    #    white:   '0xfbf1c7'
 
 background_opacity: 0.95
 
