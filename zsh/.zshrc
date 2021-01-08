@@ -116,6 +116,9 @@ alias mexec="chmod +x"
 alias glog="git log --all --decorate --oneline --graph"
 alias git_optimize="git reflog expire --all --expire=now; \\
                     git gc --prune=now --aggressive"
+alias gs="git status"
+alias gcm="git commit -m"
+alias fuck="sudo \$(history -1 | awk '{\$1=\"\"}1')"
 
 alias open="setsid xdg-open"
 alias pdf="setsid zathura"
@@ -124,7 +127,6 @@ alias grep="grep -i"
 alias fzff="fzf -e -i --nth -1 --delimiter='/' --preview='bat {}'"
 alias bfzf="fzf -e -i --prompt='book_search>' --nth -1 --delimiter='/' --color=16" 
 alias vf='nvim $(fzff)'
-alias yay="yaourtix"
 
 # CONFIGS
 alias rlconf="source ~/.zshrc"
