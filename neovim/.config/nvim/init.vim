@@ -11,12 +11,13 @@
 "{{{
 "==== PLUGINS ====
 call plug#begin('~/.config/nvim/plugged')
-     Plug 'tpope/vim-surround'       " Surround text in vim
-     Plug 'tpope/vim-repeat'         " Add repeat functionality
-     Plug 'co1ncidence/mountaineer'  " Mountaineer theme
-     Plug 'junegunn/goyo.vim'        " Distraction-free writing mode
-     Plug 'axvr/org.vim'             " Org mode plugin 
-     Plug 'zah/nim.vim'              " Nim Language support
+     Plug 'tpope/vim-surround'        " Surround text in vim
+     Plug 'tpope/vim-repeat'          " Add repeat functionality
+     Plug 'co1ncidence/mountaineer'   " Mountaineer theme
+     Plug 'junegunn/goyo.vim'         " Distraction-free writing mode
+     Plug 'axvr/org.vim'              " Org mode plugin 
+     Plug 'zah/nim.vim'               " Nim Language support
+     Plug 'elixir-editors/vim-elixir' " Elixir Language support
 call plug#end()
 "}}}
 "          _   _   _                 
