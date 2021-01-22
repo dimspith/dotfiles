@@ -81,6 +81,11 @@ cjd() {
     pushd /mnt/pcdata/Files/*/*/${1}*
 }
 
+trun() {
+    tsc "$1.ts" && node "$1.js"
+    rm "$1.js"
+}
+
 j() {
     if [ "$1" ]
     then
@@ -94,6 +99,31 @@ j() {
     else
         cd "$(fd -H --type directory | fzy -p "DIR: " -l 20)" || return
     fi
+}
+
+#
+# # ex - archive extractor
+# # usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1     ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
 }
 
 #       _ _
@@ -127,6 +157,7 @@ alias grep="grep -i"
 alias fzff="fzf -e -i --nth -1 --delimiter='/' --preview='bat {}'"
 alias bfzf="fzf -e -i --prompt='book_search>' --nth -1 --delimiter='/' --color=16" 
 alias vf='nvim $(fzff)'
+alias pamcan="pacman"
 
 # CONFIGS
 alias rlconf="source ~/.zshrc"
