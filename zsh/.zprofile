@@ -1,5 +1,4 @@
 # Use qt5ct/kvantum for themes
-export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_STYLE_OVERRIDE=kvantum
 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
@@ -35,7 +34,6 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.npm-global/bin:$PATH"
 export PATH="$HOME/.luarocks/bin:$PATH"
 export PATH="$HOME/.nimble/bin:$PATH"
 export PATH="$HOME/.scripts:$PATH"
