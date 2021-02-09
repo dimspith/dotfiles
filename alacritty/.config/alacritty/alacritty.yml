@@ -40,16 +40,16 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: JuliaMono
+    family: Iosevka Term
     style:  Regular
   bold:
-    family: JuliaMono
+    family: Iosevka Term
     style:  Bold
   italic:
-    family: JuliaMono
+    family: Iosevka Term
     style:  Italic
 
-  size: 10.5
+  size: 11
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -125,7 +125,7 @@ colors:
     #    cyan:    '0x8fbcbb'
     #    white:   '0xfbf1c7'
 
-background_opacity: 0.95
+background_opacity: 0.96
 
 mouse:
   # Click settings
@@ -216,5 +216,6 @@ key_bindings:
     #- { key: Minus,    mods: Control,       action: DecreaseFontSize           }
   - { key: L,        mods: Control,       action: ClearLogNotice             }
   - { key: L,        mods: Control,       chars: "\x0c"                      }
-  - { key: V,        mods: Alt,           action: ScrollPageUp,   mode: ~Alt }
-  - { key: V,        mods: Control,       action: ScrollPageDown, mode: ~Alt }
+  - { key: V,        mods: Alt,           action: ScrollHalfPageUp,   mode: ~Alt }
+  - { key: V,        mods: Control,       action: ScrollHalfPageDown, mode: ~Alt }
+

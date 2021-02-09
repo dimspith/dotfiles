@@ -16,7 +16,13 @@ promptinit
 bindkey -e
 
 # ZSH Prompt
-PROMPT='%B%F{green}[ %2~ ]%F{yellow}%#~>%f%b '
+NEWLINE=$'\n'
+PROMPT="\
+%B%F{red}@%m %B%F{magenta}:: [ %2~ ]
+%B%F{yellow}==>%f%b "
+
+# OLD PROMPT
+#PROMPT="%B%F{green}[ %2~ ]%F{yellow}%#~>%f%b "
 
 # Complete in menu style with root detection
 zstyle ':completion:*' menu select
@@ -73,7 +79,7 @@ covid() {
 
 # Restart a process by name 
 restart() {
-    killall -9 "$1" && sleep 1 && setsid -f "$1"
+    killall -9 "$1" && sleep 0.5 && setsid -f "$1"
 }
 
 # Johny Decimal function
@@ -101,7 +107,6 @@ j() {
     fi
 }
 
-#
 # # ex - archive extractor
 # # usage: ex <file>
 ex ()
