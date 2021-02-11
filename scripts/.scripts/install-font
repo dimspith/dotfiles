@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Check argument count
+if [ "$#" -lt 1 ] ; then
+    echo 'Install font from a compressed file into ~/.local/share/fonts/<FOLDER NAME>'
+    echo 'Usage: install-font <FILE> <FOLDER NAME>'
+    exit 1
+elif [ "$#" -eq 1 ] ; then
+    echo 'Please provide a folder name'
+    exit 1
+fi
+
+if [ -f $1 ] ; then
+    case $1 in
+        *.zip) unzip "$1" -d ~/.local/share/fonts/"$2" ;;
+        *)     echo "'$1' cannot be extracted!" ;;
+    esac
+else
+    echo "'$1' is not a valid file!"
+fi
+
