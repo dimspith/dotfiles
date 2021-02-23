@@ -40,13 +40,13 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: Iosevka Term
+    family: Iosevka Term Extended
     style:  Regular
   bold:
-    family: Iosevka Term
+    family: Iosevka Term Extended
     style:  Bold
   italic:
-    family: Iosevka Term
+    family: Iosevka Term Extended
     style:  Italic
 
   size: 11
@@ -125,7 +125,7 @@ colors:
     #    cyan:    '0x8fbcbb'
     #    white:   '0xfbf1c7'
 
-background_opacity: 0.96
+background_opacity: 1.00
 
 mouse:
   # Click settings

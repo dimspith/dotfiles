@@ -21,14 +21,15 @@ bind-key U show-urls
 bind-key x pb-delete
 bind-key ^t next-unread
 
-color listnormal white default
-color listnormal_unread magenta default
-color listfocus black yellow standout bold
-color listfocus_unread yellow default bold
-color info red black bold
-color article white default
+color info default black
+color listnormal_unread cyan default
+color listnormal green default dim
+color listfocus black blue bold
+color listfocus_unread black magenta bold
 
 browser firefox
 macro , macro-prefix
 macro w set browser "lynx"; open-in-browser ; set browser firefox
 macro a set browser "mpv"; open-in-browser ; set browser firefox
+
+text-width 80
