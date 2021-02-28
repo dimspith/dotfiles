@@ -107,6 +107,16 @@ j() {
     fi
 }
 
+isched() {
+    SCHEDULE="$(bat ~/notes/*Schedule.org | awk 'NR > 2')"
+    if [ "$1" ]
+    then
+        echo "$(echo $SCHEDULE | cut -d\| -f$1)"
+    else
+        echo "$SCHEDULE"
+    fi
+}
+
 # # ex - archive extractor
 # # usage: ex <file>
 ex ()
@@ -116,7 +126,7 @@ ex ()
       *.tar.bz2)   tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
       *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
+      *.rar)       unrar x $1   ;;
       *.gz)        gunzip $1    ;;
       *.tar)       tar xf $1    ;;
       *.tbz2)      tar xjf $1   ;;
@@ -131,8 +141,32 @@ ex ()
   fi
 }
 
+f()
+{
+    local LOCATION="$(\
+       fd -H -E .cache -E .m2 -E .ipfs -E .ccls-cache |\
+       fzf -e --layout=reverse --height=40%)"
+    if [ -n "$LOCATION" ] ; then
+        if [ -f "$LOCATION" ]; then
+            case $LOCATION in
+                *.pdf)  zathura        "$LOCATION" ;;
+                *.org)  emacsclient -c "$LOCATION" ;;
+                *.jpg)  sxiv           "$LOCATION" ;;
+                *.png)  sxiv           "$LOCATION" ;;
+                *.svg)  sxiv           "$LOCATION" ;;
+                *.gif)  sxiv -a        "$LOCATION" ;;
+                *.jpeg) sxiv           "$LOCATION" ;;
+                *.xcf)  gimp           "$LOCATION" ;;
+                *)      nvim           "$LOCATION" ;;
+            esac
+        elif [ -d "$LOCATION" ]; then
+            cd "$LOCATION"
+        fi
+    fi
+}
+
 #       _ _
-#  __ _| (_) __ _ ___  ___  __
+#  __ _| (_) __ _ ___  ___  ___
 # / _` | | |/ _` / __|/ _ \/ __|
 #| (_| | | | (_| \__ \  __/\__ \
 # \__,_|_|_|\__,_|___/\___||___/
@@ -161,8 +195,6 @@ alias grepc="grep --color=auto"
 alias grep="grep -i"
 alias fzff="fzf -e -i --nth -1 --delimiter='/' --preview='bat {}'"
 alias bfzf="fzf -e -i --prompt='book_search>' --nth -1 --delimiter='/' --color=16" 
-alias vf='nvim $(fzff)'
-alias pamcan="pacman"
 
 # CONFIGS
 alias rlconf="source ~/.zshrc"
@@ -180,14 +212,13 @@ alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; se
 alias clip="xclip -selection clipboard"
 alias hc="herbstclient"
 alias rbackup="rsync -arvP --delete"
-alias yeet="rm -rf "
+alias yeet="rm -rf"
 alias nirun="nim c -r --hints:off"
+alias emc="emacsclient -c"
 
 #Inits
-alias itray="stalonetray -c ~/.xmonad/stalonetray-config/stalonetrayrc &;disown"
-alias ipicom="picom --config ~/.xmonad/picom-config/picom.conf -b"
 alias rlmacs="pkill emacs && emacs --daemon"
 alias initmacs="emacs --daemon;setsid emacsclient -c;exit"
-alias xeph="Xephyr -br -ac -noreset -screen 1280x720 :1"
-alias inxeph="DISPLAY=:1"
+alias xeph="Xephyr -br -ac -noreset -screen 1600x900 :5"
+alias inxeph="DISPLAY=:5"
 
