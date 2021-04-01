@@ -211,9 +211,6 @@ key_bindings:
   - { key: C,        mods: Control|Shift, action: Copy                       }
   - { key: Key0,     mods: Control,       action: ResetFontSize              }
   - { key: Equals,   mods: Control,       action: IncreaseFontSize           }
-    #- { key: Add,      mods: Control,       action: IncreaseFontSize           }
-    #- { key: Subtract, mods: Control,       action: DecreaseFontSize           }
-    #- { key: Minus,    mods: Control,       action: DecreaseFontSize           }
   - { key: L,        mods: Control,       action: ClearLogNotice             }
   - { key: L,        mods: Control,       chars: "\x0c"                      }
   - { key: V,        mods: Alt,           action: ScrollHalfPageUp,   mode: ~Alt }

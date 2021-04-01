@@ -14,6 +14,7 @@ compinit
 promptinit
 
 bindkey -e
+bindkey -s '^s' 'f\n'
 
 # ZSH Prompt
 NEWLINE=$'\n'
@@ -108,7 +109,7 @@ j() {
 }
 
 isched() {
-    SCHEDULE="$(bat ~/notes/*Schedule.org | awk 'NR > 2')"
+    SCHEDULE="$(bat ~/notes/*schedule.org | awk 'NR > 2')"
     if [ "$1" ]
     then
         echo "$(echo $SCHEDULE | cut -d\| -f$1)"
@@ -124,6 +125,7 @@ ex ()
   if [ -f $1 ] ; then
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
+      *.tar.xz)    tar xf $1    ;;
       *.tar.gz)    tar xzf $1   ;;
       *.bz2)       bunzip2 $1   ;;
       *.rar)       unrar x $1   ;;
@@ -149,14 +151,18 @@ f()
     if [ -n "$LOCATION" ] ; then
         if [ -f "$LOCATION" ]; then
             case $LOCATION in
-                *.pdf)  zathura        "$LOCATION" ;;
-                *.org)  emacsclient -c "$LOCATION" ;;
-                *.jpg)  sxiv           "$LOCATION" ;;
-                *.png)  sxiv           "$LOCATION" ;;
-                *.svg)  sxiv           "$LOCATION" ;;
-                *.gif)  sxiv -a        "$LOCATION" ;;
-                *.jpeg) sxiv           "$LOCATION" ;;
-                *.xcf)  gimp           "$LOCATION" ;;
+                *.pdf)  setsid -f zathura        "$LOCATION" ;;
+                *.epub) setsid -f zathura        "$LOCATION" ;;
+                *.org)  setsid -f emacsclient -c "$LOCATION" ;;
+                *.jpg)  setsid -f sxiv           "$LOCATION" ;;
+                *.png)  setsid -f sxiv           "$LOCATION" ;;
+                *.svg)  setsid -f sxiv           "$LOCATION" ;;
+                *.gif)  setsid -f sxiv -a        "$LOCATION" ;;
+                *.jpeg) setsid -f sxiv           "$LOCATION" ;;
+                *.xcf)  setsid -f gimp           "$LOCATION" ;;
+                *.mp4)  setsid -f mpv            "$LOCATION" ;;
+                *.wav)  setsid -f mpv            "$LOCATION" ;;
+                *.mkv)  setsid -f mpv            "$LOCATION" ;;
                 *)      nvim           "$LOCATION" ;;
             esac
         elif [ -d "$LOCATION" ]; then
@@ -215,6 +221,8 @@ alias rbackup="rsync -arvP --delete"
 alias yeet="rm -rf"
 alias nirun="nim c -r --hints:off"
 alias emc="emacsclient -c"
+alias emr="emacs --script"
+alias emcomp="emacs --batch --eval '(org-babel-load-file \"~/.emacs.d/config.org\")'"
 
 #Inits
 alias rlmacs="pkill emacs && emacs --daemon"
@@ -222,3 +230,9 @@ alias initmacs="emacs --daemon;setsid emacsclient -c;exit"
 alias xeph="Xephyr -br -ac -noreset -screen 1600x900 :5"
 alias inxeph="DISPLAY=:5"
 
+
+# Disable C-s hanging terminal
+if [[ -t 0 && $- = *i* ]]
+then
+    stty -ixon
+fi

@@ -21,11 +21,13 @@ bind-key U show-urls
 bind-key x pb-delete
 bind-key ^t next-unread
 
+color background default default
+color listnormal default default
+color listnormal_unread default default
+color listfocus color16 cyan
+color listfocus_unread color16 cyan
 color info default black
-color listnormal_unread cyan default
-color listnormal green default dim
-color listfocus black blue bold
-color listfocus_unread black magenta bold
+color article default default
 
 browser firefox
 macro , macro-prefix
