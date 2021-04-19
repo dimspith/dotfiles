@@ -11,14 +11,57 @@
 "{{{
 "==== PLUGINS ====
 call plug#begin('~/.config/nvim/plugged')
-     Plug 'tpope/vim-surround'        " Surround text in vim
-     Plug 'tpope/vim-repeat'          " Add repeat functionality
-     Plug 'co1ncidence/mountaineer'   " Mountaineer theme
-     Plug 'junegunn/goyo.vim'         " Distraction-free writing mode
-     Plug 'axvr/org.vim'              " Org mode plugin 
-     Plug 'zah/nim.vim'               " Nim Language support
-     Plug 'elixir-editors/vim-elixir' " Elixir Language support
+    Plug 'prabirshrestha/vim-lsp'              " LSP support
+    Plug 'mattn/vim-lsp-settings'              " LSP settings
+    Plug 'prabirshrestha/asyncomplete.vim'     " Async autocompletion
+    Plug 'prabirshrestha/asyncomplete-lsp.vim' " LSP completion support
+    Plug 'tpope/vim-surround'                  " Surround text in vim
+    Plug 'tpope/vim-repeat'                    " Add repeat functionality
+    Plug 'co1ncidence/mountaineer'             " Mountaineer theme
+    Plug 'junegunn/goyo.vim'                   " Distraction-free writing mode
+    Plug 'axvr/org.vim'                        " Org-mode plugin 
+    Plug 'zah/nim.vim'                         " Nim language support
 call plug#end()
+
+" Vim-LSP settings
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    inoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    inoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+endfunction
+
+" Register nimlsp language server for Nim
+if executable('nimlsp')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'nimlsp',
+        \ 'cmd': {server_info->['nimlsp']},
+        \ 'allowlist': ['nim'],
+        \ })
+endif
+
+" Asyncomplete settings
+
+" Tab completion
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
+
 "}}}
 "          _   _   _                 
 " ___  ___| |_| |_(_)_ __   __ _ ___ 
@@ -60,9 +103,13 @@ set inccommand=split                     " Live substitution preview
 set magic                                " Regular expressions on search
 set lazyredraw                           " Don't redraw while executing macros
 set undofile                             " File with undo history
+set nobackup nowritebackup               " Don't create backup files
+set ruler                                " Always show position
+
 
 " Set the backup/undo/swap files location in /tmp
-set backupdir=/tmp//
+" DO NOT USE ON PUBLIC MACHINES
+" set backupdir=/tmp//
 set directory=/tmp//
 set undodir=/tmp//
 
@@ -209,23 +256,7 @@ augroup END
 " For c files
 augroup filetype_c
 	 autocmd!
-	 autocmd FileType c nnoremap <buffer> <F5> :w<cr> :!gcc -ansi -pedantic -Wall -static -g % -o %:r<cr>
-         autocmd FileType c nnoremap <buffer> <F6> :!./%:r<cr>
-         autocmd FileType c set tabstop=8 shiftwidth=8
-augroup END
-
-" For html files
-augroup filetype_html
-     autocmd!
-     autocmd FileType html inoremap <buffer> <leader>html <html><cr></html><Esc>O
-     autocmd FileType html inoremap <buffer> <leader>hd <head><cr></head><Esc>O
-     autocmd FileType html inoremap <buffer> <leader>h2 <h2><cr></h2><Esc>O
-     autocmd FileType html inoremap <buffer> <leader>str <strong><cr></strong><Esc>O
-     autocmd FileType html inoremap <buffer> <leader>p <p><cr></p><Esc>O
-     autocmd FileType html inoremap <buffer> <leader>img <img src=""><Esc>hi
-     autocmd FileType html inoremap <buffer> <leader>bd <body><cr></body><Esc>O
-     autocmd FileType html inoremap <buffer> <leader>tit <title></title><esc>F<i
-	 autocmd FileType html nnoremap <buffer> <buffer> <leader>f zfit
+     autocmd FileType c setlocal tabstop=8 shiftwidth=8
 augroup END
 
 " For Bash scripts
