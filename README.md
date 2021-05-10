@@ -12,7 +12,6 @@ They can be installed by calling `stow <folder>` for particular packages or just
 
 Additional dotfiles outside this repo:
 
-* [XMonad](https://gitlab.com/dimitrissp/xmonad-configuration)
-* [Emacs](https://gitlab.com/dimitrissp/emacs-configuration)
-
+* [Emacs](https://github.com/dimspith/emacs-configuration)
+* [DWM](https://github.com/dimspith/dwm)
 
