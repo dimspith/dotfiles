@@ -93,21 +93,6 @@ trun() {
     rm "$1.js"
 }
 
-j() {
-    if [ "$1" ]
-    then
-        DIR="$(fd -H --type directory $1)"
-        if [ "$DIR" ]
-        then
-            cd "$(echo $DIR | fzy -p "DIR: " -l 20)" || return
-        else
-            echo "Directory not found!"
-        fi
-    else
-        cd "$(fd -H --type directory | fzy -p "DIR: " -l 20)" || return
-    fi
-}
-
 isched() {
     SCHEDULE="$(bat ~/notes/*schedule.org | awk 'NR > 2')"
     if [ "$1" ]
@@ -236,3 +221,6 @@ if [[ -t 0 && $- = *i* ]]
 then
     stty -ixon
 fi
+
+eval "$(lua /usr/share/z.lua/z.lua --init zsh)"
+

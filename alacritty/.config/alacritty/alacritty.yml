@@ -125,7 +125,7 @@ colors:
     #    cyan:    '0x8fbcbb'
     #    white:   '0xfbf1c7'
 
-background_opacity: 1.00
+background_opacity: 0.95
 
 mouse:
   # Click settings
