@@ -12,6 +12,6 @@ They can be installed by calling `stow <folder>` for particular packages or just
 
 Additional dotfiles outside this repo:
 
-* [Emacs](https://github.com/dimspith/emacs-configuration)
+* [Emacs](https://github.com/dimspith/dotemacs)
 * [DWM](https://github.com/dimspith/dwm)
 
