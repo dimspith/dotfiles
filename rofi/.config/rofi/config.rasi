@@ -11,7 +11,7 @@ configuration {
   line-padding:          10;
   bw:                    0;
   padding:               0;
-  separator-style:       none;
+  separator-style:       "";
   hide-scrollbar:        true;
   line-margin:           0;
 }

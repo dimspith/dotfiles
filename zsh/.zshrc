@@ -9,18 +9,23 @@
 zstyle ':completion:*' completer _complete _ignored 
 zstyle :compinstall filename '/home/dimitris/.zshrc'
 
-autoload -Uz compinit promptinit
+autoload -Uz compinit promptinit add-zsh-hook
 compinit
 promptinit
 
+# _nicy_prompt() {
+#	PROMPT=$("$HOME/.nimble/bin/nicy")
+#}
+# add-zsh-hook precmd _nicy_prompt
+
 bindkey -e
-bindkey -s '^s' 'f\n'
+#bindkey -s '^s' 'f\n'
 
 # ZSH Prompt
 NEWLINE=$'\n'
 PROMPT="\
-%B%F{red}@%m %B%F{magenta}:: [ %2~ ]
-%B%F{yellow}==>%f%b "
+%F{red}@%m %F{magenta}:: [ %2~ ]
+%F{yellow}==>%f "
 
 # OLD PROMPT
 #PROMPT="%B%F{green}[ %2~ ]%F{yellow}%#~>%f%b "
@@ -93,16 +98,6 @@ trun() {
     rm "$1.js"
 }
 
-isched() {
-    SCHEDULE="$(bat ~/notes/*schedule.org | awk 'NR > 2')"
-    if [ "$1" ]
-    then
-        echo "$(echo $SCHEDULE | cut -d\| -f$1)"
-    else
-        echo "$SCHEDULE"
-    fi
-}
-
 # # ex - archive extractor
 # # usage: ex <file>
 ex ()
@@ -132,7 +127,7 @@ f()
 {
     local LOCATION="$(\
        fd -H -E .cache -E .m2 -E .ipfs -E .ccls-cache |\
-       fzf -e --layout=reverse --height=40%)"
+       fzy -l 10 -p 'FIND> ')"
     if [ -n "$LOCATION" ] ; then
         if [ -f "$LOCATION" ]; then
             case $LOCATION in
@@ -217,10 +212,10 @@ alias inxeph="DISPLAY=:5"
 
 
 # Disable C-s hanging terminal
-if [[ -t 0 && $- = *i* ]]
-then
-    stty -ixon
-fi
+#if [[ -t 0 && $- = *i* ]]
+#then
+#    stty -ixon
+#fi
 
 eval "$(lua /usr/share/z.lua/z.lua --init zsh)"
 

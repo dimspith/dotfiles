@@ -84,7 +84,6 @@ colors:
     magenta: '0xac8aac'
     cyan:    '0x8aabac'
     white:   '0xe7e7e7'
-    orange:  '0xc6a679' #Here for reference
 
   bright:
     black:   '0x4c4c4c'
@@ -95,7 +94,6 @@ colors:
     magenta: '0xc49ec4'
     cyan:    '0x9ec3c4'
     white:   '0xf5f5f5'
-    orange:  '0xceb188' #Here for reference
 
     #colors:
     #  # Default colors
@@ -138,15 +136,6 @@ mouse:
 
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: false
-
-  url:
-    # This program is executed when clicking on a text which is recognized as a URL.
-    # The URL is always added to the command as the last parameter.
-    launcher:
-      program: xdg-open
-      args: []
-
-    modifiers: None
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
