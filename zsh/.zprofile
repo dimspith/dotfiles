@@ -18,6 +18,20 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_DIRS="/usr/local/share:/usr/share:$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share"
 
+# Clean up home directory
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export SSB_HOME="$XDG_DATA_HOME"/zoom
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export LEIN_HOME="$XDG_DATA_HOME"/lein
+export NIMBLE_DIR="$XDG_DATA_HOME"/nimble
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export TEXMFHOME=$XDG_DATA_HOME/texmf
+export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
+export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
+
 # Disable "less" history
 export LESSHISTFILE=-
 
