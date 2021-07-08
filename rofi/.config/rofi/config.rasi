@@ -1,64 +1,75 @@
 configuration {
-  font:                  "FiraMono Nerd Font 15";
-  icon-theme:            "Adwaita";
-  show-icons:            true;
-  drun-display-format:   "{icon}  {name}";
-  display-run:           " ";
-  display-drun:          "異";
-  display-window:        " ";
-  modi:                  "window,run,drun";
-  lines:                 7;
-  line-padding:          10;
-  bw:                    0;
-  padding:               0;
-  separator-style:       "";
-  hide-scrollbar:        true;
-  line-margin:           0;
+      font:                  "Iosevka Fixed Medium 12";
+      show-icons:            true;
+      drun-display-format:   "{name}";
+      display-drun:          "異";
+      modi:                  "window,run,drun";
+      disable-history:       false;
+      fullscreen:            false;
+      sidebar-mode:          false;
+      hide-scrollbar:        true;
 }
 
 * {
-  bg:  #0f0f0f;
-  se:  #262626;
-  fg:  #f0f0f0;
-  ac:  #ac8aac;
+      bg:  #0f0f0f;
+      se:  #262626;
+      fg:  #f0f0f0;
+      ac:  #ac8aac;
 }
 
 * {
 	background-color: @bg;
 	text-color: @fg;
 	spacing: 0;
-	width: 400px;
 }
 
-inputbar {
-	border: 0 0 1px 0;
-	children: [prompt, entry];
+window {
+       transparency: "real";
+       background-color: @bg;
+       text-color: @fg;
+       height: 100%;
+       width: 19%;
+       location: east;
+       x-offset: 0;
+       y-offset: 25;
 }
+
 
 prompt {
-	padding: 16px;
+    padding: 7 0 0 10;
     background-color: @ac;
     text-color: @bg;
-}
-
-textbox {
-	padding: 8px 16px;
+    font: "Iosevka Fixed Medium 25";
 }
 
 entry {
 	padding: 18px;
+    placeholder: "Search";
     background-color: @ac;
     text-color: @bg;
+    blink: true;
 }
 
-listview {
-	cycle: false;
-	margin: 0 0 -1px 0;
-	scrollbar: false;
+inputbar {
+	children: [prompt, entry];
+    border-radius:  5px;
 }
+
 
 element {
 	padding: 16px;
+    orientation: vertical;
+}
+
+element-icon {
+    size: 48px;
+    border: 0px;
+}
+
+element-text {
+    expand: true;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
 }
 
 element selected {
@@ -68,7 +79,10 @@ element selected {
     border-radius:  8px;
 }
 
-element-icon {
-    size: 28px;
-    border: 0px;
+listview {
+	cycle: false;
+	scrollbar: false;
+    columns: 3;
+    dynamic: true;
+    layout: vertical;
 }

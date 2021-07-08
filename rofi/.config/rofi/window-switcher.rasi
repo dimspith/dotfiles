@@ -1,0 +1,56 @@
+configuration {
+    font:                  "Iosevka Fixed Medium 12";
+    show-icons:            true;
+    modi:                  "window";
+    hide-scrollbar:        true;
+}
+
+* {
+      bg:  #0f0f0f;
+      se:  #262626;
+      fg:  #f0f0f0;
+      ac:  #ac8aac;
+}
+
+* {
+	background-color: @bg;
+	text-color: @fg;
+}
+
+window {
+    width: 50%;
+    location: center;
+    height: 120px;
+}
+
+inputbar {
+    enabled: false;
+}
+
+listview {
+    layout: horizontal;
+    columns: 3;
+	cycle: true;
+	scrollbar: false;
+}
+
+element {
+	padding: 12px;
+    orientation: vertical;
+}
+
+element selected {
+	background-color: @se;
+	text-color: @fg;
+    border-radius:  8px;
+}
+
+element-icon {
+    size: 70px;
+}
+
+element-text {
+    expand: true;
+    width: 70px;
+    font: "Iosevka Fixed Medium 10";
+}
