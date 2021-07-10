@@ -200,7 +200,7 @@ alias hc="herbstclient"
 alias rbackup="rsync -arvP --delete"
 alias yeet="rm -rf"
 alias nirun="nim c -r --hints:off"
-alias emc="emacsclient -c"
+alias e='emacsclient -nw -a ""' 
 alias emr="emacs --script"
 alias emcomp="emacs --batch --eval '(org-babel-load-file \"~/.emacs.d/config.org\")'"
 
