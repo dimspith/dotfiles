@@ -88,16 +88,6 @@ restart() {
     killall -9 "$1" && sleep 0.5 && setsid -f "$1"
 }
 
-# Johny Decimal function
-cjd() {
-    pushd /mnt/pcdata/Files/*/*/${1}*
-}
-
-trun() {
-    tsc "$1.ts" && node "$1.js"
-    rm "$1.js"
-}
-
 # # ex - archive extractor
 # # usage: ex <file>
 ex ()
@@ -151,6 +141,30 @@ f()
     fi
 }
 
+linkbin()
+{
+    if [ "$#" -lt 1 ] ; then
+        echo -e "Link binaries to \e[1;32m~/.local/bin\e[0m with custom names"
+        echo -e "\e[1mUsage:\e[0m \e[4mlinkbin FILE [FILENAME_IN_PATH]\e[0m\n"
+        echo -e "\e[1mExample:\e[0m \e[4mlinkbin ~/neovim nvim\e[0m links \e[32m~/.local/bin/nvim\e[0m to \e[32m~/neovim\e[0m"
+        echo -e "\e[1mExample:\e[0m \e[4mlinkbin ~/neovim\e[0m links \e[32m~/.local/bin/neovim\e[0m to \e[32m~/neovim\e[0m"
+    elif [ "$#" -eq 2 ] && [ -f "$HOME/.local/bin/$2" ] ; then
+        echo -e "\e[1;31m'$HOME/.local/bin/$2'\e[0m exists! Choose a different filename."
+    elif [ -f "$1" ] ; then
+        if [ ! -x "$1" ] ; then
+            echo -e "File \e[1;31m'$1'\e[0m is not executable!"
+        elif [ "$#" -eq 1 ]; then
+            echo -e "Linking \e[1;32m'$1'\e[0m to \e[1;32m'$HOME/.local/bin/$1'\e[0m"
+            ln -s "$(realpath $1)" "$HOME/.local/bin/$1"
+        elif [ "$#" -eq 2 ]; then
+            echo -e "Linking \e[1;32m'$1'\e[0m to \e[1;32m'$HOME/.local/bin/$2'\e[0m"
+            ln -s "$(realpath $1)" "$HOME/.local/bin/$2"
+        fi
+    else
+        echo -e "\e[1;31m'$1'\e[0m is not a valid file!"
+    fi
+}
+
 #       _ _
 #  __ _| (_) __ _ ___  ___  ___
 # / _` | | |/ _` / __|/ _ \/ __|
@@ -166,7 +180,6 @@ alias lal="la -l"
 alias lla="la -l"
 alias ll="ls -1"
 alias rm="rm -I"
-alias mexec="chmod +x"
 
 alias glog="git log --all --decorate --oneline --graph"
 alias git_optimize="git reflog expire --all --expire=now; \\
@@ -202,7 +215,7 @@ alias yeet="rm -rf"
 alias nirun="nim c -r --hints:off"
 alias e='emacsclient -nw -a ""' 
 alias emr="emacs --script"
-alias emcomp="emacs --batch --eval '(org-babel-load-file \"~/.emacs.d/config.org\")'"
+alias emcomp="emacs --batch --eval '(org-babel-load-file \"~/.config/emacs/config.org\")'"
 
 #Inits
 alias rlmacs="pkill emacs && emacs --daemon"

@@ -21,9 +21,6 @@ export XDG_DATA_DIRS="/usr/local/share:/usr/share:$HOME/.local/share/flatpak/exp
 # Clean up home directory
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export SSB_HOME="$XDG_DATA_HOME"/zoom
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
-export LEIN_HOME="$XDG_DATA_HOME"/lein
 export NIMBLE_DIR="$XDG_DATA_HOME"/nimble
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
@@ -31,6 +28,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export TEXMFHOME=$XDG_DATA_HOME/texmf
 export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
 export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
+export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
 
 # Disable "less" history
 export LESSHISTFILE=-
@@ -46,9 +44,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Add paths for programming languages/scripts
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/share/cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.luarocks/bin:$PATH"
-export PATH="$HOME/.nimble/bin:$PATH"
+export PATH="$HOME/.local/share/nimble/bin:$PATH"
 export PATH="$HOME/.scripts:$PATH"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"

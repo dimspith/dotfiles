@@ -1,5 +1,5 @@
 configuration {
-      font:                  "Iosevka Fixed Medium 12";
+      font:                  "Scientifica Medium 13";
       show-icons:            true;
       drun-display-format:   "{name}";
       display-drun:          "異";
