@@ -3,39 +3,15 @@
 # INSTALL IT BEFORE USING IT
 #===============================
 
-### ZSH OPTIONS ###
+### ZSH Modules ###
+. "$XDG_CONFIG_HOME/zsh/modules/completions.zsh"
 
-# Load needed modules
-zstyle ':completion:*' completer _complete _ignored 
-zstyle :compinstall filename '/home/dimitris/.zshrc'
-
-autoload -Uz compinit promptinit add-zsh-hook
-compinit
-promptinit
-
-# _nicy_prompt() {
-#	PROMPT=$("$HOME/.nimble/bin/nicy")
-#}
-# add-zsh-hook precmd _nicy_prompt
-
+# Emacs keybindings (default)
 bindkey -e
-#bindkey -s '^s' 'f\n'
 
-# ZSH Prompt
-NEWLINE=$'\n'
-PROMPT="\
-%F{red}@%m %F{magenta}:: [ %2~ ]
-%F{yellow}==>%f "
-
-# OLD PROMPT
-#PROMPT="%B%F{green}[ %2~ ]%F{yellow}%#~>%f%b "
-
-# Complete in menu style with root detection
-zstyle ':completion:*' menu select
-zstyle ':completion::complete:*' gain-privileges 1
-
-# Look for matches on the left side of words
-zstyle ':completion:*' matcher-list 'l:|=* r:|=*' 
+PROMPT='%K{black}%F{red}%(?..(%?%))'\
+'%F{yellow}[%2~]'\
+'%K{yellow}%F{black}%#%f%k%b '
 
 # Tweak history
 HISTFILE=~/.zhistory
