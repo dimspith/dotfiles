@@ -30,6 +30,9 @@ export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
 export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
 
+# NNN Plugins
+export NNN_PLUG='f:fzopen;j:autojump'
+
 # Disable "less" history
 export LESSHISTFILE=-
 

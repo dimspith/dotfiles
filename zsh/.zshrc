@@ -199,7 +199,7 @@ alias bfzf="fzf -e -i --prompt='book_search>' --nth -1 --delimiter='/' --color=1
 alias rlconf="source ~/.zshrc"
 alias rlprof="source ~/.zprofile"
 alias vzc="nvim $HOME/.zshrc"
-alias vrc="nvim $HOME/.config/nvim/init.vim"
+alias vrc="nvim $HOME/.config/nvim/init.lua"
 alias vpol="nvim $HOME/.config/polybar/config"
 alias vi3="nvim $HOME/.config/i3/config"
 alias vrf="nvim $HOME/.config/rofi/config.rasi"
@@ -209,11 +209,11 @@ alias val="nvim $HOME/.config/alacritty/alacritty.yml"
 # MISCELLANEOUS
 alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; setxkbmap -option ctrl:nocaps"
 alias clip="xclip -selection clipboard"
-alias hc="herbstclient"
 alias rbackup="rsync -arvP --delete"
 alias yeet="rm -rf"
 alias nirun="nim c -r --hints:off"
 alias e='emacsclient -nw -a ""' 
+alias n='nnn -de'
 alias emr="emacs --script"
 alias emcomp="emacs --batch --eval '(org-babel-load-file \"~/.config/emacs/config.org\")'"
 
@@ -230,5 +230,10 @@ alias inxeph="DISPLAY=:5"
 #    stty -ixon
 #fi
 
-eval "$(lua /usr/share/z.lua/z.lua --init zsh)"
+# LOAD ASDF
+. $HOME/.asdf/asdf.sh
+
+# LOAD ZOXIDE
+eval "$(zoxide init zsh)"
+alias j="z"
 

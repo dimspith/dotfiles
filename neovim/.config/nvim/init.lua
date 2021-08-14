@@ -1,88 +1,11 @@
+-- Load plugins from plugins.lua
+require('plugins')
+
 -- Aliases
 local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
-
--- Clone paq-nvim if not installed
-local execute = vim.api.nvim_command
-local fn = vim.fn
-
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/paq-nvim'
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', 'https://github.com/savq/paq-nvim.git', install_path})
-  execute 'packadd paq-nvim'
-end
-
--- Plugins
-require "paq" {
-   "nvim-lua/popup.nvim";
-   "nvim-lua/plenary.nvim";
-   "nvim-treesitter/nvim-treesitter";
-   "neovim/nvim-lspconfig";
-   "ojroques/nvim-lspfuzzy";
-   "hrsh7th/nvim-compe";
-   "blackCauldron7/surround.nvim";
-   "nvim-telescope/telescope.nvim";
-   "projekt0n/github-nvim-theme";
-   "kyazdani42/nvim-web-devicons";
-   "hoob3rt/lualine.nvim";
-   "axvr/org.vim";
-}
-
-require 'surround'.setup {}
-
-require 'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  resolve_timeout = 800;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = {
-    border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
-    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-    max_width = 120,
-    min_width = 60,
-    max_height = math.floor(vim.o.lines * 0.3),
-    min_height = 1,
-  };
-
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    vsnip = true;
-    ultisnips = true;
-    luasnip = true;
-  };
-}
-
-cmd [[
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-]]
-
-require('lualine').setup {
-		options = {
-			theme = 'github',
-		}
-}
-require("github-theme").setup({
-  themeStyle = "dark",
-})
 
 -------------------- Options --------------------
 
@@ -123,7 +46,7 @@ opt.wrap = false            -- Disable line wrap
 
 -------------------- Mappings --------------------
 
--- Helper function
+-- Helper function for defining keybindings
 local function map(mode, lhs, rhs, opts)
   local options = {noremap = true}
   if opts then options = vim.tbl_extend('force', options, opts) end
@@ -186,31 +109,16 @@ map('n', '<space>fh', '<cmd>lua require(\'telescope.builtin\').help_tags()<cr>')
 
 cmd [[
 augroup filetype_c
-	 autocmd!
-     autocmd FileType c setlocal tabstop=8 shiftwidth=8
+autocmd!
+autocmd FileType c setlocal tabstop=8 shiftwidth=8
+augroup END
+
+augroup filetype_lua
+autocmd!
+autocmd FileType lua setlocal tabstop=2 shiftwidth=2
 augroup END
 ]]
 
--------------------- Tree-Sitter --------------------
-
-local ts = require 'nvim-treesitter.configs'
-ts.setup {ensure_installed = 'maintained', highlight = {enable = true}}
-
--------------------- LSP --------------------
-
-local lsp = require 'lspconfig'
-local lspfuzzy = require 'lspfuzzy'
-
--- Default settings
-lsp.nimls.setup {}
-lsp.clangd.setup {}
-lsp.sumneko_lua.setup{}
-
--- root_dir is where the LSP server will start: here at the project root otherwise in current folder
-lsp.pyls.setup {root_dir = lsp.util.root_pattern('.git', fn.getcwd())}
-
--- Make the LSP client use FZF instead of the quickfix list
-lspfuzzy.setup {}
 
 -- Keybindings
 map('n', '<space>,', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')

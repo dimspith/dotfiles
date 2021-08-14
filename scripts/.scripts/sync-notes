@@ -1,3 +1,3 @@
 #!/bin/sh
 echo "Syncing Notes..."
-/usr/bin/rclone sync /home/dimitris/notes koofr:Notes
+/usr/bin/rclone sync -P /home/dimitris/notes koofr:Notes
