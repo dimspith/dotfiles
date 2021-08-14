@@ -213,7 +213,6 @@ alias rbackup="rsync -arvP --delete"
 alias yeet="rm -rf"
 alias nirun="nim c -r --hints:off"
 alias e='emacsclient -nw -a ""' 
-alias n='nnn -de'
 alias emr="emacs --script"
 alias emcomp="emacs --batch --eval '(org-babel-load-file \"~/.config/emacs/config.org\")'"
 
@@ -223,12 +222,32 @@ alias initmacs="emacs --daemon;setsid emacsclient -c;exit"
 alias xeph="Xephyr -br -ac -noreset -screen 1600x900 :5"
 alias inxeph="DISPLAY=:5"
 
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
 
-# Disable C-s hanging terminal
-#if [[ -t 0 && $- = *i* ]]
-#then
-#    stty -ixon
-#fi
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn -de "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
 
 # LOAD ASDF
 . $HOME/.asdf/asdf.sh
