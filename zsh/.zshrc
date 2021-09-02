@@ -1,19 +1,27 @@
-#===============================
-# THIS CONFIG IS USED WITH ZGEN,
-# INSTALL IT BEFORE USING IT
-#===============================
-
-### ZSH Modules ###
-
-# completion
-. "$XDG_CONFIG_HOME/zsh/modules/completion.zsh"
-
 # Emacs keybindings (default)
 bindkey -e
 
+# Load asdf if it is installed
+[[ -f "$HOME/.asdf/asdf.sh" ]] &&
+        . $HOME/.asdf/asdf.sh  &&
+        fpath=(${ASDF_DIR}/completions $fpath)
+
+# Load zoxide if it is installed
+command -v "zoxide" >/dev/null &&
+        eval "$(zoxide init zsh)" &&
+        alias j="z"
+
+# Run ls every time you change directories
+autoload -U add-zsh-hook
+add-zsh-hook -Uz chpwd (){ ls --group-directories-first --color=always; }
+
+# ZSH completion config
+. "$XDG_CONFIG_HOME/zsh/modules/completion.zsh"
+
+# Prompt config
 PROMPT='%K{black}%F{red}%(?..(%?%))'\
-'%F{yellow}[%2~]'\
-'%K{yellow}%F{black}%#%f%k%b '
+'%F{green}@%m %F{cyan}[%2~]'\
+'%#%f%k%b '
 
 # Tweak history
 HISTFILE=~/.zhistory
@@ -22,14 +30,25 @@ HISTORY_IGNORE='(hist-search|cd ..|ls|la|l)'
 setopt sharehistory
 setopt extendedhistory
 
-# load modules
+# Expand aliases
 setopt ALIASES
+
+# Prevent aliases from being internally substituted
 setopt COMPLETE_ALIASES
-setopt auto_menu
+
+# Cursor stays in position when completion is requested
 setopt complete_in_word
+
+# Move cursor to the end when completion is done
 setopt always_to_end
+
+# Enable usage of directory names as commands without cd
 setopt AUTO_CD
+
+# List choices on an ambiguous completion
 setopt AUTO_LIST
+
+# Try to correct the spelling of all arguments in a line
 setopt correct_all
 
 #===============#
@@ -203,10 +222,9 @@ n ()
     fi
 }
 
-# LOAD ASDF
-. $HOME/.asdf/asdf.sh
+run () { setsid -f "$1" > /dev/null 2>&1 }
 
-# LOAD ZOXIDE
-eval "$(zoxide init zsh)"
-alias j="z"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 

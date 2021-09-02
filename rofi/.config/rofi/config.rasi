@@ -5,9 +5,7 @@ configuration {
       display-drun:          "異";
       modi:                  "window,run,drun";
       disable-history:       false;
-      fullscreen:            false;
       sidebar-mode:          false;
-      hide-scrollbar:        true;
 }
 
 * {

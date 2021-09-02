@@ -1,0 +1,41 @@
+[Default Applications]
+
+inode/directory=pcmanfm.desktop
+
+image/gif=viewnior.desktop
+image/jpeg=viewnior.desktop
+image/svg+xml=viewnior.desktop
+image/png=viewnior.desktop
+image/webp=viewnior.desktop
+image/bmp=viewnior.desktop
+
+text/javascript=emacs.desktop
+text/plain=emacs.desktop
+application/octet-stream=emacs.desktop
+
+audio/mpeg=org.strawberrymusicplayer.strawberry.desktop
+audio/mpeg3=org.strawberrymusicplayer.strawberry.desktop
+
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/ftp=firefox.desktop
+x-scheme-handler/chrome=firefox.desktop
+text/html=firefox.desktop
+text/xml=firefox.desktop;
+application/x-extension-htm=firefox.desktop
+application/x-extension-html=firefox.desktop
+application/x-extension-shtml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+application/x-extension-xhtml=firefox.desktop
+application/x-extension-xht=firefox.desktop
+
+x-scheme-handler/tg=userapp-Telegram Desktop-Q0D4X0.desktop
+
+x-scheme-handler/magnet=org.qbittorrent.qBittorrent.desktop;
+application/x.bittorrent=org.qbittorrent.qBittorrent.desktop;
+
+application/pdf=org.pwmt.zathura.desktop;
+
+application/vnd.microsoft.portable-executable=wine.desktop
+
+[Added Associations]

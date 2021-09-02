@@ -84,29 +84,6 @@ require('packer').startup(function()
     end
   }
 
-  ---- LSP Setup ----
-  use {
-    'neovim/nvim-lspconfig',
-    config = function()
-      local lsp = require 'lspconfig'
-
-      -- Default settings
-      lsp.nimls.setup {}
-      lsp.clangd.setup {}
-      lsp.sumneko_lua.setup{}
-    end
-  };
-
-  use {
-    'ojroques/nvim-lspfuzzy',
-    config = function()
-      local lspfuzzy = require 'lspfuzzy'
-
-      -- Make the LSP client use FZF instead of the quickfix list
-      lspfuzzy.setup {}
-    end
-  };
-
   ---- Surround text ----
   use {
     'blackCauldron7/surround.nvim',
@@ -127,7 +104,6 @@ require('packer').startup(function()
     config = function ()
     end
   };
-
 
   ---- Org-mode file support ----
   use 'axvr/org.vim';
