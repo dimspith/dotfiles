@@ -35,6 +35,7 @@ x-scheme-handler/magnet=org.qbittorrent.qBittorrent.desktop;
 application/x.bittorrent=org.qbittorrent.qBittorrent.desktop;
 
 application/pdf=org.pwmt.zathura.desktop;
+application/epub+zip=org.pwmt.zathura.desktop;
 
 application/vnd.microsoft.portable-executable=wine.desktop
 
