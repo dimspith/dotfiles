@@ -188,6 +188,10 @@ alias nirun="nim c -r --hints:off"
 alias e='emacsclient -nw -a ""' 
 alias emr="emacs --script"
 alias emcomp="emacs --batch --eval '(org-babel-load-file \"~/.config/emacs/config.org\")'"
+alias trm="trash-rm"
+alias tem="trash-empty"
+alias tpt="trash-put"
+alias tlist="trash-list"
 
 #Inits
 alias rlmacs="pkill emacs && emacs --daemon"

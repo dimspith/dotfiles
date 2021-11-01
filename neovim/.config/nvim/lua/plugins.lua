@@ -113,9 +113,7 @@ end)
 ---- Initialize some plugins ----
 ---------------------------------
 
-require("github-theme").setup({
-  themeStyle = "dark",
-})
+require("github-theme").setup({})
 
 require('lualine').setup {
   options = {
