@@ -99,11 +99,7 @@ require('packer').startup(function()
   };
 
   ---- Theme Config ----
-  use {
-    'projekt0n/github-nvim-theme',
-    config = function ()
-    end
-  };
+  use {'projekt0n/github-nvim-theme'};
 
   ---- Org-mode file support ----
   use 'axvr/org.vim';
