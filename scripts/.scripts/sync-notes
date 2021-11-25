@@ -1,3 +1,4 @@
 #!/bin/sh
-echo "Syncing Notes..."
-/usr/bin/rclone sync -P /home/dimitris/notes koofr:Notes
+dunstify -t 5000 "Rclone" "Synchronizing Notes..." -u low
+rclone sync -P /home/dimitris/notes koofr:Notes && \
+        dunstify -t 3000 "Rclone" "Synchronization Complete!" -u low

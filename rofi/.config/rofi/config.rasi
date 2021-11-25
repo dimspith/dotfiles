@@ -1,6 +1,6 @@
 configuration {
         show-icons: true;
-        font: "SpaceMono NF 13";
+        font: "Iosevka Extended 13";
         modi: "drun,run,window";
 }
 
