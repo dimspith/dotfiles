@@ -183,7 +183,7 @@ alias val="nvim $HOME/.config/alacritty/alacritty.yml"
 alias kbconf="setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle ; setxkbmap -option ctrl:nocaps"
 alias clip="xclip -selection clipboard"
 alias rbackup="rsync -arvP --delete"
-alias yeet="rm -rf"
+alias yeet="shred -n 3 -vzu"
 alias nirun="nim c -r --hints:off"
 alias e='emacsclient -nw -a ""' 
 alias emr="emacs --script"
@@ -230,5 +230,4 @@ run () { setsid -f "$1" > /dev/null 2>&1 }
 
 
 # Generated for envman. Do not edit.
-[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-
+#[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
