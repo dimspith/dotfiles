@@ -114,7 +114,7 @@ f()
 {
     local LOCATION="$(\
        fd -H -E .cache -E .m2 -E .ipfs -E .ccls-cache |\
-       fzy -l 10 -p 'FIND> ')"
+       fzf --prompt='FIND> ')"
     if [ -n "$LOCATION" ] ; then
         if [ -f "$LOCATION" ]; then
             case $LOCATION in
@@ -227,7 +227,3 @@ n ()
 }
 
 run () { setsid -f "$1" > /dev/null 2>&1 }
-
-
-# Generated for envman. Do not edit.
-#[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
