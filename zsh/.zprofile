@@ -54,9 +54,13 @@ export PATH="$HOME/.local/share/nimble/bin:$PATH"
 export PATH="$HOME/.scripts:$PATH"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
+
 # Dotnet Path
 export PATH="$HOME/.dotnet/:$PATH"
 export DOTNET_ROOT="$HOME/.dotnet/"
 
 # OpenTabletDriver Binaries
 export PATH="$HOME/programs/OpenTabletDriver/bin:$PATH"
+
+# NPM Global path, set with `npm config set prefix '~/.npm-global'`
+export PATH=~/.npm-global/bin:$PATH
