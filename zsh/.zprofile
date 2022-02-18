@@ -55,6 +55,8 @@ export PATH="$HOME/.local/share/nimble/bin:$PATH"
 export PATH="$HOME/.scripts:$PATH"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
+# Add GOPATH to PATH
+export PATH="$GOPATH/bin:$PATH"
 
 # Dotnet Path
 export PATH="$HOME/.dotnet/:$PATH"
