@@ -1,21 +1,16 @@
 [Default Applications]
-
 inode/directory=pcmanfm.desktop
-
 image/gif=viewnior.desktop
 image/jpeg=viewnior.desktop
 image/svg+xml=viewnior.desktop
 image/png=viewnior.desktop
 image/webp=viewnior.desktop
 image/bmp=viewnior.desktop
-
 text/javascript=emacs.desktop
 text/plain=emacs.desktop
 application/octet-stream=emacs.desktop
-
 audio/mpeg=org.strawberrymusicplayer.strawberry.desktop
 audio/mpeg3=org.strawberrymusicplayer.strawberry.desktop
-
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/ftp=firefox.desktop
@@ -28,15 +23,31 @@ application/x-extension-shtml=firefox.desktop
 application/xhtml+xml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
-
-x-scheme-handler/tg=userapp-Telegram Desktop-Q0D4X0.desktop
-
+x-scheme-handler/tg=userapp-Telegram Desktop-BOR8D1.desktop
 x-scheme-handler/magnet=org.qbittorrent.qBittorrent.desktop;
 application/x.bittorrent=org.qbittorrent.qBittorrent.desktop;
-
 application/pdf=org.pwmt.zathura.desktop;
 application/epub+zip=org.pwmt.zathura.desktop;
-
 application/vnd.microsoft.portable-executable=wine.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-S9OYC1.desktop
+message/rfc822=userapp-Thunderbird-S9OYC1.desktop
+x-scheme-handler/mid=userapp-Thunderbird-S9OYC1.desktop
+x-scheme-handler/feed=userapp-Thunderbird-G40UC1.desktop
+application/rss+xml=userapp-Thunderbird-G40UC1.desktop
+application/x-extension-rss=userapp-Thunderbird-G40UC1.desktop
+x-scheme-handler/webcal=userapp-Thunderbird-1QWDD1.desktop
+text/calendar=userapp-Thunderbird-1QWDD1.desktop
+application/x-extension-ics=userapp-Thunderbird-1QWDD1.desktop
+x-scheme-handler/webcals=userapp-Thunderbird-1QWDD1.desktop
+x-scheme-handler/sgnl=signal.desktop
+x-scheme-handler/signalcaptcha=signal.desktop
 
 [Added Associations]
+x-scheme-handler/mailto=userapp-Thunderbird-S9OYC1.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-S9OYC1.desktop;
+x-scheme-handler/feed=userapp-Thunderbird-G40UC1.desktop;
+application/rss+xml=userapp-Thunderbird-G40UC1.desktop;
+application/x-extension-rss=userapp-Thunderbird-G40UC1.desktop;
+x-scheme-handler/webcal=userapp-Thunderbird-1QWDD1.desktop;
+x-scheme-handler/webcals=userapp-Thunderbird-1QWDD1.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-BOR8D1.desktop;
