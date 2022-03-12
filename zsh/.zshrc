@@ -15,7 +15,7 @@ command -v "zoxide" >/dev/null &&
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ ls --group-directories-first --color=always; }
 
-# ZSH completion config
+# Load custom modules
 . "$XDG_CONFIG_HOME/zsh/modules/completion.zsh"
 
 # Prompt config
