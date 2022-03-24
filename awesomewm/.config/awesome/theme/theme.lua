@@ -1,10 +1,3 @@
---[[
-
-     Holo Awesome WM theme 3.0
-     github.com/lcpz
-
---]]
-
 local gears = require("gears")
 local lain  = require("lain")
 local awful = require("awful")
@@ -58,7 +51,7 @@ theme.bg_systray                                = theme.bg_normal
 
 theme.border_width                              = dpi(2)
 theme.border_normal                             = theme.bg_color
-theme.border_focus                              = "#7F7F7F"
+theme.border_focus                              = theme.magenta_color
 theme.border_marked                             = "#CC9393"
 
 theme.titlebar_bg_focus                         = theme.bg_focus
@@ -105,7 +98,7 @@ theme.layout_magnifier                          = theme.icon_dir .. "/magnifier.
 theme.layout_floating                           = theme.icon_dir .. "/floating.png"
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
-theme.useless_gap                               = dpi(4)
+theme.useless_gap                               = dpi(3)
 theme.titlebar_close_button_normal              = theme.default_dir.."/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = theme.default_dir.."/titlebar/close_focus.png"
 theme.titlebar_minimize_button_normal           = theme.default_dir.."/titlebar/minimize_normal.png"
@@ -127,11 +120,9 @@ theme.titlebar_maximized_button_focus_inactive  = theme.default_dir.."/titlebar/
 theme.titlebar_maximized_button_normal_active   = theme.default_dir.."/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = theme.default_dir.."/titlebar/maximized_focus_active.png"
 
-theme.musicplr = string.format("%s -e ncmpcpp", awful.util.terminal)
-
 local markup = lain.util.markup
 local blue   = "#80CCE6"
-local space3 = markup.font("Roboto 3", " ")
+local space3 = markup.font("Iosevka Expanded 3", " ")
 
 -- Clock
 local mytextclock = wibox.widget.textclock(markup("#FFFFFF", space3 .. "%H:%M   " .. markup.font("Roboto 4", " ")))
@@ -195,7 +186,7 @@ local mylauncher = awful.widget.button({ image = theme.awesome_icon_launcher })
 mylauncher:connect_signal("button::press", function() awful.util.mymainmenu:toggle() end)
 
 -- Separators
-local first = wibox.widget.textbox('<span font="Roboto 7"> </span>')
+local first = wibox.widget.textbox('<span font="Jetbrains Mono 7"> </span>')
 local spr_small = wibox.widget.imagebox(theme.spr_small)
 local spr_very_small = wibox.widget.imagebox(theme.spr_very_small)
 local spr_right = wibox.widget.imagebox(theme.spr_right)
@@ -236,6 +227,7 @@ function theme.at_screen_connect(s)
                            awful.button({}, 3, function () awful.layout.inc(-1) end),
                            awful.button({}, 4, function () awful.layout.inc( 1) end),
                            awful.button({}, 5, function () awful.layout.inc(-1) end)))
+
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons, { bg_focus = barcolor })
 
@@ -243,7 +235,19 @@ function theme.at_screen_connect(s)
     s.mytag = wibox.container.margin(mytaglistcont, dpi(0), dpi(0), dpi(5), dpi(5))
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons, { bg_focus = theme.bg_focus, shape = gears.shape.rectangle, shape_border_width = 5, shape_border_color = theme.tasklist_bg_normal, align = "center" })
+    s.mytasklist = awful.widget.tasklist {
+       screen = s,
+       filter = awful.widget.tasklist.filter.currenttags,
+       buttons = awful.util.tasklist_buttons,
+       style = {
+          bg_focus = theme.bg_light,
+          fg_focus = theme.magenta_color,
+          shape = gears.shape.rectangle,
+          shape_border_width = 1,
+          shape_border_color = theme.bg_normal,
+          align = "center"
+       },
+    }
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(32) })
@@ -255,15 +259,18 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             first,
             s.mytag,
-            spr_small,
             s.mylayoutbox,
-            spr_small,
             s.mypromptbox,
         },
-        nil, -- Middle widget
+
+        -- Middle widget
+        s.mytasklist,
+
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            spr_bottom_right,
+            first,
+            first,
+
             netdown_icon,
             networkwidget,
             netup_icon,

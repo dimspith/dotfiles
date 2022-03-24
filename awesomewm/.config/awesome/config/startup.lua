@@ -9,13 +9,11 @@ end
 
 run_once({
       "pipewire",
-      "pipewire-pulse",
       "wireplumber",
-      "nitrogen --restore",
+      "pipewire-pulse",
       "emacs --daemon",
-      "dunst",
       "picom",
-      "volctl",
+      "pasystray",
       "nm-applet",
       "udiskie",
       "setxkbmap -model pc105 -layout us,gr -option grp:rctrl_toggle -option ctrl:nocaps",
