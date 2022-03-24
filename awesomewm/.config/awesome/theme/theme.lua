@@ -234,6 +234,9 @@ function theme.at_screen_connect(s)
     mytaglistcont = wibox.container.background(s.mytaglist, theme.bg_focus, gears.shape.rectangle)
     s.mytag = wibox.container.margin(mytaglistcont, dpi(0), dpi(0), dpi(5), dpi(5))
 
+    -- Create a systray
+    s.systray = wibox.container.margin(wibox.widget.systray(true), dpi(0), dpi(0), dpi(5), dpi(5))
+
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
        screen   = s,
@@ -324,7 +327,7 @@ function theme.at_screen_connect(s)
             clockwidget,
             first,
 
-            wibox.widget.systray(),
+            s.systray
         }
     }
 end
