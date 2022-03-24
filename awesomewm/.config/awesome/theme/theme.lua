@@ -186,7 +186,7 @@ local mylauncher = awful.widget.button({ image = theme.awesome_icon_launcher })
 mylauncher:connect_signal("button::press", function() awful.util.mymainmenu:toggle() end)
 
 -- Separators
-local first = wibox.widget.textbox('<span font="Jetbrains Mono 7"> </span>')
+local first = wibox.widget.textbox('<span font="Jetbrains Mono 7">  </span>')
 local spr_small = wibox.widget.imagebox(theme.spr_small)
 local spr_very_small = wibox.widget.imagebox(theme.spr_very_small)
 local spr_right = wibox.widget.imagebox(theme.spr_right)
@@ -236,16 +236,52 @@ function theme.at_screen_connect(s)
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
-       screen = s,
-       filter = awful.widget.tasklist.filter.currenttags,
-       buttons = awful.util.tasklist_buttons,
+       screen   = s,
+       filter   = awful.widget.tasklist.filter.currenttags,
+       buttons  = awful.util.tasklist_buttons,
        style = {
-          bg_focus = theme.bg_light,
-          fg_focus = theme.magenta_color,
-          shape = gears.shape.rectangle,
-          shape_border_width = 1,
-          shape_border_color = theme.bg_normal,
-          align = "center"
+          bg_focus = theme.magenta_color,
+
+       },
+       layout   = {
+          spacing_widget = {
+             {
+                forced_width  = 5,
+                forced_height = 10,
+                thickness     = 2,
+                color         = theme.bg_color,
+                widget        = wibox.widget.separator
+             },
+             valign = 'center',
+             halign = 'center',
+             widget = wibox.container.place,
+          },
+          spacing = 1,
+          layout  = wibox.layout.fixed.horizontal
+       },
+       -- Notice that there is *NO* wibox.wibox prefix, it is a template,
+       -- not a widget instance.
+       widget_template = {
+          {
+             wibox.widget.base.make_widget(),
+             forced_height = 5,
+             id            = 'background_role',
+             widget        = wibox.container.background,
+          },
+          {
+             {
+                id     = 'clienticon',
+                widget = awful.widget.clienticon,
+                align = 'center',
+             },
+             margins = 2,
+             widget  = wibox.container.place
+          },
+          nil,
+          create_callback = function(self, c, index, objects) --luacheck: no unused args
+             self:get_children_by_id('clienticon')[1].client = c
+          end,
+          layout = wibox.layout.align.vertical,
        },
     }
 
@@ -261,6 +297,7 @@ function theme.at_screen_connect(s)
             s.mytag,
             s.mylayoutbox,
             s.mypromptbox,
+            first
         },
 
         -- Middle widget
@@ -269,27 +306,22 @@ function theme.at_screen_connect(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             first,
-            first,
 
             netdown_icon,
             networkwidget,
             netup_icon,
             first,
-            first,
 
             cpu_icon,
             cpuwidget,
-            first,
             first,
 
             calendar_icon,
             calendarwidget,
             first,
-            first,
 
             clock_icon,
             clockwidget,
-            first,
             first,
 
             wibox.widget.systray(),
