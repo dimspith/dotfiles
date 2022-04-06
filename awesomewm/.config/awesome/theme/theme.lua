@@ -16,14 +16,6 @@ theme.taglist_font                              = "Jetbrains Mono 11"
 
 
 -- colors
-theme.bg_color = "#121212"
-theme.bg_alt = "#1e1e1e"
-theme.bg_alt_dark = "#1d1d1d"
-theme.bg_light = "#2d2d2d"
-theme.bg_light_alt = "#2d2d2d"
-
-theme.fg_color = "#e9e9e9"
-
 theme.black_color = "#121212"
 theme.red_color = "#cf6679"
 theme.green_color = "#a5d6a7"
@@ -31,6 +23,15 @@ theme.yellow_color = "#ffecb3"
 theme.blue_color = "#90caf9"
 theme.magenta_color = "#bb86fc"
 theme.cyan_color = "#03dac6"
+
+theme.bg_color = theme.black_color
+theme.bg_alt = "#1e1e1e"
+theme.bg_alt_dark = "#1d1d1d"
+theme.bg_light = "#2d2d2d"
+theme.bg_light_alt = "#2d2d2d"
+
+theme.fg_color = "#e9e9e9"
+
 
 theme.dark_blue_color = "#447c9c"
 theme.dark_red_color = "#cc5e5e"
@@ -137,7 +138,7 @@ local calendar_icon = wibox.widget.imagebox(theme.calendar)
 local calbg = wibox.container.background(mytextcalendar, theme.bg_focus, gears.shape.rectangle)
 local calendarwidget = wibox.container.margin(calbg, dpi(0), dpi(0), dpi(5), dpi(5))
 theme.cal = lain.widget.cal({
-    attach_to = { mytextclock, mytextcalendar },
+    attach_to = {mytextcalendar},
     notification_preset = {
         fg = "#FFFFFF",
         bg = theme.bg_normal,
