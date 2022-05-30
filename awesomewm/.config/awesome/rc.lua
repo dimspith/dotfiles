@@ -243,16 +243,19 @@ globalkeys = gears.table.join(
 
    -- User programs
    awful.key({ modkey, "Shift" }, "b", function () awful.spawn("firefox") end, {description = "open a browser", group = "launcher"}),
-   awful.key({ modkey, "Shift" }, "p", function () awful.spawn("rofi -show drun") end, {description = "open rofi (program launcher)", group = "launcher"}),
+   awful.key({ modkey, "Shift" }, "p", function () awful.spawn("rofi -show drun") end, {description = "open rofi (drun) (program launcher)", group = "launcher"}),
+   awful.key({ modkey          }, "p", function () awful.spawn("rofi -show run") end, {description = "open rofi (run) (program launcher)", group = "launcher"}),
    awful.key({ modkey, "Shift" }, "e", function () awful.spawn(editor) end, {description = "open emacs", group = "launcher"}),
-   awful.key({ modkey, "Shift" }, "f", function () awful.spawn(terminal .. " -e nnn") end, {description = "open file manager", group = "launcher"}),
+   awful.key({ modkey, "Shift" }, "f", function () awful.spawn(terminal .. " -e nnn") end, {description = "open file manager", group = "launcher"})
+
    -- awful.key({ }, "XK_Print", function() awful.spawn("flameshot gui") end,
    --    {description = "take a screenshot", group = "launcher"}),
 
    -- Menubar
-   awful.key({ modkey }, "p", function() menubar.show() end,
-      {description = "show the menubar", group = "launcher"})
-)
+   -- awful.key({ modkey }, "p", function() menubar.show() end,
+   --    {description = "show the menubar", group = "launcher"})
+
+   )
 
 clientkeys = mytable.join(
     awful.key({ modkey, "Shift"   }, "m",      lain.util.magnify_client, {description = "magnify client", group = "client"}),
@@ -410,9 +413,7 @@ awful.rules.rules = {
       }, properties = { floating = true }},
 
     -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = false }
-    },
+    { rule_any = {type = { "normal", "dialog" }, properties = { titlebars_enabled = false }}},
 
     -- Social & Messengers always open at 6
     { rule = { class = "TelegramDesktop" },
@@ -460,5 +461,74 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+function add_and_show_titlebar(c)
+  -- buttons for the titlebar
+  local buttons = gears.table.join(
+       awful.button({ }, 1, function()
+           c:emit_signal("request::activate", "titlebar", {raise = true})
+           awful.mouse.client.move(c)
+       end),
+       awful.button({ }, 3, function()
+           c:emit_signal("request::activate", "titlebar", {raise = true})
+           awful.mouse.client.resize(c)
+       end)
+   )
+
+   awful.titlebar(c) : setup {
+       { -- Left
+           awful.titlebar.widget.iconwidget(c),
+           buttons = buttons,
+           layout  = wibox.layout.fixed.horizontal
+       },
+       { -- Middle
+           { -- Title
+               align  = "center",
+               widget = awful.titlebar.widget.titlewidget(c)
+           },
+           buttons = buttons,
+           layout  = wibox.layout.flex.horizontal
+       },
+       { -- Right
+           awful.titlebar.widget.floatingbutton (c),
+           awful.titlebar.widget.maximizedbutton(c),
+           awful.titlebar.widget.stickybutton   (c),
+           awful.titlebar.widget.ontopbutton    (c),
+           awful.titlebar.widget.closebutton    (c),
+           layout = wibox.layout.fixed.horizontal()
+       },
+       layout = wibox.layout.align.horizontal
+   }
+   awful.titlebar.show(c)
+end
+
+
+-- Titlebars only on floating windows
+client.connect_signal("property::floating", function(c)
+    if c.floating then
+        add_and_show_titlebar(c)
+    else
+        awful.titlebar.hide(c)
+    end
+end)
+
+function dynamic_title(c)
+    if c.floating or c.first_tag.layout.name == "floating" then
+        add_and_show_titlebar(c)
+    else
+        awful.titlebar.hide(c)
+    end
+end
+
+tag.connect_signal("property::layout", function(t)
+    local clients = t:clients()
+    for k,c in pairs(clients) do
+        if c.floating or c.first_tag.layout.name == "floating" then
+            add_and_show_titlebar(c)
+        else
+            awful.titlebar.hide(c)
+        end
+    end
+end)
 
 -- }}}
