@@ -13,7 +13,7 @@ command -v "zoxide" >/dev/null &&
 
 # Run ls every time you change directories
 autoload -U add-zsh-hook
-add-zsh-hook -Uz chpwd (){ ls --group-directories-first --color=always; }
+add-zsh-hook -Uz chpwd (){ exa --group-directories-first --color always; }
 
 # Load custom modules
 . "$XDG_CONFIG_HOME/zsh/modules/completion.zsh"
@@ -113,7 +113,7 @@ ex ()
 f()
 {
     local LOCATION="$(\
-       fd -H -E .cache -E .m2 -E .ipfs -E .ccls-cache |\
+       fd -H -E .cache -E .m2 |\
        fzf --prompt='FIND> ')"
     if [ -n "$LOCATION" ] ; then
         if [ -f "$LOCATION" ]; then
@@ -152,7 +152,9 @@ alias la="ls -a"
 alias lal="la -l"
 alias lla="la -l"
 alias ll="ls -1"
+alias lsd="ls -D"
 alias rm="rm -I"
+alias ,books="pdf \$(ls --color=never ~/Koofr/books/ | fzf)"
 
 alias glog="git log --all --decorate --oneline --graph"
 alias git_optimize="git reflog expire --all --expire=now; \\
@@ -226,7 +228,13 @@ n ()
     fi
 }
 
+vs ()
+{
+    
+}
+
 run () { setsid -f "$1" > /dev/null 2>&1 }
 
 
 [ -f ~/.config/zsh/modules/fzf.zsh ] && source ~/.config/zsh/modules/fzf.zsh
+export PATH=$PATH:/home/dimitris/.spicetify

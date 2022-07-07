@@ -505,7 +505,7 @@ end
 
 -- Titlebars only on floating windows
 client.connect_signal("property::floating", function(c)
-    if c.floating then
+    if c.floating and not c.fullscreen then
         add_and_show_titlebar(c)
     else
         awful.titlebar.hide(c)
